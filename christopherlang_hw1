@@ -1,0 +1,16 @@
+Christopher Lang, HW1
+
+Q1 What native features of Python support parallel programming?
+Python only supports in-memory, single thread code execution natively. Special third party libraries are required for parallel processing
+
+Q2 What native features of R support parallel programming?
+R, like Python, only supports in-memory, single thread code execution natively. Special third party libraries are required for parallel processing
+
+Q3 What Python libraries support parallel programming?
+Python comes with the multiprocessing module and the threading module for parallel processing. Python suffers from the Global Interpreter Lock (GIL) that prevents concurrent thread execution for certain tasks. Hence, the more popular of the two is multiprocessing, via methods such as forking or sockets, depending on the operating system
+
+Q4 What R libraries support parallel programming?
+R comes with the parallel package, a collection of functions that permit parallel processing over CPU cores. Snow is another, allowing a developer to network clusters of computers (nodes) together for larger scale processing
+
+Q5 Can GPUs be used with Python and R? if yes, how?
+GPU computation can be used but would require separate libraries to work. For R, there are specially built packages that can take advantage of GPU compute for certain matrix algebra tasks. Similarly, Python has packages such as PyCUDA and PyOpenCL
