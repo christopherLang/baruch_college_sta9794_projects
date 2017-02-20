@@ -1,0 +1,14 @@
+PackratFormat: 1.4
+PackratVersion: 0.4.8.14
+RVersion: 3.3.2
+Repos: CRAN=https://cran.rstudio.com/,
+    CRANextra=http://www.stats.ox.ac.uk/pub/RWin
+
+Package: packrat
+Source: github
+Version: 0.4.8-14
+GithubRepo: packrat
+GithubUsername: rstudio
+GithubRef: master
+GithubSha1: 01cc6e20bc8b206af21c2e49c68f2768d356c87d
+Hash: 6460f6e0841ee4c7563f5ef901e2d085
