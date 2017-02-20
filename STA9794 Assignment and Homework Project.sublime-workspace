@@ -1,0 +1,513 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"suppes",
+				"suppressWarnings"
+			],
+			[
+				"inter",
+				"intersection_update"
+			],
+			[
+				"start",
+				"start_nodes"
+			],
+			[
+				"entity",
+				"entity_index"
+			],
+			[
+				"all",
+				"all_entity_tags"
+			],
+			[
+				"tagged_",
+				"tagged_tokens"
+			],
+			[
+				"all_e",
+				"all_entity_tags\tstatement"
+			],
+			[
+				"all_en",
+				"all_entities_tagged"
+			],
+			[
+				"_po",
+				"_pos_tagger_single\tstatement"
+			],
+			[
+				"end",
+				"end_nodes"
+			],
+			[
+				"set",
+				"set_attribute_values"
+			],
+			[
+				"list",
+				"list_of_sentences"
+			],
+			[
+				"add_",
+				"add_vertex\tfunction"
+			],
+			[
+				"un",
+				"union\tfunction"
+			],
+			[
+				"gr",
+				"groupby\t(textutils.py)"
+			],
+			[
+				"op",
+				"opinosis"
+			],
+			[
+				"all_cc",
+				"all_ccand"
+			],
+			[
+				"value",
+				"ValueError\tclass"
+			],
+			[
+				"Value",
+				"ValueError\tclass"
+			],
+			[
+				"boo",
+				"bool\tclass"
+			],
+			[
+				"_pos",
+				"_pos_tagger_single"
+			],
+			[
+				"w",
+				"writerows\tfunction"
+			],
+			[
+				"iter",
+				"itertools"
+			],
+			[
+				"tok_",
+				"tok_punc_rm"
+			],
+			[
+				"sub",
+				"subn\tfunction"
+			],
+			[
+				"keyword",
+				"keyword_extractor\t(keyword_extractor.py)"
+			],
+			[
+				"pos",
+				"pos_tag_sents\tfunction"
+			],
+			[
+				"p",
+				"punctuation"
+			],
+			[
+				"key",
+				"keyword_extractor\t(keyword_extractor.py)"
+			],
+			[
+				"eigenvector",
+				"eigenvector_centrality\tfunction"
+			],
+			[
+				"su",
+				"subn\tfunction"
+			],
+			[
+				"s",
+				"sub\tfunction"
+			],
+			[
+				"sente",
+				"sent_tokenize\tfunction"
+			],
+			[
+				"tok_index",
+				"tok_index"
+			],
+			[
+				"snow",
+				"SnowballStemmer\tclass"
+			],
+			[
+				"stem",
+				"stem\tmodule"
+			],
+			[
+				"po",
+				"pos_tag\tfunction"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 530.0,
+		"last_filter": "json",
+		"selected_items":
+		[
+			[
+				"json",
+				"Set Syntax: JSON"
+			],
+			[
+				"merge",
+				"Git: Merge Branch"
+			],
+			[
+				"commit",
+				"Git: Commit"
+			],
+			[
+				"status",
+				"Git: Status"
+			],
+			[
+				"git pull",
+				"Git: Pull"
+			],
+			[
+				"package",
+				"Package Control: List Packages"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"rein",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"disab",
+				"Package Control: Disable Package"
+			],
+			[
+				"inde",
+				"Indentation: Reindent Lines"
+			]
+		],
+		"width": 620.0
+	},
+	"console":
+	{
+		"height": 153.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/Christopher Lang/Desktop/BK - Trade Area Clusters/src/05 - zipcode.R",
+		"/C/Users/Christopher Lang/AppData/Local/Temp/scp51501/home/fcbanalytics/BK - Trade Area Clusters/logs/brand_age.txt",
+		"/C/Users/Christopher Lang/AppData/Local/Temp/scp25575/home/fcbanalytics/BK - Trade Area Clusters/src/05 - zipcode.R",
+		"/C/Users/Christopher Lang/AppData/Local/Temp/scp53008/home/fcbanalytics/BK - Trade Area Clusters/src/01 - Compute Distances.R",
+		"/C/Users/Christopher Lang/Desktop/BK - Trade Area Clusters/data/processed/brand_lookup.tsv",
+		"/C/Users/Christopher Lang/Desktop/BK - Trade Area Clusters/data/processed/bordering_states.json",
+		"/C/Users/Christopher Lang/Desktop/BK - Trade Area Clusters/data/output/log.txt",
+		"/C/Users/Christopher Lang/AppData/Local/Temp/scp14767/home/fcbanalytics/BK - Trade Area Clusters/data/output/bk distances/BKG01830.tsv",
+		"/C/Users/Christopher Lang/AppData/Local/Temp/scp56970/home/fcbanalytics/BK - Trade Area Clusters/src/01 - Compute Distances.R",
+		"/C/Users/Christopher Lang/Dropbox/Education/Baruch College/Fall 2016/STA 9701 Time Series - Forecasting and Statistical Modeling/Homeworks/Homework 5/Homework 5 - p3.18.Rmd",
+		"/C/Users/Christopher Lang/Dropbox/Education/Baruch College/Fall 2016/STA 9701 Time Series - Forecasting and Statistical Modeling/Homeworks/Homework 5/testing.Rmd",
+		"/C/Users/Christopher Lang/Downloads/STA9701 Chapter 3 (Shumway & Stoffer, 3rd ed) Part 1.R",
+		"/C/Users/Christopher Lang/Documents/local/work projects/nla/setup.py",
+		"/C/Users/Christopher Lang/Documents/local/work projects/nla/nla/textutils.py",
+		"/C/Users/Christopher Lang/Documents/local/work projects/nla/nla/summarize/abstraction.py",
+		"/C/Users/Christopher Lang/Documents/local/work projects/nla/nla/toolkits.py",
+		"/C/Users/Christopher Lang/Documents/local/work projects/nla/README.rst",
+		"/C/Users/Christopher Lang/AppData/Roaming/Sublime Text 3/Packages/User/reStructuredText.sublime-settings",
+		"/C/Users/Christopher Lang/Documents/local/work projects/nla/nla/summarize/extraction.py",
+		"/C/Users/Christopher Lang/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/C/Users/Christopher Lang/Documents/local/work projects/wapi/setup.py",
+		"/C/Users/Christopher Lang/Documents/local/work projects/wapi/README.rst",
+		"/C/Users/Christopher Lang/Documents/local/work projects/wapi/CHANGELOG.mdown",
+		"/C/Users/Christopher Lang/Desktop/time example.py",
+		"/C/Users/Christopher Lang/Desktop/KWsum/lib/keyword_extractor.py",
+		"/C/Users/Christopher Lang/Desktop/KWsum/src/main.py",
+		"/C/Users/Christopher Lang/Anaconda3/Lib/site-packages/IPython/extensions/memory_profiler_ext.py",
+		"/C/Users/Christopher Lang/Anaconda3/Lib/site-packages/IPython/extensions/line_profiler_ext.py",
+		"/C/Users/Christopher Lang/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/Christopher Lang/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/<Unsaved>",
+		"/C/Users/Christopher Lang/AppData/Local/Temp/scp55346/home/fcbanalytics/TwitterStream/src/TwitterStreamer.py",
+		"/C/Users/Christopher Lang/Downloads/snowflake_downloader.py",
+		"/C/Users/Christopher Lang/Downloads/snowflake_download.py",
+		"/C/Users/Christopher Lang/AppData/Local/Temp/scp57815/home/fcbanalytics/TwitterStream_BMW/src/main.py",
+		"/C/Users/Christopher Lang/AppData/Local/Temp/scp54071/home/fcbanalytics/TwitterStream/src/main.py",
+		"/C/Users/Christopher Lang/AppData/Local/Temp/scp24148/home/fcbanalytics/TwitterStream_BMW/src/TwitterStreamer.py",
+		"/C/Users/Christopher Lang/AppData/Local/Temp/scp25753/home/fcbanalytics/TwitterStream/src/TwitterStreamer.py",
+		"/C/Users/Christopher Lang/Desktop/ARTi Foxx/Recommendation Engine/controllers/artiservices.js",
+		"/C/Users/Christopher Lang/Desktop/ARTi Foxx/Recommendation Engine/scripts/custom_libraries.js",
+		"/C/Users/Christopher Lang/Desktop/ARTi Foxx/Recommendation Engine/manifest.json",
+		"/C/Users/Christopher Lang/Desktop/ARTi Foxx/ARTi-Foxx.sublime-project",
+		"/C/Users/Christopher Lang/Desktop/ARTi Foxx/backups/collab filter v1",
+		"/C/Users/Christopher Lang/Desktop/ARTi Foxx/backups/collab filter v2",
+		"/C/Users/Christopher Lang/Desktop/ARTi Foxx/Recommendation Engine/sftp-config.json",
+		"/C/Users/Christopher Lang/Desktop/ARTi Foxx/Recommendation Engine/scripts/setup.js",
+		"/C/Users/Christopher Lang/Downloads/app (1)/controllers/templates.js",
+		"/C/Users/Christopher Lang/Desktop/keyinfo.json",
+		"/C/Users/Christopher Lang/Dropbox/Education/Baruch College/Spring 2016/STA 9719 - Statistical Inference/STA9719-Statistical-Inference/lecture-notes.css",
+		"/C/Users/Christopher Lang/Desktop/question3_textfile.txt",
+		"/C/Users/Christopher Lang/Documents/Processing/Amtrak/Amtrak.pde",
+		"/C/Users/Christopher Lang/Downloads/amtrk_sta.json",
+		"/C/Users/Christopher Lang/AppData/Roaming/Sublime Text 3/Packages/User/Processing221.sublime-build",
+		"/G/FCB NY Analytics - Internal Hours Dashboard/config/configuration.json",
+		"/G/FCB NY Analytics - Internal Hours Dashboard/data/jobDescrip_nonBill.txt",
+		"/G/FCB NY Analytics - Internal Hours Dashboard/data/jobDescrip_nonBill",
+		"/G/FCB NY Analytics - Internal Hours Dashboard/www/theme.css",
+		"/G/ARTi - Process Sample Data for Neo4j/arti_dump.json",
+		"/G/ARTi - Process Sample Data for Neo4j/N4J-CQ Upload Data",
+		"/G/ARTi - Process Sample Data for Neo4j/uploadNodes.json",
+		"/G/ARTi - Process Sample Data for Neo4j/python_example.py",
+		"/G/ARTi - Process Sample Data for Neo4j/examples.R",
+		"/G/ARTi - Process Sample Data for Neo4j/cypherQ2.json",
+		"/C/Users/Christopher Lang/Downloads/fcbChoroplething/R/shapefile_setters.R",
+		"/C/Users/Christopher Lang/AppData/Local/Temp/7zOC68BD1C0/shapefile_setters.R",
+		"/C/Users/Christopher Lang/AppData/Local/Temp/7zOC6810A5E/shapefile_setters.R",
+		"/C/Users/Christopher Lang/AppData/Local/Temp/7zOC686D3BD/shapefile_setters.R",
+		"/C/Users/Christopher Lang/AppData/Local/Temp/7zO0E23BCBD/shapefile_setters.R",
+		"/C/Users/Christopher Lang/AppData/Local/Temp/7zO4EFD5F4C/shapefile_setters.R",
+		"/C/Users/Christopher Lang/AppData/Local/Temp/7zO0AB60E35/shapefile_setters.R",
+		"/C/Users/Christopher Lang/AppData/Local/Temp/7zO442F23F7/shapefile_setters.R",
+		"/C/Users/Christopher Lang/AppData/Local/Temp/7zO8820EC23/shapefile_setters.R",
+		"/C/Users/Christopher Lang/AppData/Roaming/Sublime Text 3/Packages/User/R.sublime-settings"
+	],
+	"find":
+	{
+		"height": 68.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"stopped: TRUE",
+			"\\s[=]+\\s",
+			"\\s",
+			"\\s{2,}",
+			"[|]",
+			" ",
+			"\\s{2}",
+			"[|]",
+			"[,]\\s",
+			", ",
+			"\\s",
+			"[(]ref[=]['][0-9]+['][)]",
+			"\\s",
+			"[(]ref[=]['][0-9[\\]\\,)]['][)]",
+			"[A-Z]([0-9]{1})?+\\s?[(]ref[=]['].+['][)]",
+			"|",
+			" ",
+			"1",
+			" ",
+			"generat",
+			"print",
+			"pid",
+			"range(0, len(a_",
+			"range(, len(a_path",
+			"operator",
+			"+",
+			"post",
+			"file",
+			"syntactic_filters",
+			"sent_length",
+			"super",
+			"g_edges",
+			"gedges",
+			"sent",
+			"glob",
+			"cStringIO",
+			"findDocument",
+			"collab",
+			"result",
+			"db.coll",
+			"\"",
+			".",
+			"\"",
+			","
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"\\t",
+			" ",
+			"   ",
+			"  ",
+			" ",
+			"",
+			" ",
+			"|",
+			"",
+			"-",
+			"ctrl",
+			"edgelist",
+			"s",
+			"clib.findDocument",
+			"aqlq",
+			"founddocs",
+			"",
+			"_",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 42.0
+	},
+	"input":
+	{
+		"height": 35.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 124.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 184.0
+	},
+	"output.sftp":
+	{
+		"height": 184.0
+	},
+	"pinned_build_system": "Packages/User/Processing221.sublime-build",
+	"project": "STA9794 Assignment and Homework Project.sublime-project",
+	"replace":
+	{
+		"height": 132.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 384.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
