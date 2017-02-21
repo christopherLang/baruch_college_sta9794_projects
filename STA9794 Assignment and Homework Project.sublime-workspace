@@ -155,18 +155,76 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "Assignment A/scrub.py",
+			"settings":
+			{
+				"buffer_size": 888,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "lib/utils.py",
+			"settings":
+			{
+				"buffer_size": 290,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		}
 	],
-	"build_system": "",
+	"build_system": "Packages/MagicPython/settings/sublime/Python.sublime-build",
 	"build_system_choices":
 	[
+		[
+			[
+				[
+					"Packages/MagicPython/settings/sublime/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/MagicPython/settings/sublime/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/MagicPython/settings/sublime/Python.sublime-build",
+				""
+			]
+		]
 	],
 	"build_varint": "",
 	"command_palette":
 	{
 		"height": 530.0,
-		"last_filter": "json",
+		"last_filter": "magi",
 		"selected_items":
 		[
+			[
+				"magi",
+				"Set Syntax: MagicPython"
+			],
+			[
+				"brow",
+				"Preferences: Browse Packages"
+			],
+			[
+				"package",
+				"Package Control: List Packages"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"mag",
+				"Set Syntax: MagicPython"
+			],
+			[
+				"indent",
+				"Indent JSON"
+			],
 			[
 				"json",
 				"Set Syntax: JSON"
@@ -188,15 +246,7 @@
 				"Git: Pull"
 			],
 			[
-				"package",
-				"Package Control: List Packages"
-			],
-			[
 				"install ",
-				"Package Control: Install Package"
-			],
-			[
-				"install",
 				"Package Control: Install Package"
 			],
 			[
@@ -241,11 +291,17 @@
 	},
 	"expanded_folders":
 	[
-		"/C/Users/Christopher Lang/Dropbox/Education/Baruch College/Spring 2017/STA 9794 - Special Topics in Statistics/Assignments and Homeworks",
-		"/C/Users/Christopher Lang/Dropbox/Education/Baruch College/Spring 2017/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A"
+		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks",
+		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A",
+		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/lib"
 	],
 	"file_history":
 	[
+		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A/config/assignmentA_config.ini",
+		"/C/Users/Christopher Lang/AppData/Roaming/Sublime Text 3/Packages/User/python26-build.sublime-build",
+		"/C/Users/Christopher Lang/AppData/Roaming/Sublime Text 3/Packages/User/SublimeREPL.sublime-settings",
+		"/C/Users/Christopher Lang/AppData/Roaming/Sublime Text 3/Packages/SublimeREPL/SublimeREPL.sublime-settings",
+		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/STA9794 Assignment and Homework Project.sublime-project",
 		"/C/Users/Christopher Lang/Desktop/BK - Trade Area Clusters/src/05 - zipcode.R",
 		"/C/Users/Christopher Lang/AppData/Local/Temp/scp51501/home/fcbanalytics/BK - Trade Area Clusters/logs/brand_age.txt",
 		"/C/Users/Christopher Lang/AppData/Local/Temp/scp25575/home/fcbanalytics/BK - Trade Area Clusters/src/05 - zipcode.R",
@@ -416,8 +472,93 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "Assignment A/scrub.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 888,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								249,
+								249
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								}
+							],
+							"incomplete_sync": null,
+							"syntax": "Packages/MagicPython/grammars/MagicPython.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "lib/utils.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 290,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								68,
+								68
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								}
+							],
+							"incomplete_sync": null,
+							"syntax": "Packages/MagicPython/grammars/MagicPython.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -454,7 +595,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 124.0
+		"height": 353.0
 	},
 	"output.find_results":
 	{
@@ -468,7 +609,7 @@
 	{
 		"height": 184.0
 	},
-	"pinned_build_system": "Packages/User/Processing221.sublime-build",
+	"pinned_build_system": "Packages/User/python26-build.sublime-build",
 	"project": "STA9794 Assignment and Homework Project.sublime-project",
 	"replace":
 	{
@@ -510,7 +651,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 384.0,
+	"side_bar_width": 431.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
