@@ -159,7 +159,16 @@
 			"file": "Assignment A/scrub.py",
 			"settings":
 			{
-				"buffer_size": 888,
+				"buffer_size": 1871,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Assignment A/config/assignmentA_config.ini",
+			"settings":
+			{
+				"buffer_size": 86,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -168,7 +177,7 @@
 			"file": "lib/utils.py",
 			"settings":
 			{
-				"buffer_size": 290,
+				"buffer_size": 2252,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -197,10 +206,14 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 530.0,
-		"last_filter": "magi",
+		"height": 338.0,
+		"last_filter": "install",
 		"selected_items":
 		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
 			[
 				"magi",
 				"Set Syntax: MagicPython"
@@ -212,10 +225,6 @@
 			[
 				"package",
 				"Package Control: List Packages"
-			],
-			[
-				"install",
-				"Package Control: Install Package"
 			],
 			[
 				"mag",
@@ -293,11 +302,15 @@
 	[
 		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks",
 		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A",
+		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A/config",
 		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/lib"
 	],
 	"file_history":
 	[
 		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A/config/assignmentA_config.ini",
+		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A/scrub.py",
+		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/lib/utils.py",
+		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/.gitignore",
 		"/C/Users/Christopher Lang/AppData/Roaming/Sublime Text 3/Packages/User/python26-build.sublime-build",
 		"/C/Users/Christopher Lang/AppData/Roaming/Sublime Text 3/Packages/User/SublimeREPL.sublime-settings",
 		"/C/Users/Christopher Lang/AppData/Roaming/Sublime Text 3/Packages/SublimeREPL/SublimeREPL.sublime-settings",
@@ -481,15 +494,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 888,
+						"buffer_size": 1871,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								249,
-								249
+								608,
+								608
 							]
 						],
 						"settings":
@@ -510,10 +523,12 @@
 								}
 							],
 							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
 							"syntax": "Packages/MagicPython/grammars/MagicPython.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 420.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -521,19 +536,50 @@
 				},
 				{
 					"buffer": 1,
-					"file": "lib/utils.py",
+					"file": "Assignment A/config/assignmentA_config.ini",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 290,
+						"buffer_size": 86,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								68,
-								68
+								52,
+								52
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "lib/utils.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2252,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								974,
+								989
 							]
 						],
 						"settings":
@@ -550,13 +596,15 @@
 								}
 							],
 							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
 							"syntax": "Packages/MagicPython/grammars/MagicPython.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 420.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
