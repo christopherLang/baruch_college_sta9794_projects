@@ -2,6 +2,6 @@
 .Rhistory
 .RData
 .Ruserdata
-packrat/lib*/
+packrat/*
 Archive.zip
 Archive/*
