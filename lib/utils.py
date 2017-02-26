@@ -1,6 +1,39 @@
 import itertools as it
 
 
+def simple_idchunker(iterable, chunk_size=1000):
+    """Evenly chunked indices with generator
+
+    Creates a generator that returns index values. Each call returns a list of
+    unique index values of chunk size or less
+
+    Args:
+        iterable (iterable):
+            An object that is iterable, such as iterators, generators, etc.
+
+        chunk_size (int):
+            The size of each returned collection
+
+    Returns (list(int)):
+        The generator returns a list of index values of chunk size or less.
+        Each call returns the next set of unique index values
+    """
+    current_index = 0
+    result_indices = list()
+
+    for _ in iterable:
+        result_indices.append(current_index)
+        current_index += 1
+
+        if len(result_indices) == chunk_size:
+            yield result_indices
+
+            result_indices = list()
+
+    if len(result_indices) != 0:
+        yield result_indices
+
+
 def simple_chunker(iterable, chunk_size=1000):
     """Evenly chunked iterator with generator
 
@@ -19,17 +52,20 @@ def simple_chunker(iterable, chunk_size=1000):
         The generator returns a list of elements retrieved from iterable of
         length chunk_size or less
     """
-    chunking_iter = iter(iterable)
-    element_block = list(it.islice(chunking_iter, chunk_size))
+    size_counter = 0
+    result_yield = list()
+    for an_element in iterable:
+        result_yield.append(an_element)
+        size_counter += 1
 
-    while True:
-        element_block = list(it.islice(chunking_iter, chunk_size))
+        if size_counter == chunk_size:
+            yield result_yield
 
-        if len(element_block) != 0:
-            yield element_block
+            result_yield = list()
+            size_counter = 0
 
-        else:
-            break
+    if len(result_yield) != 0:
+        yield result_yield
 
 
 def sliding_chunker(iterable, chunk_size=1000, inc=2):
