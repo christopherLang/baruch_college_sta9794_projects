@@ -12,10 +12,42 @@ from joblib import Parallel, delayed
 
 
 def row_clean(rows):
-    rows.sort(key=lambda x: x[0])
-
     for a_row in rows:
         a_row[1:] = [float(a_row[1]), int(a_row[2])]
+
+    rows.sort(key=lambda x: x[0])
+
+    result = [tuple(i) for i in rows]
+
+    return result
+
+
+def detect_noise(rows):
+    noise_indices = set()
+
+    for i in range(len(rows)):
+
+        # Presuming all rows should have 3 elements, one for each column
+        if len(rows[i]) != 3:
+            noise_indices.append(i)
+
+        # Look for negative "price" (index 1) and "units traded" (index 2)
+        elif rows[i][1] < 0 or rows[i][2] < 0:
+            noise_indices.add(i)
+
+    # If no noise rows are found based on the above logic, then return None
+    if len(noise_indices) == 0:
+        noise_rows = None
+
+    else:
+        noise_rows = list()
+        for i in noise_indices:
+            noise_rows.append(rows[i])
+
+    return noise_rows
+
+
+
 
 
 # def row_clean2(rows):
