@@ -2,7 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
-packrat/lib*/
+packrat/*
 Archive.zip
 Archive/*
 Assignment A/scratch.py
