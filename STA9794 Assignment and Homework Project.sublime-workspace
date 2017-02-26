@@ -159,7 +159,8 @@
 			"file": "Assignment A/scrub.py",
 			"settings":
 			{
-				"buffer_size": 1871,
+				"buffer_size": 3847,
+				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		}
@@ -188,9 +189,17 @@
 	"command_palette":
 	{
 		"height": 470.0,
-		"last_filter": "instal",
+		"last_filter": "set json",
 		"selected_items":
 		[
+			[
+				"set json",
+				"Set Syntax: JSON"
+			],
+			[
+				"python",
+				"Set Syntax: MagicPython"
+			],
 			[
 				"instal",
 				"Package Control: Install Package"
@@ -282,15 +291,19 @@
 	"expanded_folders":
 	[
 		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks",
-		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A"
+		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A",
+		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A/config",
+		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/lib"
 	],
 	"file_history":
 	[
-		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/README.md",
+		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A/scratch.py",
 		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/lib/utils.py",
-		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A/scrub.py",
 		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A/config/assignmentA_config.ini",
 		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/.gitignore",
+		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A/config/assignmentA_config.json",
+		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A/scrub.py",
+		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/README.md",
 		"/C/Users/Christopher Lang/AppData/Roaming/Sublime Text 3/Packages/User/python26-build.sublime-build",
 		"/C/Users/Christopher Lang/AppData/Roaming/Sublime Text 3/Packages/User/SublimeREPL.sublime-settings",
 		"/C/Users/Christopher Lang/AppData/Roaming/Sublime Text 3/Packages/SublimeREPL/SublimeREPL.sublime-settings",
@@ -375,9 +388,12 @@
 	},
 	"find_in_files":
 	{
-		"height": 93.0,
+		"height": 196.0,
 		"where_history":
 		[
+			"C:\\Users\\Christopher Lang\\Documents\\school\\STA 9794 - Special Topics in Statistics\\Assignments and Homeworks\\Assignment A",
+			"\"Assignment A\"",
+			""
 		]
 	},
 	"find_state":
@@ -385,6 +401,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"<<<<<<<",
+			"py",
+			"\\",
 			"stopped: TRUE",
 			"\\s[=]+\\s",
 			"\\s",
@@ -433,9 +452,10 @@
 		"highlight": true,
 		"in_selection": false,
 		"preserve_case": false,
-		"regex": true,
+		"regex": false,
 		"replace_history":
 		[
+			"/",
 			"\\t",
 			" ",
 			"   ",
@@ -471,31 +491,42 @@
 				{
 					"buffer": 0,
 					"file": "Assignment A/scrub.py",
-					"semi_transient": true,
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1871,
+						"buffer_size": 3847,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								809,
+								809
 							]
 						],
 						"settings":
 						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								}
+							],
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": false,
-							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"syntax": "Packages/MagicPython/grammars/MagicPython.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1260.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,

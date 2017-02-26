@@ -6,3 +6,5 @@ packrat/*
 Archive.zip
 Archive/*
 Assignment A/scratch.py
+*.pyc
+**/*.pyc
