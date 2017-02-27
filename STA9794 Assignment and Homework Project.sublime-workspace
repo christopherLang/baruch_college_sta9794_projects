@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"add_le",
+				"add_lines\tfunction"
+			],
+			[
+				"section",
+				"section_cache\tstatement"
+			],
+			[
+				"sect",
+				"section_cache\tstatement"
+			],
+			[
+				"right",
+				"right_margin\tstatement"
+			],
+			[
 				"suppes",
 				"suppressWarnings"
 			],
@@ -159,16 +175,34 @@
 			"file": "Assignment A/scrub.py",
 			"settings":
 			{
-				"buffer_size": 3847,
+				"buffer_size": 6777,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": ".gitignore",
+			"file": "Assignment A/config/assignmentA_config.json",
 			"settings":
 			{
-				"buffer_size": 111,
+				"buffer_size": 149,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "lib/ResultLogger.py",
+			"settings":
+			{
+				"buffer_size": 15625,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "lib/utils.py",
+			"settings":
+			{
+				"buffer_size": 2964,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -197,10 +231,22 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 470.0,
-		"last_filter": "set json",
+		"height": 139.0,
+		"last_filter": "reindent",
 		"selected_items":
 		[
+			[
+				"reindent",
+				"JSON Reindent: reindent file or selection"
+			],
+			[
+				"reind",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"json",
+				"Set Syntax: JSON"
+			],
 			[
 				"set json",
 				"Set Syntax: JSON"
@@ -242,10 +288,6 @@
 				"Indent JSON"
 			],
 			[
-				"json",
-				"Set Syntax: JSON"
-			],
-			[
 				"merge",
 				"Git: Merge Branch"
 			],
@@ -278,7 +320,7 @@
 				"Indentation: Reindent Lines"
 			]
 		],
-		"width": 620.0
+		"width": 414.0
 	},
 	"console":
 	{
@@ -299,13 +341,15 @@
 	},
 	"expanded_folders":
 	[
-		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks",
-		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A",
-		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A/config",
-		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/lib"
+		"/C/Users/christopher.lang/Desktop/school/2017-STAT-9794-Christopher-Lang",
+		"/C/Users/christopher.lang/Desktop/school/2017-STAT-9794-Christopher-Lang/Assignment A",
+		"/C/Users/christopher.lang/Desktop/school/2017-STAT-9794-Christopher-Lang/Assignment A/config",
+		"/C/Users/christopher.lang/Desktop/school/2017-STAT-9794-Christopher-Lang/lib"
 	],
 	"file_history":
 	[
+		"/C/Users/christopher.lang/Desktop/school/2017-STAT-9794-Christopher-Lang/Assignment A/result/testresult2.txt",
+		"/C/Users/christopher.lang/Desktop/school/2017-STAT-9794-Christopher-Lang/.gitignore",
 		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A/scratch.py",
 		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/lib/utils.py",
 		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A/config/assignmentA_config.ini",
@@ -393,7 +437,7 @@
 	],
 	"find":
 	{
-		"height": 68.0
+		"height": 48.0
 	},
 	"find_in_files":
 	{
@@ -410,6 +454,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"kv_format",
+			"dt.",
 			"<<<<<<<",
 			"py",
 			"\\",
@@ -494,7 +540,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -503,15 +549,92 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3847,
+						"buffer_size": 6777,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								809,
-								809
+								4122,
+								4122
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								}
+							],
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/MagicPython/grammars/MagicPython.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2589.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Assignment A/config/assignmentA_config.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 149,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								146,
+								146
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "lib/ResultLogger.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 15625,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5086,
+								5086
 							]
 						],
 						"settings":
@@ -535,41 +658,54 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1260.0,
+						"translation.y": 2466.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": ".gitignore",
+					"buffer": 3,
+					"file": "lib/utils.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 111,
+						"buffer_size": 2964,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								110,
-								110
+								2771,
+								2771
 							]
 						],
 						"settings":
 						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								}
+							],
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": false,
-							"syntax": "Packages/Theme - Lanzhou/icons/Langs/Git.tmLanguage"
+							"syntax": "Packages/MagicPython/grammars/MagicPython.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1134.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
@@ -664,7 +800,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 431.0,
+	"side_bar_width": 277.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

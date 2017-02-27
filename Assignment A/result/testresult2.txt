@@ -1,13 +1,13 @@
 | =========================================================================== |
-| STA9794 Assignment A - Scrub Program                                        |
+| Scrub Program                                                               |
 | =========================================================================== |
 
 
 
  General Information                                                           
  ----------------------------------------------------------------------------- 
-    Datetime     : Monday February 27 2017 | 06:02:26PM UTC+00:00                
-    Datetime ISO : 2017-02-27T18:02:26.716185+00:00                              
+    Datetime     : Monday February 27 2017 | 05:27:09PM UTC+00:00                
+    Datetime ISO : 2017-02-27T17:27:09.643949+00:00                              
 
 
  Python Information                                                            
@@ -21,11 +21,4 @@
  ----------------------------------------------------------------------------- 
     Host      : Windows-10-10.0.10586-SP0 [AMD64]                                
     Processor : Intel64 Family 6 Model 94 Stepping 3, GenuineIntel               
-
-
- Program Information                                                           
- ----------------------------------------------------------------------------- 
-    # of CPU cores       : 8                                                     
-    # of cores requested : 7                                                     
-    Block height         : 100000                                                
 
