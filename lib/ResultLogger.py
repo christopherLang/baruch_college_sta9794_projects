@@ -17,6 +17,9 @@ class ResultLogger(object):
         self.left_margin = left_margin
         self.right_margin = right_margin
 
+        self.section_cache = dict()
+        self.section_initiated = False
+
         # Open the file for writing
         if os.path.exists(file) is not True:
             log_file = open(file, "w")
@@ -117,6 +120,49 @@ class ResultLogger(object):
 
         self.nlines += len(lines)
 
+    def init_section(self, title, items=None, subtitle=None, level=0,
+                     nlines_above=1, nlines_below=1):
+        self.section_initiated = True
+
+        self.section_cache['title'] = title
+        self.section_cache['items'] = items
+        self.section_cache['subtitle'] = subtitle
+        self.section_cache['level'] = level
+        self.section_cache['nlines_above'] = nlines_above
+        self.section_cache['nlines_below'] = nlines_below
+
+    def exec_section(self):
+        if self.section_initiated is False:
+            raise Exception("Section has not been initiated. see init_section")
+
+        else:
+            full_section = self.section(
+                title=self.section_cache['title'],
+                itmes=self.section_cache['items'],
+                subtitle=self.section_cache['subtitle'],
+                nlines_above=self.section_cache['nlines_above'],
+                nlines_below=self.section_cache['nlines_below']
+            )
+
+            self.add_lines(textlines=full_section)
+            self.section_initiated = False
+            self.section_cache = dict()
+
+    def add_section_items(self, items):
+        if self.section_initiated is False:
+            raise Exception("Section has not been initiated. see init_section")
+
+        if isinstance(items, list) is not True:
+            raise TypeError("items must be a list, of strings")
+
+        if all([isinstance(i, str) for i in items]) is not True:
+            raise TypeError("items' elements must be strings")
+
+        if self.section_cache is None:
+            self.section_cache['items'] = list()
+
+        self.section_cache['items'].extend(items)
+
     def get_default_headers(self, title, description=None):
         """Add a default header to the results file
 
@@ -158,10 +204,13 @@ class ResultLogger(object):
         # Add general information
         ginfo = list()
 
-        log_dt = dt.datetime.today().strftime('%A %B %d %Y | %I:%M:%S %p')
+        log_dt = dt.datetime.utcnow()
+        log_dt = log_dt.replace(tzinfo=dt.timezone.utc)
 
-        ginfo.append(("Date and time", log_dt))
-        ginfo.append(("Date and time ISO", dt.datetime.today().isoformat()))
+        log_dt_format = log_dt.strftime('%A %B %d %Y | %I:%M:%S%p %Z')
+
+        ginfo.append(("Datetime", log_dt_format))
+        ginfo.append(("Datetime ISO", log_dt.isoformat()))
 
         ginfo = self.kv_format(ginfo)
         headers.extend(self.section("General Information", ginfo))
@@ -239,7 +288,8 @@ class ResultLogger(object):
             for _ in range(nlines_above):
                 section_headers.append(self.__get_newline())
 
-        title = self.wrap_text(title, pad_left=total_left_spacing, pad_right=self.right_margin)
+        title = self.wrap_text(title, pad_left=total_left_spacing,
+                               pad_right=self.right_margin)
         section_headers.extend(title)
 
         section_headers.append(self.__get_hborder(char="-",
@@ -288,19 +338,19 @@ class ResultLogger(object):
 
         result = list()
         for k, v in items:
-            key_spacing = "".join([" " for _ in range(max_keywidth - len(k))])
+            ws_key_left = "".join([" " for _ in range(max_keywidth - len(k))])
 
             if k_justify == "left":
-                key = self.left_margin + left_indent + k + key_spacing
+                key = self.left_margin + left_indent + k + ws_key_left
 
             elif k_justify == "right":
-                key = self.left_margin + left_indent + key_spacing + k
+                key = self.left_margin + left_indent + ws_key_left + k
 
             sp_len = len(split)
             spaces_used = "".join([" " for _ in range(len(key) + sp_len)])
 
-            value_wrapped = self.wrap_text(v, pad_right=self.right_margin,
-                                           width=width - len(spaces_used))
+            width_for_value = width - len(spaces_used) - len(self.right_margin)
+            value_wrapped = self.wrap_text(v, width=width_for_value)
 
             if len(value_wrapped) == 0:
                 kv = key + split + value_wrapped[0]
@@ -312,8 +362,7 @@ class ResultLogger(object):
                         kv = key + split + value_wrapped[i]
 
                     else:
-                        kv = spaces_used + key_spacing
-                        kv += value_wrapped[i]
+                        kv = spaces_used + value_wrapped[i]
 
                     result.append(kv)
 

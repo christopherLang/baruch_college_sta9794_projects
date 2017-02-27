@@ -1,3 +1,7 @@
+import time
+import datetime as dt
+
+
 def pretty_time_string(days=None, seconds=None, microseconds=None):
     """Generate a pretty string, indicating time
 
@@ -41,28 +45,50 @@ def pretty_time_string(days=None, seconds=None, microseconds=None):
 
 
 def execution_time(start_time, end_time):
-    """Parse execution time
+    """Parse execution time in UTC
 
     Given two datetime objects, compute elapsed time in seconds and pretty
-    string, generate formatted dates for both objects, and return objects
+    string, generate formatted dates for both objects, and return original
+    datetime objects
+
+    Note: This function assumes that both start_time and end_time is UTC time.
+          It will automatically apply a UTC time to the objects. If the objects
+          are not UTC time then this application would have incorrect time
+
+    Args:
+        start_time, end_time (datetime):
+            A datetime object
 
     Returns (dict):
     The dictionary has the following keys:
-      1. pretty_str - a pretty string show elapsed time
-      2. seconds - Number of seconds elapsed
+      1. pretty_str - a pretty string showing elapsed time
+      2. seconds - Number of seconds elapsed between start_time and end_time
       3. start - formatted start date and time
-      4. end - formatted end date and time
-      5. raw - An array, containing start_time, end_time, and timedelta
+      4. start_ios - ISO 8601 formatted start date and time
+      5. end - formatted end date and time
+      6. end_iso - ISO 8601 formatted start date and time
+      7. raw - An array, containing start_time, end_time, and timedelta
     """
     result = dict()
 
     elapsed = end_time - start_time
+
     pretty_time = pretty_time_string(elapsed.days, elapsed.seconds,
                                      elapsed.microseconds)
 
+    start_time = start_time.replace(tzinfo=dt.timezone.utc).astimezone(tz=None)
+    end_time = end_time.replace(tzinfo=dt.timezone.utc).astimezone(tz=None)
+
+    # if tz is None:
+    #     tz = time.strftime("%z", time.gmtime())
+
     result['pretty_str'] = pretty_time
-    result['start'] = start_time.strftime('%A %B %d %Y | %I:%M:%S %p')
-    result['end'] = end_time.strftime('%A %B %d %Y | %I:%M:%S %p')
+
+    result['start'] = start_time.strftime('%A %B %d %Y | %I:%M:%S%p %Z')
+    result['start_iso'] = start_time.isoformat()
+    result['end'] = end_time.strftime('%A %B %d %Y | %I:%M:%S%p %Z')
+    result['end_iso'] = end_time.isoformat()
+
     result['seconds'] = elapsed.seconds + (elapsed.microseconds * 1e-6)
 
     result['raw'] = [start_time, end_time, elapsed]

@@ -1,13 +1,12 @@
 import sys
 import os
 import csv
-import logging as lg
-import itertools as it
+# import logging as lg
+# import itertools as it
 import multiprocessing as mp
 import tqdm
-import ConfigParser
+import json
 import datetime as dt
-from joblib import Parallel, delayed
 
 # print wdir
 # print "/".join([os.getcwd(), "..", "lib"])
@@ -89,14 +88,38 @@ if __name__ == "__main__":
     import ResultLogger as rl
     import utils
 
-    result_log = rl.ResultLogger("result/testresult.txt",
-                                 "STA9794 Assignment A - Scrub Program")
-
     # Settings
-    configs = ConfigParser.ConfigParser()
-    configs.read("config/assignmentA_config.ini")
-    block_height = configs.getint('chunkOptions', 'blockHeight')
-    n_cores = configs.getint('computeOptions', 'num_process')
+    with open("config/assignmentA_config.json", "r") as f:
+        configs = json.load(f)
+
+    block_height = configs['blockHeight']
+    n_cores = configs['num_process']
+
+    # Get the location of the data file to be parsed
+    # --------------------------------------------------------------------------
+    dataloc = None
+    try:
+        dataloc = sys.argv[1]
+
+    except IndexError:
+        # No data loc was provided via command line, check config file
+        pass
+
+    if dataloc is None:
+        try:
+            dataloc = configs['dataloc']
+
+        except KeyError:
+            # no dataloc was provided in configuration file
+            pass
+
+    if dataloc is None:
+        raise Exception("No data location was provided")
+
+    # Create result logger
+    # --------------------------------------------------------------------------
+    result_log = rl.ResultLogger("result/testresult.txt",
+                                 configs['prog_title'])
 
     if n_cores is 0:
         n_cores = mp.cpu_count()
@@ -119,7 +142,7 @@ if __name__ == "__main__":
     nrows_parsed = 0
     start_time = dt.datetime.today()
     # ../Archive/data-big.txt
-    with open("../Archive/data-big.txt", "rb") as f:
+    with open("data.txt", "rb") as f:
         reader = csv.reader(f)
         current_row = 0
         nrows_parsed = 0
