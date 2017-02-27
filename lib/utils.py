@@ -1,110 +1,70 @@
-import itertools as it
+def pretty_time_string(days=None, seconds=None, microseconds=None):
+    """Generate a pretty string, indicating time
 
+    Generates a string, show elapsed time by:
+      1. Number of days
+      2. Number of hours
+      3. Number of minutes
+      4. Number of seconds
 
-def simple_idchunker(iterable, chunk_size=1000):
-    """Evenly chunked indices with generator
-
-    Creates a generator that returns index values. Each call returns a list of
-    unique index values of chunk size or less
-
-    Args:
-        iterable (iterable):
-            An object that is iterable, such as iterators, generators, etc.
-
-        chunk_size (int):
-            The size of each returned collection
-
-    Returns (list(int)):
-        The generator returns a list of index values of chunk size or less.
-        Each call returns the next set of unique index values
+    Will only show if applicable (30 seconds has no days, or even minutes)
     """
-    current_index = 0
-    result_indices = list()
+    result = list()
 
-    for _ in iterable:
-        result_indices.append(current_index)
-        current_index += 1
+    if days is not None:
+        if days > 0:
+            result.append(str(days) + " day(s)")
 
-        if len(result_indices) == chunk_size:
-            yield result_indices
+    total_seconds = seconds + (microseconds * 1e-6)
 
-            result_indices = list()
+    if total_seconds >= 3600:
+        total_hours = 0
 
-    if len(result_indices) != 0:
-        yield result_indices
+        while total_seconds >= 3600:
+            total_seconds -= 3600
+            total_hours += 1
+
+        result.append(str(total_hours) + " hour(s)")
+
+    if total_seconds >= 60:
+        total_minutes = 0
+
+        while total_seconds >= 60:
+            total_seconds -= 60
+            total_minutes += 1
+
+        result.append(str(total_minutes) + " minute(s)")
+
+    result.append(str(round(total_seconds, 2)) + " second(s)")
+
+    return ", ".join(result)
 
 
-def simple_chunker(iterable, chunk_size=1000):
-    """Evenly chunked iterator with generator
+def execution_time(start_time, end_time):
+    """Parse execution time
 
-    Creates a generator that returns elements within the supplied iterator of
-    approximately equal size. This avoids loading the whole iterator into
-    memory (unless the iterable already exists in memory such as lists)
+    Given two datetime objects, compute elapsed time in seconds and pretty
+    string, generate formatted dates for both objects, and return objects
 
-    Args:
-        iterable (iterable):
-            An object that is iterable, such as iterators, generators, etc.
-
-        chunk_size (int):
-            The size of each returned collection
-
-    Returns (list(iterable)):
-        The generator returns a list of elements retrieved from iterable of
-        length chunk_size or less
+    Returns (dict):
+    The dictionary has the following keys:
+      1. pretty_str - a pretty string show elapsed time
+      2. seconds - Number of seconds elapsed
+      3. start - formatted start date and time
+      4. end - formatted end date and time
+      5. raw - An array, containing start_time, end_time, and timedelta
     """
-    size_counter = 0
-    result_yield = list()
-    for an_element in iterable:
-        result_yield.append(an_element)
-        size_counter += 1
+    result = dict()
 
-        if size_counter == chunk_size:
-            yield result_yield
+    elapsed = end_time - start_time
+    pretty_time = pretty_time_string(elapsed.days, elapsed.seconds,
+                                     elapsed.microseconds)
 
-            result_yield = list()
-            size_counter = 0
+    result['pretty_str'] = pretty_time
+    result['start'] = start_time.strftime('%A %B %d %Y | %I:%M:%S %p')
+    result['end'] = end_time.strftime('%A %B %d %Y | %I:%M:%S %p')
+    result['seconds'] = elapsed.seconds + (elapsed.microseconds * 1e-6)
 
-    if len(result_yield) != 0:
-        yield result_yield
+    result['raw'] = [start_time, end_time, elapsed]
 
-
-def sliding_chunker(iterable, chunk_size=1000, inc=2):
-    """Sliding window chunked iterator with generator
-
-    Creates a generator that returns elements within the supplied iterator of
-    of length chunk_size. Each subsequent call will shift the window forward by
-    inc while maintaining length chunk_size
-
-    Args:
-        iterable (iterable):
-            An object that is iterable, such as iterators, generators, etc.
-
-        chunk_size (int):
-            The size of each returned collection
-
-        inc (int):
-            Sliding window increment size
-
-    Returns (list(iterable)):
-        The generator returns a list of elements retrieved from iterable of
-        length chunk_size or less, shifted by inc forward (except first call)
-    """
-    chunking_iter = iter(iterable)
-    element_block = list(it.islice(chunking_iter, chunk_size))
-
-    if len(element_block) == chunk_size:
-        yield element_block
-
-    counting_index = 0
-    inc_elements = list()
-    for an_element in chunking_iter:
-        inc_elements += [an_element]
-        counting_index += 1
-
-        if (counting_index % inc) is 0:
-            element_block = element_block[inc:] + inc_elements
-
-            yield element_block
-
-            counting_index = 0
-            inc_elements = list()
+    return result
