@@ -6,10 +6,24 @@ import itertools as it
 import multiprocessing as mp
 import tqdm
 import ConfigParser
+import datetime as dt
 from joblib import Parallel, delayed
 
 # print wdir
 # print "/".join([os.getcwd(), "..", "lib"])
+
+
+def worker(rows):
+    nrows_parsed = len(rows)
+
+    rows = row_clean(rows)
+    rows = detect_noise(rows)
+
+    result = dict()
+    result['rows_parsed'] = nrows_parsed
+    result['noise'] = rows
+
+    return result
 
 
 def row_clean(rows):
@@ -71,7 +85,12 @@ if __name__ == "__main__":
 
     sys.path.append("/".join([os.getcwd(), "..", "lib"]))
 
+    import chunkers as chk
+    import ResultLogger as rl
     import utils
+
+    result_log = rl.ResultLogger("result/testresult.txt",
+                                 "STA9794 Assignment A - Scrub Program")
 
     # Settings
     configs = ConfigParser.ConfigParser()
@@ -87,33 +106,88 @@ if __name__ == "__main__":
 
     print("Number of cores: " + str(mp.cpu_count()) + " (" + str(n_cores) + " processes requested)")
     print("Block height: " + str(block_height))
-    print("Increments: " + str(window_inc))
+
+    prog_info = list()
+    prog_info.append(("# of CPU cores", str(mp.cpu_count())))
+    prog_info.append(("# of cores requested", str(n_cores)))
+    prog_info.append(("Block height", str(block_height)))
+
+    prog_info = result_log.kv_format(prog_info)
+
+    result_log.add_lines(result_log.section("Program Information", prog_info))
 
     nrows_parsed = 0
-
+    start_time = dt.datetime.today()
     # ../Archive/data-big.txt
     with open("../Archive/data-big.txt", "rb") as f:
         reader = csv.reader(f)
-        row_counter = 0
-        # file_chunk = utils.simple_idchunker(reader, chunk_size=block_height)
-        file_chunk = utils.simple_chunker(reader, chunk_size=block_height)
+        current_row = 0
+        nrows_parsed = 0
+        file_chunk = chk.simple_chunker(reader, chunk_size=block_height)
 
         noise_results = list()
         for rows in tqdm.tqdm(file_chunk):
+            nrows_parsed += len(rows)
             nrows = len(rows)
-            row_index = range(row_counter, nrows)
+            row_index = range(current_row, nrows)
 
             row_and_index = list()
             for a_row, index in zip(rows, row_index):
                 row_and_index.append(a_row + [index])
 
-            rows = row_clean(row_and_index)
-            noise_results.append(detect_noise(rows))
+            work_result = worker(row_and_index)
 
-            row_counter = nrows
+            noise_results.append(work_result['noise'])
+            nrows_parsed += work_result['rows_parsed']
 
-    print("# of noise rows detected: " + str(sum([len(i['noise_rows']) for i in noise_results if i['noise_rows'] is not None])))
-    print("    Due to duplicates   : " + str(sum([i['n_duplicates'] for i in noise_results])))
-    print("    Due to wrong length : " + str(sum([i['n_wrongLength'] for i in noise_results])))
-    print("    Due to neg. numbers : " + str(sum([i['n_negativeNum'] for i in noise_results])))
+            current_row = nrows
+
+    end_time = dt.datetime.today()
+    # Gather work results
+    analysis_results = dict()
+
+    analysis_results['nrows_noise'] = (
+        [len(i['noise_rows']) for i in noise_results
+         if i['noise_rows'] is not None]
+    )
+    analysis_results['nrows_noise'] = sum(analysis_results['nrows_noise'])
+
+    analysis_results['dupe'] = sum([i['n_duplicates'] for i in noise_results])
+    analysis_results['wrg'] = sum([i['n_wrongLength'] for i in noise_results])
+    analysis_results['neg'] = sum([i['n_negativeNum'] for i in noise_results])
+
+    exec_time_result = utils.execution_time(start_time, end_time)
+
+    analysis_log = list()
+
+    analysis_log.append(("Execution start time", exec_time_result['start']))
+    analysis_log.append(("Execution end time", exec_time_result['end']))
+
+    analysis_log.append(("Elapsed time", exec_time_result['pretty_str']))
+
+    velocity = nrows_parsed / exec_time_result['seconds']
+    velocity = round(velocity, 2)
+
+    analysis_log.append(("Rows parsed", str(nrows_parsed)))
+    analysis_log.append(("Velocity (rows parsed / sec)", str(velocity)))
+
+    analysis_log.append(("Total # noise rows",
+                         str(analysis_results['nrows_noise'])))
+    analysis_log.append(("Noise rows (duplicates)",
+                         str(analysis_results['dupe'])))
+    analysis_log.append(("Noise rows (negative num.)",
+                         str(analysis_results['neg'])))
+    analysis_log.append(("Noise rows (timestamp length)",
+                         str(analysis_results['wrg'])))
+    analysis_log = result_log.kv_format(analysis_log)
+
+    analysis_log = result_log.section("Analysis Output", analysis_log)
+
+    result_log.add_lines(analysis_log)
+
+    print("# of noise rows detected: " + str(analysis_results['nrows_noise']))
+    print("    Due to duplicates   : " + str(analysis_results['dupe']))
+    print("    Due to wrong length : " + str(analysis_results['wrg']))
+    print("    Due to neg. numbers : " + str(analysis_results['neg']))
+
     # print(nrows_parsed)

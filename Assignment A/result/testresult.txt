@@ -1,0 +1,44 @@
+| =========================================================================== |
+| STA9794 Assignment A - Scrub Program                                        |
+| =========================================================================== |
+
+
+
+ General Information                                                           
+ ----------------------------------------------------------------------------- 
+    Date and time     : Monday February 27 2017 | 12:26:26 AM                      
+    Date and time ISO : 2017-02-27T00:26:26.496000                                 
+
+
+ Python Information                                                            
+ ----------------------------------------------------------------------------- 
+    Version  : Python 2.6.9                                                        
+    Build    : unknown Jan  9 2015 10:34:13                                        
+    Compiler : MSC v.1500 64 bit (AMD64)                                           
+
+
+ System Information                                                            
+ ----------------------------------------------------------------------------- 
+    Host      : Windows-post2008Server-6.2.9200 [AMD64]                            
+    Processor : Intel64 Family 6 Model 94 Stepping 3, GenuineIntel                 
+
+
+ Program Information                                                           
+ ----------------------------------------------------------------------------- 
+    # of CPU cores       : 8                                                       
+    # of cores requested : 7                                                       
+    Block height         : 100000                                                  
+
+
+ Analysis Output                                                               
+ ----------------------------------------------------------------------------- 
+    Execution start time          : Monday February 27 2017 | 12:26:26 AM          
+    Execution end time            : Monday February 27 2017 | 12:26:52 AM          
+    Elapsed time                  : 25.89 second(s)                                
+    Rows parsed                   : 35458866                                       
+    Velocity (rows parsed / sec)  : 1369438.3                                      
+    Total # noise rows            : 91                                             
+    Noise rows (duplicates)       : 52                                             
+    Noise rows (negative num.)    : 39                                             
+    Noise rows (timestamp length) : 0                                              
+
