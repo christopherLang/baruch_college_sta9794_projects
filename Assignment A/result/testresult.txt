@@ -6,20 +6,20 @@
 
  General Information                                                           
  ----------------------------------------------------------------------------- 
-    Datetime     : Monday February 27 2017 | 06:02:26PM UTC+00:00                
-    Datetime ISO : 2017-02-27T18:02:26.716185+00:00                              
+    Datetime     : Tuesday February 28 2017 | 02:44:31AM UTC                     
+    Datetime ISO : 2017-02-28T02:44:31.382000Z                                   
 
 
  Python Information                                                            
  ----------------------------------------------------------------------------- 
-    Version  : Python 3.5.2                                                      
-    Build    : default Jul  5 2016 11:41:13                                      
-    Compiler : MSC v.1900 64 bit (AMD64)                                         
+    Version  : Python 2.6.9                                                      
+    Build    : unknown Jan  9 2015 10:34:13                                      
+    Compiler : MSC v.1500 64 bit (AMD64)                                         
 
 
  System Information                                                            
  ----------------------------------------------------------------------------- 
-    Host      : Windows-10-10.0.10586-SP0 [AMD64]                                
+    Host      : Windows-post2008Server-6.2.9200 [AMD64]                          
     Processor : Intel64 Family 6 Model 94 Stepping 3, GenuineIntel               
 
 
@@ -28,4 +28,17 @@
     # of CPU cores       : 8                                                     
     # of cores requested : 7                                                     
     Block height         : 100000                                                
+
+
+ Analysis Output                                                               
+ ----------------------------------------------------------------------------- 
+    Execution start time          : Tuesday February 28 2017 | 02:44:31AM UTC    
+    Execution end time            : Tuesday February 28 2017 | 02:44:55AM UTC    
+    Elapsed time                  : 23.68 second(s)                              
+    Rows parsed                   : 35458866                                     
+    Velocity (rows parsed / sec)  : 1497608.06                                   
+    Total # noise rows            : 91                                           
+    Noise rows (duplicates)       : 52                                           
+    Noise rows (negative num.)    : 39                                           
+    Noise rows (timestamp length) : 0                                            
 

@@ -7,6 +7,8 @@ import multiprocessing as mp
 import tqdm
 import json
 import datetime as dt
+from mpi4py import MPI
+from mpi4py.MPI import ANY_SOURCE
 
 # print wdir
 # print "/".join([os.getcwd(), "..", "lib"])
@@ -79,6 +81,7 @@ def detect_noise(rows):
 
 
 if __name__ == "__main__":
+    # Set working directory to script's directory
     wdir = os.path.dirname(os.path.realpath(__file__))
     os.chdir(wdir)
 
@@ -88,7 +91,7 @@ if __name__ == "__main__":
     import ResultLogger as rl
     import utils
 
-    # Settings
+    # Load program settings
     with open("config/assignmentA_config.json", "r") as f:
         configs = json.load(f)
 
@@ -140,9 +143,9 @@ if __name__ == "__main__":
     result_log.add_lines(result_log.section("Program Information", prog_info))
 
     nrows_parsed = 0
-    start_time = dt.datetime.today()
+    start_time = dt.datetime.utcnow()
     # ../Archive/data-big.txt
-    with open("data.txt", "rb") as f:
+    with open(dataloc, "rb") as f:
         reader = csv.reader(f)
         current_row = 0
         nrows_parsed = 0
@@ -165,7 +168,7 @@ if __name__ == "__main__":
 
             current_row = nrows
 
-    end_time = dt.datetime.today()
+    end_time = dt.datetime.utcnow()
     # Gather work results
     analysis_results = dict()
 

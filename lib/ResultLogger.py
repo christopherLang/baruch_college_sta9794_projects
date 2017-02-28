@@ -205,12 +205,11 @@ class ResultLogger(object):
         ginfo = list()
 
         log_dt = dt.datetime.utcnow()
-        log_dt = log_dt.replace(tzinfo=dt.timezone.utc)
 
-        log_dt_format = log_dt.strftime('%A %B %d %Y | %I:%M:%S%p %Z')
+        log_dt_format = log_dt.strftime('%A %B %d %Y | %I:%M:%S%p UTC')
 
         ginfo.append(("Datetime", log_dt_format))
-        ginfo.append(("Datetime ISO", log_dt.isoformat()))
+        ginfo.append(("Datetime ISO", log_dt.isoformat() + "Z"))
 
         ginfo = self.kv_format(ginfo)
         headers.extend(self.section("General Information", ginfo))

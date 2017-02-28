@@ -76,18 +76,15 @@ def execution_time(start_time, end_time):
     pretty_time = pretty_time_string(elapsed.days, elapsed.seconds,
                                      elapsed.microseconds)
 
-    start_time = start_time.replace(tzinfo=dt.timezone.utc).astimezone(tz=None)
-    end_time = end_time.replace(tzinfo=dt.timezone.utc).astimezone(tz=None)
-
     # if tz is None:
     #     tz = time.strftime("%z", time.gmtime())
 
     result['pretty_str'] = pretty_time
 
-    result['start'] = start_time.strftime('%A %B %d %Y | %I:%M:%S%p %Z')
-    result['start_iso'] = start_time.isoformat()
-    result['end'] = end_time.strftime('%A %B %d %Y | %I:%M:%S%p %Z')
-    result['end_iso'] = end_time.isoformat()
+    result['start'] = start_time.strftime('%A %B %d %Y | %I:%M:%S%p UTC')
+    result['start_iso'] = start_time.isoformat() + "Z"
+    result['end'] = end_time.strftime('%A %B %d %Y | %I:%M:%S%p UTC')
+    result['end_iso'] = end_time.isoformat() + "Z"
 
     result['seconds'] = elapsed.seconds + (elapsed.microseconds * 1e-6)
 
