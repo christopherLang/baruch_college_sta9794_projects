@@ -91,3 +91,9 @@ if __name__ == "__main__":
 
     # Ran out of time for parallel versions. Would've used joblib for
     # embarassingly parallel work
+    # Or used multiprocessing directly. The main part is to parallelize the
+    # mapper function by distributing each line roughly evenly amongst the CPU
+    # cores, or number of processes, you want
+    # The results of mapper is again parallelized with partition function
+    # And reduce, in this case, will actually be single threaded to combine
+    # all frq count
