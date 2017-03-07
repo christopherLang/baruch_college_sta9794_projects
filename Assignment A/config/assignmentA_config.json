@@ -1,7 +1,11 @@
 {
-  "blockHeight": 100000,
+  "chunk_size": 15000000,
   "num_process": 7,
   "prog_title": "STA9794 Assignment A - Scrub Program",
   "prog_description": "",
-  "dataloc": "../Archive/data-big.txt"
+  "dataloc": "../Archive/data-big.txt",
+  "resultloc": "",
+  "exec_logloc": "",
+  "col_delimiter": ",",
+  "enable_debug": true
 }

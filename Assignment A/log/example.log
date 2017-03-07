@@ -1,0 +1,367 @@
+2017-03-07T00:39:29 : INFO : Debug logging is enabled
+2017-03-07T00:39:29 : INFO : Debug logging is enabled
+2017-03-07T00:39:29 : INFO : Debug logging is enabled
+2017-03-07T00:39:31 : INFO : MPI size 8, working in parallel
+2017-03-07T00:39:31 : INFO : rank1 work index sent
+2017-03-07T00:39:31 : INFO : rank2 work index sent
+nrows: 1428571
+2017-03-07T00:39:31 : INFO : rank3 work index sent
+2017-03-07T00:39:31 : DEBUG : rank2 start index: 1428571, nrows: 1428571
+2017-03-07T00:39:31 : INFO : rank4 work index sent
+2017-03-07T00:39:31 : DEBUG : rank3 start index: 2857142, nrows: 1428571
+2017-03-07T00:39:31 : INFO : rank5 work index sent
+2017-03-07T00:39:31 : DEBUG : rank4 start index: 4285713, nrows: 1428571
+2017-03-07T00:39:31 : INFO : rank6 work index sent
+2017-03-07T00:39:31 : DEBUG : rank5 start index: 5714284, nrows: 1428571
+2017-03-07T00:39:31 : DEBUG : rank6 start index: 7142855, nrows: 1428571
+2017-03-07T00:39:31 : INFO : rank7 work index sent
+2017-03-07T00:39:31 : DEBUG : rank7 start index: 8571426, nrows: 1428574
+2017-03-07T00:39:33 : DEBUG : \n end of line detected
+2017-03-07T00:39:33 : DEBUG : \n end of line detected
+2017-03-07T00:39:33 : DEBUG : \n end of line detected
+2017-03-07T00:39:33 : DEBUG : \n end of line detected
+2017-03-07T00:39:33 : DEBUG : \n end of line detected
+2017-03-07T00:39:34 : DEBUG : \n end of line detected
+2017-03-07T00:39:34 : DEBUG : \n end of line detected
+2017-03-07T00:40:07 : DEBUG : rank1 finished cleaning, nrows 1428571
+2017-03-07T00:40:08 : DEBUG : rank2 finished cleaning, nrows 1428571
+2017-03-07T00:40:09 : DEBUG : rank3 finished cleaning, nrows 1428571
+2017-03-07T00:40:09 : DEBUG : rank1 detect noise finished, nrows 4
+2017-03-07T00:40:09 : DEBUG : rank1 start index: 10000000, nrows: 1428571
+2017-03-07T00:40:09 : DEBUG : rank4 finished cleaning, nrows 1428571
+2017-03-07T00:40:09 : DEBUG : rank7 finished cleaning, nrows 1428574
+2017-03-07T00:40:09 : DEBUG : rank5 finished cleaning, nrows 1428571
+2017-03-07T00:40:10 : DEBUG : rank2 detect noise finished, nrows 4
+2017-03-07T00:40:10 : DEBUG : rank2 start index: 11428571, nrows: 1428571
+2017-03-07T00:40:10 : DEBUG : rank6 finished cleaning, nrows 1428571
+2017-03-07T00:40:10 : DEBUG : rank3 detect noise finished, nrows 4
+2017-03-07T00:40:10 : DEBUG : rank3 start index: 12857142, nrows: 1428571
+2017-03-07T00:40:11 : DEBUG : rank4 detect noise finished, nrows 4
+2017-03-07T00:40:11 : DEBUG : rank4 start index: 14285713, nrows: 1428571
+2017-03-07T00:40:11 : DEBUG : rank7 detect noise finished, nrows 4
+2017-03-07T00:40:11 : DEBUG : rank5 detect noise finished, nrows 4
+2017-03-07T00:40:11 : DEBUG : rank7 start index: 18571426, nrows: 1428574
+2017-03-07T00:40:11 : DEBUG : rank5 start index: 15714284, nrows: 1428571
+2017-03-07T00:40:11 : DEBUG : rank6 detect noise finished, nrows 4
+2017-03-07T00:40:11 : DEBUG : rank6 start index: 17142855, nrows: 1428571
+2017-03-07T00:40:11 : DEBUG : \n end of line detected
+2017-03-07T00:40:12 : DEBUG : \n end of line detected
+2017-03-07T00:40:13 : DEBUG : \n end of line detected
+2017-03-07T00:40:14 : DEBUG : \n end of line detected
+2017-03-07T00:40:14 : DEBUG : \n end of line detected
+2017-03-07T00:40:14 : DEBUG : \n end of line detected
+2017-03-07T00:40:14 : DEBUG : \n end of line detected
+2017-03-07T00:40:42 : DEBUG : rank1 finished cleaning, nrows 1428571
+2017-03-07T00:40:43 : DEBUG : rank1 detect noise finished, nrows 4
+2017-03-07T00:40:43 : DEBUG : rank1 start index: 20000000, nrows: 1428571
+2017-03-07T00:40:46 : DEBUG : rank2 finished cleaning, nrows 1428571
+2017-03-07T00:40:46 : DEBUG : \n end of line detected
+2017-03-07T00:40:47 : DEBUG : rank2 detect noise finished, nrows 4
+2017-03-07T00:40:47 : DEBUG : rank2 start index: 21428571, nrows: 1428571
+2017-03-07T00:40:47 : DEBUG : rank3 finished cleaning, nrows 1428571
+2017-03-07T00:40:48 : DEBUG : rank3 detect noise finished, nrows 4
+2017-03-07T00:40:48 : DEBUG : rank3 start index: 22857142, nrows: 1428571
+2017-03-07T00:40:49 : DEBUG : rank4 finished cleaning, nrows 1428571
+2017-03-07T00:40:49 : DEBUG : rank5 finished cleaning, nrows 1428571
+2017-03-07T00:40:49 : DEBUG : rank6 finished cleaning, nrows 1428571
+2017-03-07T00:40:49 : DEBUG : rank7 finished cleaning, nrows 1428574
+2017-03-07T00:40:50 : DEBUG : rank4 detect noise finished, nrows 4
+2017-03-07T00:40:50 : DEBUG : rank4 start index: 24285713, nrows: 1428571
+2017-03-07T00:40:50 : DEBUG : rank5 detect noise finished, nrows 4
+2017-03-07T00:40:50 : DEBUG : rank5 start index: 25714284, nrows: 1428571
+2017-03-07T00:40:50 : DEBUG : rank6 detect noise finished, nrows 4
+2017-03-07T00:40:50 : DEBUG : rank6 start index: 27142855, nrows: 1428571
+2017-03-07T00:40:50 : DEBUG : rank7 detect noise finished, nrows 4
+2017-03-07T00:40:50 : DEBUG : rank7 start index: 28571426, nrows: 1428574
+2017-03-07T00:40:51 : DEBUG : \n end of line detected
+2017-03-07T00:40:53 : DEBUG : \n end of line detected
+2017-03-07T00:40:54 : DEBUG : \n end of line detected
+2017-03-07T00:40:55 : DEBUG : \n end of line detected
+2017-03-07T00:40:55 : DEBUG : \n end of line detected
+2017-03-07T00:40:55 : DEBUG : \n end of line detected
+2017-03-07T00:41:13 : DEBUG : rank1 finished cleaning, nrows 1428571
+2017-03-07T00:41:15 : DEBUG : rank1 detect noise finished, nrows 4
+2017-03-07T00:41:15 : DEBUG : rank1 start index: 30000000, nrows: 765552
+2017-03-07T00:41:19 : DEBUG : \n end of line detected
+2017-03-07T00:41:20 : DEBUG : rank2 finished cleaning, nrows 1428571
+2017-03-07T00:41:21 : DEBUG : rank2 detect noise finished, nrows 4
+2017-03-07T00:41:21 : DEBUG : rank2 start index: 30765552, nrows: 765552
+2017-03-07T00:41:23 : DEBUG : rank3 finished cleaning, nrows 1428571
+2017-03-07T00:41:24 : DEBUG : rank3 detect noise finished, nrows 4
+2017-03-07T00:41:24 : DEBUG : rank3 start index: 31531104, nrows: 765552
+2017-03-07T00:41:25 : DEBUG : \n end of line detected
+2017-03-07T00:41:26 : DEBUG : rank4 finished cleaning, nrows 1428571
+2017-03-07T00:41:27 : DEBUG : rank5 finished cleaning, nrows 1428571
+2017-03-07T00:41:27 : DEBUG : rank7 finished cleaning, nrows 1428574
+2017-03-07T00:41:28 : DEBUG : rank4 detect noise finished, nrows 4
+2017-03-07T00:41:28 : DEBUG : rank4 start index: 32296656, nrows: 765552
+2017-03-07T00:41:28 : DEBUG : rank6 finished cleaning, nrows 1428571
+2017-03-07T00:41:28 : DEBUG : rank5 detect noise finished, nrows 4
+2017-03-07T00:41:28 : DEBUG : rank5 start index: 33062208, nrows: 765552
+2017-03-07T00:41:28 : DEBUG : rank1 finished cleaning, nrows 765552
+2017-03-07T00:41:29 : DEBUG : rank7 detect noise finished, nrows 4
+2017-03-07T00:41:29 : DEBUG : rank7 start index: 34593312, nrows: 765554
+2017-03-07T00:41:29 : DEBUG : \n end of line detected
+2017-03-07T00:41:29 : DEBUG : rank6 detect noise finished, nrows 4
+2017-03-07T00:41:29 : DEBUG : rank6 start index: 33827760, nrows: 765552
+2017-03-07T00:41:29 : DEBUG : rank1 detect noise finished, nrows 4
+2017-03-07T00:41:29 : INFO : rank1 work index received
+2017-03-07T00:41:32 : DEBUG : rank2 finished cleaning, nrows 765552
+2017-03-07T00:41:32 : DEBUG : \n end of line detected
+2017-03-07T00:41:33 : DEBUG : rank2 detect noise finished, nrows 4
+2017-03-07T00:41:33 : INFO : rank2 work index received
+2017-03-07T00:41:33 : DEBUG : \n end of line detected
+2017-03-07T00:41:33 : DEBUG : \n end of line detected
+2017-03-07T00:41:33 : DEBUG : \n end of line detected
+2017-03-07T00:41:36 : DEBUG : rank3 finished cleaning, nrows 765552
+2017-03-07T00:41:36 : DEBUG : rank3 detect noise finished, nrows 4
+2017-03-07T00:41:36 : INFO : rank3 work index received
+2017-03-07T00:41:39 : DEBUG : rank4 finished cleaning, nrows 765552
+2017-03-07T00:41:39 : DEBUG : rank4 detect noise finished, nrows 4
+2017-03-07T00:41:39 : INFO : rank4 work index received
+2017-03-07T00:41:40 : DEBUG : rank5 finished cleaning, nrows 765552
+2017-03-07T00:41:41 : DEBUG : rank7 finished cleaning, nrows 765554
+2017-03-07T00:41:41 : DEBUG : rank6 finished cleaning, nrows 765552
+2017-03-07T00:41:41 : DEBUG : rank5 detect noise finished, nrows 4
+2017-03-07T00:41:41 : INFO : rank5 work index received
+2017-03-07T00:41:41 : DEBUG : rank7 detect noise finished, nrows 4
+2017-03-07T00:41:41 : DEBUG : rank6 detect noise finished, nrows 4
+2017-03-07T00:41:41 : INFO : rank6 work index received
+2017-03-07T00:41:41 : INFO : rank7 work index received
+2017-03-07T00:46:47 : INFO : Debug logging is enabled
+2017-03-07T00:46:47 : INFO : Debug logging is enabled
+2017-03-07T00:46:47 : INFO : Debug logging is enabled
+2017-03-07T00:46:47 : INFO : Debug logging is enabled
+2017-03-07T00:46:47 : INFO : Debug logging is enabled
+2017-03-07T00:46:47 : INFO : Debug logging is enabled
+2017-03-07T00:46:47 : INFO : Debug logging is enabled
+2017-03-07T00:46:47 : INFO : Debug logging is enabled
+2017-03-07T00:46:50 : INFO : MPI size 8, working in parallel
+2017-03-07T00:46:50 : INFO : rank1 work index sent
+2017-03-07T00:46:50 : INFO : rank2 work index sent
+2017-03-07T00:46:50 : DEBUG : rank1 start index: 0, nrows: 1428571
+2017-03-07T00:46:50 : INFO : rank3 work index sent
+2017-03-07T00:46:50 : DEBUG : rank2 start index: 1428571, nrows: 1428571
+2017-03-07T00:46:50 : INFO : rank4 work index sent
+2017-03-07T00:46:50 : DEBUG : rank3 start index: 2857142, nrows: 1428571
+2017-03-07T00:46:50 : INFO : rank5 work index sent
+2017-03-07T00:46:50 : DEBUG : rank4 start index: 4285713, nrows: 1428571
+2017-03-07T00:46:50 : INFO : rank6 work index sent
+2017-03-07T00:46:50 : DEBUG : rank5 start index: 5714284, nrows: 1428571
+2017-03-07T00:46:50 : INFO : rank7 work index sent
+2017-03-07T00:46:50 : DEBUG : rank6 start index: 7142855, nrows: 1428571
+2017-03-07T00:46:50 : DEBUG : rank7 start index: 8571426, nrows: 1428574
+2017-03-07T00:46:51 : DEBUG : \n end of line detected
+2017-03-07T00:46:51 : DEBUG : \n end of line detected
+2017-03-07T00:46:51 : DEBUG : \n end of line detected
+2017-03-07T00:46:51 : DEBUG : \n end of line detected
+2017-03-07T00:46:52 : DEBUG : \n end of line detected
+2017-03-07T00:46:52 : DEBUG : \n end of line detected
+2017-03-07T00:46:52 : DEBUG : \n end of line detected
+2017-03-07T00:47:26 : DEBUG : rank1 finished cleaning, nrows 1428571
+2017-03-07T00:47:27 : DEBUG : rank3 finished cleaning, nrows 1428571
+2017-03-07T00:47:27 : DEBUG : rank2 finished cleaning, nrows 1428571
+2017-03-07T00:47:27 : DEBUG : rank1 detect noise finished, nrows 4
+2017-03-07T00:47:27 : DEBUG : rank1 start index: 10000000, nrows: 1428571
+2017-03-07T00:47:28 : DEBUG : rank4 finished cleaning, nrows 1428571
+2017-03-07T00:47:28 : DEBUG : rank5 finished cleaning, nrows 1428571
+2017-03-07T00:47:28 : DEBUG : rank6 finished cleaning, nrows 1428571
+2017-03-07T00:47:28 : DEBUG : rank7 finished cleaning, nrows 1428574
+2017-03-07T00:47:28 : DEBUG : rank3 detect noise finished, nrows 4
+2017-03-07T00:47:28 : DEBUG : rank3 start index: 12857142, nrows: 1428571
+2017-03-07T00:47:28 : DEBUG : rank2 detect noise finished, nrows 4
+2017-03-07T00:47:28 : DEBUG : rank2 start index: 11428571, nrows: 1428571
+2017-03-07T00:47:29 : DEBUG : rank4 detect noise finished, nrows 4
+2017-03-07T00:47:29 : DEBUG : rank4 start index: 14285713, nrows: 1428571
+2017-03-07T00:47:29 : DEBUG : rank5 detect noise finished, nrows 4
+2017-03-07T00:47:29 : DEBUG : rank5 start index: 15714284, nrows: 1428571
+2017-03-07T00:47:29 : DEBUG : rank6 detect noise finished, nrows 4
+2017-03-07T00:47:29 : DEBUG : rank6 start index: 17142855, nrows: 1428571
+2017-03-07T00:47:29 : DEBUG : rank7 detect noise finished, nrows 4
+2017-03-07T00:47:29 : DEBUG : rank7 start index: 18571426, nrows: 1428574
+2017-03-07T00:47:30 : DEBUG : \n end of line detected
+2017-03-07T00:47:31 : DEBUG : \n end of line detected
+2017-03-07T00:47:31 : DEBUG : \n end of line detected
+2017-03-07T00:47:32 : DEBUG : \n end of line detected
+2017-03-07T00:47:32 : DEBUG : \n end of line detected
+2017-03-07T00:47:33 : DEBUG : \n end of line detected
+2017-03-07T00:47:33 : DEBUG : \n end of line detected
+2017-03-07T00:48:00 : DEBUG : rank1 finished cleaning, nrows 1428571
+2017-03-07T00:48:01 : DEBUG : rank1 detect noise finished, nrows 4
+2017-03-07T00:48:02 : DEBUG : rank1 start index: 20000000, nrows: 1428571
+2017-03-07T00:48:05 : DEBUG : \n end of line detected
+2017-03-07T00:48:05 : DEBUG : rank2 finished cleaning, nrows 1428571
+2017-03-07T00:48:06 : DEBUG : rank3 finished cleaning, nrows 1428571
+2017-03-07T00:48:07 : DEBUG : rank2 detect noise finished, nrows 4
+2017-03-07T00:48:07 : DEBUG : rank2 start index: 21428571, nrows: 1428571
+2017-03-07T00:48:08 : DEBUG : rank4 finished cleaning, nrows 1428571
+2017-03-07T00:48:08 : DEBUG : rank3 detect noise finished, nrows 4
+2017-03-07T00:48:08 : DEBUG : rank3 start index: 22857142, nrows: 1428571
+2017-03-07T00:48:08 : DEBUG : rank5 finished cleaning, nrows 1428571
+2017-03-07T00:48:08 : DEBUG : rank6 finished cleaning, nrows 1428571
+2017-03-07T00:48:08 : DEBUG : rank7 finished cleaning, nrows 1428574
+2017-03-07T00:48:09 : DEBUG : rank4 detect noise finished, nrows 4
+2017-03-07T00:48:09 : DEBUG : rank4 start index: 24285713, nrows: 1428571
+2017-03-07T00:48:09 : DEBUG : rank5 detect noise finished, nrows 4
+2017-03-07T00:48:09 : DEBUG : rank5 start index: 25714284, nrows: 1428571
+2017-03-07T00:48:09 : DEBUG : rank7 detect noise finished, nrows 4
+2017-03-07T00:48:09 : DEBUG : rank7 start index: 28571426, nrows: 1428574
+2017-03-07T00:48:10 : DEBUG : rank6 detect noise finished, nrows 4
+2017-03-07T00:48:10 : DEBUG : rank6 start index: 27142855, nrows: 1428571
+2017-03-07T00:48:11 : DEBUG : \n end of line detected
+2017-03-07T00:48:12 : DEBUG : \n end of line detected
+2017-03-07T00:48:13 : DEBUG : \n end of line detected
+2017-03-07T00:48:14 : DEBUG : \n end of line detected
+2017-03-07T00:48:14 : DEBUG : \n end of line detected
+2017-03-07T00:48:15 : DEBUG : \n end of line detected
+2017-03-07T00:48:32 : DEBUG : rank1 finished cleaning, nrows 1428571
+2017-03-07T00:48:34 : DEBUG : rank1 detect noise finished, nrows 4
+2017-03-07T00:48:34 : DEBUG : rank1 start index: 30000000, nrows: 765552
+2017-03-07T00:48:38 : DEBUG : \n end of line detected
+2017-03-07T00:48:40 : DEBUG : rank2 finished cleaning, nrows 1428571
+2017-03-07T00:48:42 : DEBUG : rank2 detect noise finished, nrows 4
+2017-03-07T00:48:42 : DEBUG : rank2 start index: 30765552, nrows: 765552
+2017-03-07T00:48:43 : DEBUG : rank3 finished cleaning, nrows 1428571
+2017-03-07T00:48:45 : DEBUG : rank3 detect noise finished, nrows 4
+2017-03-07T00:48:45 : DEBUG : rank3 start index: 31531104, nrows: 765552
+2017-03-07T00:48:46 : DEBUG : \n end of line detected
+2017-03-07T00:48:47 : DEBUG : rank4 finished cleaning, nrows 1428571
+2017-03-07T00:48:48 : DEBUG : rank5 finished cleaning, nrows 1428571
+2017-03-07T00:48:49 : DEBUG : rank6 finished cleaning, nrows 1428571
+2017-03-07T00:48:49 : DEBUG : rank7 finished cleaning, nrows 1428574
+2017-03-07T00:48:49 : DEBUG : rank4 detect noise finished, nrows 4
+2017-03-07T00:48:49 : DEBUG : rank4 start index: 32296656, nrows: 765552
+2017-03-07T00:48:49 : DEBUG : rank1 finished cleaning, nrows 765552
+2017-03-07T00:48:49 : DEBUG : \n end of line detected
+2017-03-07T00:48:50 : DEBUG : rank5 detect noise finished, nrows 4
+2017-03-07T00:48:50 : DEBUG : rank5 start index: 33062208, nrows: 765552
+2017-03-07T00:48:50 : DEBUG : rank1 detect noise finished, nrows 4
+2017-03-07T00:48:50 : INFO : rank1 work index received
+2017-03-07T00:48:50 : DEBUG : rank6 detect noise finished, nrows 4
+2017-03-07T00:48:50 : DEBUG : rank6 start index: 33827760, nrows: 765552
+2017-03-07T00:48:50 : DEBUG : rank7 detect noise finished, nrows 4
+2017-03-07T00:48:50 : DEBUG : rank7 start index: 34593312, nrows: 765554
+2017-03-07T00:48:53 : DEBUG : rank2 finished cleaning, nrows 765552
+2017-03-07T00:48:53 : DEBUG : \n end of line detected
+2017-03-07T00:48:54 : DEBUG : rank2 detect noise finished, nrows 4
+2017-03-07T00:48:54 : INFO : rank2 work index received
+2017-03-07T00:48:54 : DEBUG : \n end of line detected
+2017-03-07T00:48:55 : DEBUG : \n end of line detected
+2017-03-07T00:48:55 : DEBUG : \n end of line detected
+2017-03-07T00:48:56 : DEBUG : rank3 finished cleaning, nrows 765552
+2017-03-07T00:48:56 : DEBUG : rank3 detect noise finished, nrows 4
+2017-03-07T00:48:56 : INFO : rank3 work index received
+2017-03-07T00:49:00 : DEBUG : rank4 finished cleaning, nrows 765552
+2017-03-07T00:49:01 : DEBUG : rank4 detect noise finished, nrows 4
+2017-03-07T00:49:01 : INFO : rank4 work index received
+2017-03-07T00:49:02 : DEBUG : rank5 finished cleaning, nrows 765552
+2017-03-07T00:49:02 : DEBUG : rank7 finished cleaning, nrows 765554
+2017-03-07T00:49:02 : DEBUG : rank6 finished cleaning, nrows 765552
+2017-03-07T00:49:02 : DEBUG : rank5 detect noise finished, nrows 4
+2017-03-07T00:49:02 : INFO : rank5 work index received
+2017-03-07T00:49:02 : DEBUG : rank7 detect noise finished, nrows 4
+2017-03-07T00:49:02 : DEBUG : rank6 detect noise finished, nrows 4
+2017-03-07T00:49:02 : INFO : rank6 work index received
+2017-03-07T00:49:02 : INFO : rank7 work index received
+2017-03-07T00:49:42 : INFO : Debug logging is enabled
+2017-03-07T00:49:42 : INFO : Debug logging is enabled
+2017-03-07T00:49:42 : INFO : Debug logging is enabled
+2017-03-07T00:49:44 : INFO : MPI size 8, working in parallel
+2017-03-07T00:49:44 : INFO : rank1 work index sent
+2017-03-07T00:49:44 : INFO : rank2 work index sent
+2017-03-07T00:49:44 : DEBUG : rank1 start index: 0, nrows: 2142857
+2017-03-07T00:49:44 : INFO : rank3 work index sent
+2017-03-07T00:49:44 : DEBUG : rank2 start index: 2142857, nrows: 2142857
+2017-03-07T00:49:44 : INFO : rank4 work index sent
+2017-03-07T00:49:44 : DEBUG : rank3 start index: 4285714, nrows: 2142857
+2017-03-07T00:49:44 : INFO : rank5 work index sent
+2017-03-07T00:49:44 : DEBUG : rank4 start index: 6428571, nrows: 2142857
+2017-03-07T00:49:44 : INFO : rank6 work index sent
+2017-03-07T00:49:44 : DEBUG : rank5 start index: 8571428, nrows: 2142857
+2017-03-07T00:49:44 : INFO : rank7 work index sent
+2017-03-07T00:49:44 : DEBUG : rank6 start index: 10714285, nrows: 2142857
+2017-03-07T00:49:44 : DEBUG : rank7 start index: 12857142, nrows: 2142858
+2017-03-07T00:49:46 : DEBUG : \n end of line detected
+2017-03-07T00:49:47 : DEBUG : \n end of line detected
+2017-03-07T00:49:47 : DEBUG : \n end of line detected
+2017-03-07T00:49:47 : DEBUG : \n end of line detected
+2017-03-07T00:49:47 : DEBUG : \n end of line detected
+2017-03-07T00:49:48 : DEBUG : \n end of line detected
+2017-03-07T00:49:48 : DEBUG : \n end of line detected
+2017-03-07T00:51:01 : DEBUG : rank1 finished cleaning, nrows 2142857
+2017-03-07T00:51:03 : DEBUG : rank3 finished cleaning, nrows 2142857
+2017-03-07T00:51:03 : DEBUG : rank2 finished cleaning, nrows 2142857
+2017-03-07T00:51:03 : DEBUG : rank1 detect noise finished, nrows 4
+2017-03-07T00:51:03 : DEBUG : rank1 start index: 15000000, nrows: 2142857
+2017-03-07T00:51:04 : DEBUG : rank4 finished cleaning, nrows 2142857
+2017-03-07T00:51:04 : DEBUG : rank7 finished cleaning, nrows 2142858
+2017-03-07T00:51:04 : DEBUG : rank5 finished cleaning, nrows 2142857
+2017-03-07T00:51:04 : DEBUG : rank6 finished cleaning, nrows 2142857
+2017-03-07T00:51:05 : DEBUG : rank3 detect noise finished, nrows 4
+2017-03-07T00:51:05 : DEBUG : rank3 start index: 19285714, nrows: 2142857
+2017-03-07T00:51:05 : DEBUG : rank2 detect noise finished, nrows 4
+2017-03-07T00:51:05 : DEBUG : rank2 start index: 17142857, nrows: 2142857
+2017-03-07T00:51:06 : DEBUG : rank4 detect noise finished, nrows 4
+2017-03-07T00:51:06 : DEBUG : rank4 start index: 21428571, nrows: 2142857
+2017-03-07T00:51:06 : DEBUG : rank7 detect noise finished, nrows 4
+2017-03-07T00:51:06 : DEBUG : rank7 start index: 27857142, nrows: 2142858
+2017-03-07T00:51:06 : DEBUG : rank5 detect noise finished, nrows 4
+2017-03-07T00:51:06 : DEBUG : rank5 start index: 23571428, nrows: 2142857
+2017-03-07T00:51:06 : DEBUG : rank6 detect noise finished, nrows 4
+2017-03-07T00:51:06 : DEBUG : rank6 start index: 25714285, nrows: 2142857
+2017-03-07T00:51:07 : DEBUG : \n end of line detected
+2017-03-07T00:51:09 : DEBUG : \n end of line detected
+2017-03-07T00:51:09 : DEBUG : \n end of line detected
+2017-03-07T00:51:11 : DEBUG : \n end of line detected
+2017-03-07T00:51:11 : DEBUG : \n end of line detected
+2017-03-07T00:51:11 : DEBUG : \n end of line detected
+2017-03-07T00:51:12 : DEBUG : \n end of line detected
+2017-03-07T00:52:12 : DEBUG : rank1 finished cleaning, nrows 2142857
+2017-03-07T00:52:14 : DEBUG : rank1 detect noise finished, nrows 4
+2017-03-07T00:52:14 : DEBUG : rank1 start index: 30000000, nrows: 765552
+2017-03-07T00:52:18 : DEBUG : \n end of line detected
+2017-03-07T00:52:20 : DEBUG : rank2 finished cleaning, nrows 2142857
+2017-03-07T00:52:22 : DEBUG : rank2 detect noise finished, nrows 4
+2017-03-07T00:52:22 : DEBUG : rank2 start index: 30765552, nrows: 765552
+2017-03-07T00:52:22 : DEBUG : rank3 finished cleaning, nrows 2142857
+2017-03-07T00:52:24 : DEBUG : rank3 detect noise finished, nrows 4
+2017-03-07T00:52:24 : DEBUG : rank3 start index: 31531104, nrows: 765552
+2017-03-07T00:52:24 : DEBUG : rank4 finished cleaning, nrows 2142857
+2017-03-07T00:52:25 : DEBUG : rank7 finished cleaning, nrows 2142858
+2017-03-07T00:52:25 : DEBUG : rank6 finished cleaning, nrows 2142857
+2017-03-07T00:52:25 : DEBUG : rank5 finished cleaning, nrows 2142857
+2017-03-07T00:52:26 : DEBUG : rank4 detect noise finished, nrows 4
+2017-03-07T00:52:26 : DEBUG : rank4 start index: 32296656, nrows: 765552
+2017-03-07T00:52:26 : DEBUG : \n end of line detected
+2017-03-07T00:52:27 : DEBUG : rank7 detect noise finished, nrows 4
+2017-03-07T00:52:27 : DEBUG : rank7 start index: 34593312, nrows: 765554
+2017-03-07T00:52:27 : DEBUG : rank6 detect noise finished, nrows 4
+2017-03-07T00:52:27 : DEBUG : rank6 start index: 33827760, nrows: 765552
+2017-03-07T00:52:27 : DEBUG : rank5 detect noise finished, nrows 4
+2017-03-07T00:52:27 : DEBUG : rank5 start index: 33062208, nrows: 765552
+2017-03-07T00:52:27 : DEBUG : rank1 finished cleaning, nrows 765552
+2017-03-07T00:52:28 : DEBUG : rank1 detect noise finished, nrows 4
+2017-03-07T00:52:28 : INFO : rank1 work index received
+2017-03-07T00:52:29 : DEBUG : \n end of line detected
+2017-03-07T00:52:31 : DEBUG : \n end of line detected
+2017-03-07T00:52:32 : DEBUG : \n end of line detected
+2017-03-07T00:52:32 : DEBUG : \n end of line detected
+2017-03-07T00:52:32 : DEBUG : \n end of line detected
+2017-03-07T00:52:34 : DEBUG : rank2 finished cleaning, nrows 765552
+2017-03-07T00:52:34 : DEBUG : rank2 detect noise finished, nrows 4
+2017-03-07T00:52:34 : INFO : rank2 work index received
+2017-03-07T00:52:36 : DEBUG : rank3 finished cleaning, nrows 765552
+2017-03-07T00:52:37 : DEBUG : rank3 detect noise finished, nrows 4
+2017-03-07T00:52:37 : INFO : rank3 work index received
+2017-03-07T00:52:38 : DEBUG : rank4 finished cleaning, nrows 765552
+2017-03-07T00:52:39 : DEBUG : rank4 detect noise finished, nrows 4
+2017-03-07T00:52:39 : INFO : rank4 work index received
+2017-03-07T00:52:40 : DEBUG : rank5 finished cleaning, nrows 765552
+2017-03-07T00:52:40 : DEBUG : rank6 finished cleaning, nrows 765552
+2017-03-07T00:52:40 : DEBUG : rank7 finished cleaning, nrows 765554
+2017-03-07T00:52:40 : DEBUG : rank5 detect noise finished, nrows 4
+2017-03-07T00:52:40 : INFO : rank5 work index received
+2017-03-07T00:52:40 : DEBUG : rank6 detect noise finished, nrows 4
+2017-03-07T00:52:40 : INFO : rank6 work index received
+2017-03-07T00:52:40 : DEBUG : rank7 detect noise finished, nrows 4
+2017-03-07T00:52:40 : INFO : rank7 work index received

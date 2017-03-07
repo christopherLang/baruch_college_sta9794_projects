@@ -6,8 +6,8 @@
 
  General Information                                                           
  ----------------------------------------------------------------------------- 
-    Datetime     : Tuesday March 07 2017 | 05:49:42AM UTC                        
-    Datetime ISO : 2017-03-07T05:49:42.587000Z                                   
+    Datetime     : Tuesday March 07 2017 | 05:35:26AM UTC                        
+    Datetime ISO : 2017-03-07T05:35:26.064000Z                                   
 
 
  Python Information                                                            
@@ -25,21 +25,21 @@
 
  Program Information                                                           
  ----------------------------------------------------------------------------- 
-    MPI size : 8                                                                 
-    Chunk size : 15000000                                                        
-    File name : data-big.txt                                                     
-    Row count : 35358866                                                         
+    MPI size : 4                                                                 
+    Chunk size : 5000                                                            
+    File name : data.txt                                                         
+    Row count : 100000                                                           
 
 
  Analysis Output                                                               
  ----------------------------------------------------------------------------- 
-    Execution start time : Tuesday March 07 2017 | 05:49:42AM UTC                
-    Execution end time : Tuesday March 07 2017 | 05:52:40AM UTC                  
-    Elapsed time : 2 minute(s), 58.23 second(s)                                  
-    Row count : 35358866                                                         
-    Velocity (rows parsed / sec) : 198388.97                                     
-    Total # noise rows : 26746                                                   
-    Noise rows (duplicates) : 15928                                              
-    Noise rows (negative num.) : 10818                                           
+    Execution start time : Tuesday March 07 2017 | 05:35:26AM UTC                
+    Execution end time : Tuesday March 07 2017 | 05:35:26AM UTC                  
+    Elapsed time : 0.24 second(s)                                                
+    Row count : 100000                                                           
+    Velocity (rows parsed / sec) : 421940.93                                     
+    Total # noise rows : 100000                                                  
+    Noise rows (duplicates) : 54                                                 
+    Noise rows (negative num.) : 39                                              
     Noise rows (timestamp length) : 0                                            
 

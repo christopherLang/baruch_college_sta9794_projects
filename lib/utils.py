@@ -1,5 +1,4 @@
-import time
-import datetime as dt
+import math
 
 
 def pretty_time_string(days=None, seconds=None, microseconds=None):
@@ -89,5 +88,47 @@ def execution_time(start_time, end_time):
     result['seconds'] = elapsed.seconds + (elapsed.microseconds * 1e-6)
 
     result['raw'] = [start_time, end_time, elapsed]
+
+    return result
+
+
+def even_split(iterable, ngroups):
+    n = int(math.floor(len(iterable) / ngroups))
+
+    result = list()
+    for i in range(0, len(iterable), n):
+        result.append(iterable[i:(i + n)])
+
+    return result
+
+
+def size_sequencer(size, n_groups, start_index=0):
+    assert n_groups > 0
+
+    result = list()
+
+    if n_groups >= 2:
+        if size % n_groups == 0:
+            subsize = int(size / n_groups)
+            left_over = 0
+
+        else:
+            subsize = int(math.floor(size / n_groups))
+            left_over = int(size - subsize * n_groups)
+
+        i = start_index
+        for _ in range(n_groups):
+            r = (i, i + subsize - 1)
+
+            result.append(r)
+
+            i += subsize
+
+        if left_over is not 0:
+            result[-1] = (result[-1][0], result[-1][1] + left_over)
+
+    else:
+        # n_groups is == 1
+        result.append((start_index, start_index + size - 1))
 
     return result

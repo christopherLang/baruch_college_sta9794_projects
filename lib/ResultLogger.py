@@ -120,12 +120,12 @@ class ResultLogger(object):
 
         self.nlines += len(lines)
 
-    def init_section(self, title, items=None, subtitle=None, level=0,
-                     nlines_above=1, nlines_below=1):
+    def init_section(self, title, subtitle=None, level=0, nlines_above=1,
+                     nlines_below=1):
         self.section_initiated = True
 
         self.section_cache['title'] = title
-        self.section_cache['items'] = items
+        self.section_cache['items'] = list()
         self.section_cache['subtitle'] = subtitle
         self.section_cache['level'] = level
         self.section_cache['nlines_above'] = nlines_above
@@ -138,7 +138,7 @@ class ResultLogger(object):
         else:
             full_section = self.section(
                 title=self.section_cache['title'],
-                itmes=self.section_cache['items'],
+                items=self.section_cache['items'],
                 subtitle=self.section_cache['subtitle'],
                 nlines_above=self.section_cache['nlines_above'],
                 nlines_below=self.section_cache['nlines_below']
@@ -157,6 +157,23 @@ class ResultLogger(object):
 
         if all([isinstance(i, str) for i in items]) is not True:
             raise TypeError("items' elements must be strings")
+
+        if self.section_cache is None:
+            self.section_cache['items'] = list()
+
+        self.section_cache['items'].extend(items)
+
+    def add_section_kv(self, key, value, k_justify="left", split=" : ",
+                       width=None):
+        assert self.section_initiated
+        assert isinstance(key, str)
+
+        if isinstance(value, str) is not True:
+            value = str(value)
+
+        item = [(key, value)]
+        items = self.kv_format(item, level=self.section_cache['level'],
+                               k_justify=k_justify, split=split, width=width)
 
         if self.section_cache is None:
             self.section_cache['items'] = list()

@@ -34,6 +34,36 @@ def simple_idchunker(iterable, chunk_size=1000):
         yield result_indices
 
 
+def get_nrows(file, read_mode="rb"):
+    counter = 0
+    with open(file, read_mode) as f:
+        for a_line in f:
+            counter += 1
+
+    return counter
+
+
+def row_reader(file, start_n, nrows, read_mode="rb"):
+    counter = 0
+    rows_read = 0
+
+    with open(file, read_mode) as f:
+        for a_line in f:
+            counter += 1
+
+            if counter >= start_n:
+                rows_read += 1
+
+                if rows_read <= nrows:
+                    yield a_line
+
+                else:
+                    break
+
+            else:
+                pass
+
+
 def simple_chunker(iterable, chunk_size=1000):
     """Evenly chunked iterator with generator
 
@@ -53,10 +83,14 @@ def simple_chunker(iterable, chunk_size=1000):
         length chunk_size or less
     """
     size_counter = 0
+    current_index = 0
     result_yield = list()
     for an_element in iterable:
-        result_yield.append(an_element)
+        result_element = {"chunk": an_element, "id": current_index}
         size_counter += 1
+        current_index += 1
+
+        result_yield.append(result_element)
 
         if size_counter == chunk_size:
             yield result_yield
