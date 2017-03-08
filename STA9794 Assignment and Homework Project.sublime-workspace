@@ -4,6 +4,50 @@
 		"selected_items":
 		[
 			[
+				"noise_inde",
+				"noise_indices"
+			],
+			[
+				"read",
+				"readlines\tfunction"
+			],
+			[
+				"cach",
+				"cachenoisefile"
+			],
+			[
+				"noise",
+				"noiseloc"
+			],
+			[
+				"set",
+				"set_time\tfunction"
+			],
+			[
+				"worker",
+				"worker_row_indices"
+			],
+			[
+				"row_",
+				"row_delim"
+			],
+			[
+				"work",
+				"worker_row_indices"
+			],
+			[
+				"a_row",
+				"a_row_indices"
+			],
+			[
+				"enable",
+				"enable_debug"
+			],
+			[
+				"enabl",
+				"enable_debug"
+			],
+			[
 				"write",
 				"writelines\tfunction"
 			],
@@ -34,10 +78,6 @@
 			[
 				"row_in",
 				"row_indices"
-			],
-			[
-				"worker",
-				"worker\tfunction"
 			],
 			[
 				"size",
@@ -172,10 +212,6 @@
 				"end_nodes"
 			],
 			[
-				"set",
-				"set_attribute_values"
-			],
-			[
 				"list",
 				"list_of_sentences"
 			],
@@ -280,32 +316,6 @@
 	"buffers":
 	[
 		{
-			"file": "Assignment A/scrub.py",
-			"settings":
-			{
-				"buffer_size": 11480,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "Assignment A/result/testresult.txt",
-			"settings":
-			{
-				"buffer_size": 1792,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "lib/utils.py",
-			"settings":
-			{
-				"buffer_size": 3727,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"file": "lib/TimeTrack.py",
 			"settings":
 			{
@@ -315,10 +325,36 @@
 			}
 		},
 		{
+			"file": "Assignment A/scrub.py",
+			"settings":
+			{
+				"buffer_size": 11820,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Assignment A/result/scrub_results.txt",
+			"settings":
+			{
+				"buffer_size": 2938,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Assignment A/normal.py",
+			"settings":
+			{
+				"buffer_size": 8604,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
 			"file": "Assignment A/config/assignmentA_config.json",
 			"settings":
 			{
-				"buffer_size": 259,
+				"buffer_size": 344,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -347,16 +383,16 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 530.0,
-		"last_filter": "py",
+		"height": 338.0,
+		"last_filter": "python",
 		"selected_items":
 		[
 			[
-				"py",
+				"python",
 				"Set Syntax: MagicPython"
 			],
 			[
-				"python",
+				"py",
 				"Set Syntax: MagicPython"
 			],
 			[
@@ -457,29 +493,29 @@
 		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A",
 		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A/cache",
 		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A/config",
-		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A/log",
 		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A/result",
 		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/lib"
 	],
 	"file_history":
 	[
+		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/.gitignore",
+		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A/scrub2.py",
+		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A/result/testresult.txt",
+		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A/log/example.log",
+		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A/result/testresult_4.txt",
 		"/C/Users/Christopher Lang/AppData/Local/Temp/scp23114/home/fcbanalytics/fcbprog/mediawall_daemon/logs/execution_20170303T004808_311305.log",
 		"/C/Users/Christopher Lang/AppData/Local/Temp/scp41403/home/fcbanalytics/fcbprog/mediawall_daemon/logs/execution_20170303T004808_311305.log",
 		"/C/Users/Christopher Lang/AppData/Local/Temp/scp41755/home/fcbanalytics/fcbprog/mediawall_daemon/logs/execution_20170302T183315_800589.log",
-		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A/log/example.log",
-		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A/result/testresult.txt",
 		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A/cache/noise-rank0-2017-03-02T053258_805000.txt",
 		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A/cache/noise-rank0-2017-03-02T050652_889000.txt",
 		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A/cache/noise-rank0-2017-03-02T051057_595000.txt",
 		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/lib/utils.py",
 		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/lib/chunkers.py",
 		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A/mpi_test.py",
-		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A/scrub2.py",
 		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/lib/TimeTrack.py",
 		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/lib/ResultLogger.py",
 		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A/data.txt",
 		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A/config/assignmentA_config.json",
-		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/.gitignore",
 		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A/scratch.py",
 		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A/config/assignmentA_config.ini",
 		"/C/Users/Christopher Lang/Documents/school/STA 9794 - Special Topics in Statistics/Assignments and Homeworks/Assignment A/scrub.py",
@@ -581,6 +617,12 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"nchunk",
+			"configs",
+			"tt",
+			"name=None",
+			"cpick",
+			"rl",
 			"20140804:10:01:32.232808,947.30,343029",
 			"20140804:10:01:20.759587,1259.72,104752",
 			"20140804:10:01:50.415978,1265.12,701657",
@@ -656,6 +698,8 @@
 		"regex": false,
 		"replace_history":
 		[
+			"cfg",
+			"name=\"root\"",
 			"=None",
 			"=self.max_width",
 			"=max_width",
@@ -689,24 +733,69 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "Assignment A/scrub.py",
+					"file": "lib/TimeTrack.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 11480,
+						"buffer_size": 1545,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								324,
-								0
+								147,
+								147
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								}
+							],
+							"git_gutter_enabled": true,
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/MagicPython/grammars/MagicPython.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 96.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Assignment A/scrub.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 11820,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								11373,
+								11373
 							]
 						],
 						"settings":
@@ -724,20 +813,9 @@
 								{
 									"characters": ".",
 									"selector": "source.python - string - constant.numeric"
-								},
-								{
-									"characters": ".",
-									"selector": "source.python - string - constant.numeric"
-								},
-								{
-									"characters": ".",
-									"selector": "source.python - string - constant.numeric"
-								},
-								{
-									"characters": ".",
-									"selector": "source.python - string - constant.numeric"
 								}
 							],
+							"git_gutter_enabled": true,
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": false,
@@ -746,19 +824,19 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 11001.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "Assignment A/result/testresult.txt",
-					"semi_transient": true,
+					"buffer": 2,
+					"file": "Assignment A/result/scrub_results.txt",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1792,
+						"buffer_size": 2938,
 						"regions":
 						{
 						},
@@ -771,6 +849,7 @@
 						],
 						"settings":
 						{
+							"git_gutter_enabled": true,
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": false,
@@ -782,24 +861,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "lib/utils.py",
+					"buffer": 3,
+					"file": "Assignment A/normal.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3727,
+						"buffer_size": 8604,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								992,
-								992
+								77,
+								77
 							]
 						],
 						"settings":
@@ -815,51 +894,15 @@
 									"selector": "source.python - string - constant.numeric"
 								}
 							],
+							"git_gutter_enabled": true,
 							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/MagicPython/grammars/MagicPython.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/MagicPython/grammars/MagicPython.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 2152.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "lib/TimeTrack.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1545,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								285,
-								285
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/MagicPython/grammars/MagicPython.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
 					"type": "text"
 				}
 			]
@@ -874,15 +917,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 259,
+						"buffer_size": 344,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								259,
-								259
+								250,
+								250
 							]
 						],
 						"settings":
@@ -897,7 +940,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 4,
 					"type": "text"
 				}
 			]
@@ -991,7 +1034,7 @@
 		],
 		"width": 0.0
 	},
-	"selected_group": 1,
+	"selected_group": 0,
 	"settings":
 	{
 	},
@@ -999,7 +1042,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 431.0,
+	"side_bar_width": 496.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

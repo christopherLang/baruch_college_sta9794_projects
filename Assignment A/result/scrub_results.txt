@@ -6,8 +6,8 @@
 
  General Information                                                           
  ----------------------------------------------------------------------------- 
-    Datetime     : Wednesday March 08 2017 | 01:43:45AM UTC                      
-    Datetime ISO : 2017-03-08T01:43:45.581000Z                                   
+    Datetime     : Wednesday March 08 2017 | 04:36:00AM UTC                      
+    Datetime ISO : 2017-03-08T04:36:00.169000Z                                   
 
 
  Python Information                                                            
@@ -33,15 +33,16 @@
 
  Analysis Output                                                               
  ----------------------------------------------------------------------------- 
-    Execution start time : Wednesday March 08 2017 | 01:43:45AM UTC              
-    Execution end time : Wednesday March 08 2017 | 01:46:29AM UTC                
-    Execution elapsed time : 2 minute(s), 44.42 second(s)                        
-    Row parse elapsed time : 2 minute(s), 41.95 second(s)                        
+    Execution start time : Wednesday March 08 2017 | 04:36:00AM UTC              
+    Execution end time : Wednesday March 08 2017 | 04:38:55AM UTC                
+    Execution elapsed time : 2 minute(s), 55.42 second(s)                        
+    Row parse elapsed time : 2 minute(s), 52.85 second(s)                        
     Row count : 35358866                                                         
-    Velocity (rows parsed / sec) : 218336.04                                     
+    Velocity (rows parsed / sec) : 204562.69                                     
     Total # noise rows : 26747                                                   
     Noise rows (duplicates) : 15928                                              
     Noise rows (negative num.) : 10818                                           
     Noise rows (# of columns) : 0                                                
     Noise rows (timestamp format) : 1                                            
+    Noise rows (Six sigma) : 5351                                                
 
