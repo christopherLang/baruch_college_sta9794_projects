@@ -7,5 +7,6 @@
   "resultloc": "",
   "exec_logloc": "",
   "col_delimiter": ",",
-  "enable_debug": true
+  "enable_debug": true,
+  "noisefileloc": "result/noise.txt"
 }

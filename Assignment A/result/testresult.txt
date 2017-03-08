@@ -6,8 +6,8 @@
 
  General Information                                                           
  ----------------------------------------------------------------------------- 
-    Datetime     : Tuesday March 07 2017 | 05:49:42AM UTC                        
-    Datetime ISO : 2017-03-07T05:49:42.587000Z                                   
+    Datetime     : Wednesday March 08 2017 | 01:43:45AM UTC                      
+    Datetime ISO : 2017-03-08T01:43:45.581000Z                                   
 
 
  Python Information                                                            
@@ -33,13 +33,15 @@
 
  Analysis Output                                                               
  ----------------------------------------------------------------------------- 
-    Execution start time : Tuesday March 07 2017 | 05:49:42AM UTC                
-    Execution end time : Tuesday March 07 2017 | 05:52:40AM UTC                  
-    Elapsed time : 2 minute(s), 58.23 second(s)                                  
+    Execution start time : Wednesday March 08 2017 | 01:43:45AM UTC              
+    Execution end time : Wednesday March 08 2017 | 01:46:29AM UTC                
+    Execution elapsed time : 2 minute(s), 44.42 second(s)                        
+    Row parse elapsed time : 2 minute(s), 41.95 second(s)                        
     Row count : 35358866                                                         
-    Velocity (rows parsed / sec) : 198388.97                                     
-    Total # noise rows : 26746                                                   
+    Velocity (rows parsed / sec) : 218336.04                                     
+    Total # noise rows : 26747                                                   
     Noise rows (duplicates) : 15928                                              
     Noise rows (negative num.) : 10818                                           
-    Noise rows (timestamp length) : 0                                            
+    Noise rows (# of columns) : 0                                                
+    Noise rows (timestamp format) : 1                                            
 

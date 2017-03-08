@@ -1,12 +1,9 @@
 import sys
 import os
-import csv
-# import logging as lg
-# import itertools as it
 import json
 import datetime as dt
 from mpi4py import MPI
-from mpi4py.MPI import ANY_SOURCE
+import re
 import ntpath
 
 # print wdir
@@ -104,6 +101,7 @@ def detect_noise(rows):
     result['n_duplicates'] = 0
     result['n_wrongLength'] = 0
     result['n_negativeNum'] = 0
+    result['n_timestampFormat'] = 0
 
     for i in range(len(rows)):
 
@@ -130,6 +128,10 @@ def detect_noise(rows):
         elif rows[i][1] < 0 or rows[i][2] < 0:
             noise_indices.add(rows[i][-1])
             result['n_negativeNum'] += 1
+
+        if re.search("\d{8}([:]\d{2}){3}([.]\d+)?", rows[i][0]) is None:
+            noise_indices.add(rows[i][-1])
+            result['n_timestampFormat'] += 1
 
     # If no noise rows are found based on the above logic, then return None
     if len(noise_indices) != 0:
@@ -161,6 +163,7 @@ if __name__ == "__main__":
     n_cores = configs['num_process']
     row_delim = configs['col_delimiter']
     enable_debug = configs['enable_debug']
+    noiseloc = configs['noisefileloc']
 
     # Create execution logger
     # ---------------------------------------------------------------------
@@ -229,7 +232,7 @@ if __name__ == "__main__":
 
         s_index = 0
         nrows_left = nrows
-        nworkers = size - 1
+        nworkers = size
 
         if nworkers < 1:
             nworkers = 1
@@ -244,84 +247,91 @@ if __name__ == "__main__":
             row_indices = utils.size_sequencer(nchunk, nworkers, s_index)
 
             for a_row_indices in range(len(row_indices)):
-                worker_row_indices[a_row_indices].append(row_indices[a_row_indices])
+                index_interval = row_indices[a_row_indices]
+                worker_row_indices[a_row_indices].append(index_interval)
 
             nrows_left -= nchunk
-
             s_index += nchunk
 
             if nchunk > nrows_left:
                 nchunk = nrows_left
 
-        if size == 1:
-            for mm_index in worker_row_indices:
-                for index_pair in mm_index:
-                    r = worker(dataloc, index_pair, rank, row_delim, lg,
-                               enable_debug)
-                    scrub_results.append(r)
-
-        else:
-            for mm_index, pid in zip(worker_row_indices, range(1, size)):
-                comm.send(mm_index, dest=pid)
-
-                msg = "rank{0} work index sent".format(pid)
-                lg.info(msg)
-
-            for pid in range(1, size):
-                scrub_results.extend(comm.recv(source=pid))
-
-                msg = "rank{0} work index received".format(pid)
-                lg.info(msg)
-
-        # msg = "Rows left: {0}, chunk size: {1}: start index: {2}"
-        # lg.info(msg.format(nrows_left, nchunk, s_index))
-
-        # msg = "File indices read: {0} --> {1}"
-        # lg.info(msg.format(mm_index[0], mm_index[1]))
-
     else:
-        row_indices = comm.recv(source=0)
-        worker_result = list()
+        worker_row_indices = None
 
-        for index_pair in row_indices:
-            r = worker(dataloc, index_pair, rank, row_delim, lg, enable_debug)
-            worker_result.append(r)
+    if worker_row_indices is not None:
+        print(len(worker_row_indices))
 
-        comm.send(worker_result, dest=0)
+    row_indices = comm.scatter(worker_row_indices, root=0)
 
     if rank == 0:
-        tt.pause_time()
+        extt = TimeTrack.TimeTrack()
 
+    work_result = list()
+    for index_interval in row_indices:
+        r = worker(dataloc, index_interval, rank, row_delim, lg, enable_debug)
+        work_result.append(r)
+
+    scrub_results = comm.gather(work_result, root=0)
+
+    if rank == 0:
+        extt.pause_time()
+
+        scrub_results = [item for sublist in scrub_results for item in sublist]
         # Total aggregate count
         r = dict()
         r['rows_parsed'] = 0
         r['n_duplicates'] = 0
         r['n_negativeNum'] = 0
         r['n_wrongLength'] = 0
+        r['n_timestampFormat'] = 0
 
         for a_result in scrub_results:
             r['rows_parsed'] += a_result['rows_parsed']
             r['n_duplicates'] += a_result['n_duplicates']
             r['n_negativeNum'] += a_result['n_negativeNum']
             r['n_wrongLength'] += a_result['n_wrongLength']
+            r['n_timestampFormat'] += a_result['n_timestampFormat']
+
+        # Combine noise files
+        noise = list()
+        if os.path.exists(noiseloc) is not True:
+            file = open(noiseloc, "w")
+            file.close()
+
+        for a_file in os.listdir("cache"):
+            with open("cache/" + a_file, "r") as cachenoisefile:
+                with open(noiseloc, "a") as noisefile:
+                    noisefile.writelines(cachenoisefile.readlines())
+
+            os.remove("cache/" + a_file)
+
+        tt.pause_time()
 
         result_log.init_section("Analysis Output", level=0)
         result_log.add_section_kv("Execution start time",
                                   tt.start_time_pretty())
         result_log.add_section_kv("Execution end time", tt.end_time_pretty())
-        result_log.add_section_kv("Elapsed time", tt.elapsed_pretty())
+        result_log.add_section_kv("Execution elapsed time",
+                                  tt.elapsed_pretty())
+        result_log.add_section_kv("Row parse elapsed time",
+                                  extt.elapsed_pretty())
         result_log.add_section_kv("Row count", r['rows_parsed'])
 
-        velocity = r['rows_parsed'] / tt.elapsed_seconds()
+        velocity = r['rows_parsed'] / extt.elapsed_seconds()
         velocity = round(velocity, 2)
         result_log.add_section_kv("Velocity (rows parsed / sec)", velocity)
         result_log.add_section_kv("Total # noise rows",
-                                  (r['n_duplicates'] + r['n_negativeNum'] + r['n_wrongLength']))
+                                  (r['n_duplicates'] + r['n_negativeNum'] +
+                                   r['n_wrongLength'] +
+                                   r['n_timestampFormat']))
         result_log.add_section_kv("Noise rows (duplicates)",
                                   r['n_duplicates'])
         result_log.add_section_kv("Noise rows (negative num.)",
                                   r['n_negativeNum'])
-        result_log.add_section_kv("Noise rows (timestamp length)",
+        result_log.add_section_kv("Noise rows (# of columns)",
                                   r['n_wrongLength'])
+        result_log.add_section_kv("Noise rows (timestamp format)",
+                                  r['n_timestampFormat'])
 
         result_log.exec_section()
