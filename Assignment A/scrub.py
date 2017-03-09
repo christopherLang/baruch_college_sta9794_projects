@@ -122,29 +122,53 @@ def detect_noise(rows, logger=None):
                 noise_indices.add(rows[i][-1])
                 result['n_duplicates'] += 1
 
+                msg = "rank{0} found row {1} and {2} are duplicates"
+                msg = msg.format(rank, rows[i][3], rows[i - 1][3])
+                logger.debug(msg)
+
         # Presuming all rows should have 4 elements, one for each column
         if len(rows[i]) != 4:
             noise_indices.add(rows[i][-1])
             result['n_wrongLength'] += 1
+
+            msg = "rank{0} found row {1} does not have 3 columns"
+            msg = msg.format(rank, rows[i][3])
+            logger.debug(msg)
 
         # Look for negative "price" (index 1) and "units traded" (index 2)
         elif rows[i][1] < 0 or rows[i][2] < 0:
             noise_indices.add(rows[i][-1])
             result['n_negativeNum'] += 1
 
+            msg = "rank{0} found row {1} has a negative value"
+            msg = msg.format(rank, rows[i][3])
+            logger.debug(msg)
+
         elif re.search("\d{8}([:]\d{2}){3}([.]\d+)?", rows[i][0]) is None:
             noise_indices.add(rows[i][-1])
             result['n_timestampFormat'] += 1
 
+            msg = "rank{0} found row {1} has incorrect timestamps"
+            msg = msg.format(rank, rows[i][3])
+            logger.debug(msg)
+
     rows = [i for i in rows if i[-1] not in noise_indices]
 
     stdev = np.std([i[1] for i in rows])
+    price_mean = np.mean([i[1] for i in rows])
     upp_stdev = 3 * stdev
     low_stdev = -3 * stdev
     for i in range(len(rows)):
-        if rows[i][1] < low_stdev or rows[i][1] > upp_stdev:
+        # This for loop probably can be replaced with numpy arrays
+        row_price_demeaned = rows[i][1] - price_mean
+
+        if row_price_demeaned < low_stdev or row_price_demeaned > upp_stdev:
             noise_indices.add(rows[i][-1])
             result['n_sixsigma'] += 1
+
+            msg = "rank{0} found row {1} has beyond 6-sigma price"
+            msg = msg.format(rank, rows[i][3])
+            logger.debug(msg)
 
     # If no noise rows are found based on the above logic, then return None
     if len(noise_indices) != 0:
@@ -171,7 +195,7 @@ if __name__ == "__main__":
     import chunkers as chk
     import ResultLogger as rl
     import utils
-    import logging as lg
+    import logging
 
     # Load program settings
     with open("config/assignmentA_config.json", "r") as f:
@@ -187,16 +211,17 @@ if __name__ == "__main__":
     # Create execution logger
     # ---------------------------------------------------------------------
     if enable_debug:
-        lg.info("Debug logging is enabled")
-        log_level = lg.DEBUG
+        log_level = logging.DEBUG
 
     else:
-        lg.info("Debug logging is disabled")
-        log_level = lg.INFO
+        log_level = logging.INFO
 
-    lg.basicConfig(filename=exec_logloc, level=log_level,
-                   format='%(asctime)s : %(levelname)s : %(message)s',
-                   datefmt='%Y-%m-%dT%H:%M:%S')
+    lg = logging.getLogger()
+    lgr_handler = logging.FileHandler(exec_logloc)
+    lgr_fmt = logging.Formatter('%(asctime)s : %(levelname)s : %(message)s')
+    lgr_handler.setFormatter(lgr_fmt)
+    lg.addHandler(lgr_handler)
+    lg.setLevel(log_level)
 
     # Get the location of the data file to be parsed
     # -------------------------------------------------------------------------
