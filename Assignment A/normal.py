@@ -4,6 +4,7 @@ import json
 import datetime as dt
 from mpi4py import MPI
 import ntpath
+import numpy as np
 
 comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
@@ -45,6 +46,23 @@ def worker(file, row_index, rank, delimiter=",", logger=None,
 
     rows = row_clean(rows, start_row, start_row + nrows_read)
 
+    with open(noiseloc, "r") as f:
+        noise_index = f.readlines()
+        noise_index = [int(i) for i in noise_index]
+
+    noise_index = set(noise_index)
+
+    nrows = len(rows)
+    rows = remove_noise(rows, noise_index)
+
+    nrows_denoise = len(rows)
+
+    result = {
+        "is_normal": is_prices_normal(rows),
+        "nrows_org": nrows,
+        "nrows_denoised": nrows_denoise
+    }
+
     return result
 
 
@@ -60,11 +78,18 @@ def row_clean(rows, start_index, end_index):
     return result
 
 
-def remove_noise(noiseloc):
-    with open(noiseloc, "r") as f:
-        noise_index = f.readlines()
+def remove_noise(rows, noise_indices):
+    rows = [i for i in rows if i[-1] not in noise_indices]
 
-    noise_index = set()
+    return rows
+
+
+def is_prices_normal(rows):
+    prices = [i[1] for i in rows]
+
+    result = mutils.jarque_bera(prices)
+
+    return result
 
 
 if __name__ == "__main__":
@@ -77,7 +102,8 @@ if __name__ == "__main__":
     import chunkers as chk
     import ResultLogger as rl
     import utils
-    import logging as lg
+    import math_utils as mutils
+    import logging
 
     # Load program settings
     with open("config/assignmentA_config.json", "r") as f:
@@ -93,15 +119,18 @@ if __name__ == "__main__":
 
     # Create execution logger
     # ---------------------------------------------------------------------
-    lg.basicConfig(filename=exec_logloc, level=lg.DEBUG,
-                   format='%(asctime)s : %(levelname)s : %(message)s',
-                   datefmt='%Y-%m-%dT%H:%M:%S')
-
     if enable_debug:
-        lg.info("Debug logging is enabled")
+        log_level = logging.DEBUG
 
     else:
-        lg.info("Debug logging is disabled")
+        log_level = logging.INFO
+
+    lg = logging.getLogger()
+    lgr_handler = logging.FileHandler(exec_logloc)
+    lgr_fmt = logging.Formatter('%(asctime)s : %(levelname)s : %(message)s')
+    lgr_handler.setFormatter(lgr_fmt)
+    lg.addHandler(lgr_handler)
+    lg.setLevel(log_level)
 
     # Get the location of the data file to be parsed
     # -------------------------------------------------------------------------
@@ -202,57 +231,42 @@ if __name__ == "__main__":
 
     if rank == 0:
         extt.pause_time()
+        tt.pause_time()
 
-        # scrub_results = [item for sublist in scrub_results for item in sublist]
-        # # Total aggregate count
-        # r = dict()
-        # r['rows_parsed'] = 0
-        # r['n_duplicates'] = 0
-        # r['n_negativeNum'] = 0
-        # r['n_wrongLength'] = 0
-        # r['n_timestampFormat'] = 0
+        scrub_results = [item for sublist in scrub_results for item in sublist]
 
-        # for a_result in scrub_results:
-        #     r['rows_parsed'] += a_result['rows_parsed']
-        #     r['n_duplicates'] += a_result['n_duplicates']
-        #     r['n_negativeNum'] += a_result['n_negativeNum']
-        #     r['n_wrongLength'] += a_result['n_wrongLength']
-        #     r['n_timestampFormat'] += a_result['n_timestampFormat']
+        r = dict()
+        r['n_normal_true'] = []
+        r['all_true'] = False
+        r['nrows_parsed'] = 0
+        r['nrows_denoised'] = 0
 
-        # # Combine noise files
-        # noise = list()
-        # if os.path.exists(noiseloc) is not True:
-        #     file = open(noiseloc, "w")
-        #     file.close()
+        for a_result in scrub_results:
+            r['n_normal_true'].append(a_result['is_normal'])
+            r['nrows_parsed'] += a_result['nrows_org']
+            r['nrows_denoised'] += a_result['nrows_denoised']
 
-        # for a_file in os.listdir("cache"):
-        #     with open("cache/" + a_file, "r") as cachenoisefile:
-        #         with open(noiseloc, "a") as noisefile:
-        #             noisefile.writelines(cachenoisefile.readlines())
+        r['all_true'] = all(r['n_normal_true'])
+        r['n_normal_true'] = [1 for i in r['n_normal_true'] if i is True]
+        n_not_true = np.sum([1 for i in r['n_normal_true'] if i is False])
+        r['n_normal_true'] = round(np.sum(r['n_normal_true']), 1)
 
-        #     os.remove("cache/" + a_file)
+        result_log.init_section("Analysis Output", level=0)
+        result_log.add_section_kv("Execution start time",
+                                  tt.start_time_pretty())
+        result_log.add_section_kv("Execution end time", tt.end_time_pretty())
+        result_log.add_section_kv("Execution elapsed time",
+                                  tt.elapsed_pretty())
+        result_log.add_section_kv("Row parse elapsed time",
+                                  extt.elapsed_pretty())
+        result_log.add_section_kv("Row count", r['nrows_parsed'])
+        result_log.add_section_kv("Row count (denoised)", r['nrows_denoised'])
+        result_log.add_section_kv("All normal", r['all_true'])
+        result_log.add_section_kv("# chunks not normal", n_not_true)
 
-        # tt.pause_time()
-
-        # result_log.init_section("Analysis Output", level=0)
-        # result_log.add_section_kv("Execution start time",
-        #                           tt.start_time_pretty())
-        # result_log.add_section_kv("Execution end time", tt.end_time_pretty())
-        # result_log.add_section_kv("Execution elapsed time",
-        #                           tt.elapsed_pretty())
-        # result_log.add_section_kv("Row parse elapsed time",
-        #                           extt.elapsed_pretty())
-        # result_log.add_section_kv("Row count", r['rows_parsed'])
-
-        # velocity = r['rows_parsed'] / extt.elapsed_seconds()
-        # velocity = round(velocity, 2)
-        # result_log.add_section_kv("Velocity (rows parsed / sec)", velocity)
-        # result_log.add_section_kv("Total # noise rows",
-        #                           (r['n_duplicates'] + r['n_negativeNum'] +
-        #                            r['n_wrongLength'] +
-        #                            r['n_timestampFormat']))
-        # result_log.add_section_kv("Noise rows (duplicates)",
-        #                           r['n_duplicates'])
+        velocity = r['nrows_parsed'] / extt.elapsed_seconds()
+        velocity = round(velocity, 2)
+        result_log.add_section_kv("Velocity (rows parsed / sec)", velocity)
         # result_log.add_section_kv("Noise rows (negative num.)",
         #                           r['n_negativeNum'])
         # result_log.add_section_kv("Noise rows (# of columns)",
@@ -260,4 +274,4 @@ if __name__ == "__main__":
         # result_log.add_section_kv("Noise rows (timestamp format)",
         #                           r['n_timestampFormat'])
 
-        # result_log.exec_section()
+        result_log.exec_section()

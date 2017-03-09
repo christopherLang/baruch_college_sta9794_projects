@@ -1,5 +1,5 @@
 {
-  "chunk_size": 15000000,
+  "chunk_size": 10000000,
   "num_process": 7,
   "prog_title": "STA9794 Assignment A - Scrub Program",
   "prog_description": "",
