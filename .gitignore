@@ -9,3 +9,4 @@ Assignment A/scratch.py
 *.pyc
 **/*.pyc
 Assignment A/mpi_test.py
+*sublime*
