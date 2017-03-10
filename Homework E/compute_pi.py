@@ -7,9 +7,12 @@ import numpy as np
 # where M is number of points landing in the inscribed circle
 # and N is the number of points generated, in this case iterations
 
+# This program was tested on a Microsoft Azure HDInsight Spark instance, with
+# 4 nodes and 24 cores
+
 # program setup
-iteration = 100000000
-partition = 4
+iteration = 1000000000  # 1 billion random points
+partition = 25
 radius = 1
 
 
@@ -30,7 +33,7 @@ def pi_estimation(data_packet):
     # landed in the square. Otherwise, in the inscribed circle
     #
     # To get radii, we use pythagoras theorem to find hypotenus
-    in_square = np.power(xpos, 2) + np.power(ypos, 2) > radius_sq
+    in_square = (np.power(xpos, 2) + np.power(ypos, 2)) > radius_sq
 
     n_square = np.sum(in_square, dtype=np.int64)
     n_circle = np.int64(in_square.size) - n_square

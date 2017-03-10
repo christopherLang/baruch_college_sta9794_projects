@@ -1,109 +1,368 @@
-[root@sandbox ~]# spark-submit /root/test/test_prog.py
-Multiple versions of Spark are installed but SPARK_MAJOR_VERSION is not set
-Spark1 will be picked by default
-17/03/10 04:03:45 INFO SparkContext: Running Spark version 1.6.2
-17/03/10 04:03:45 INFO SecurityManager: Changing view acls to: root
-17/03/10 04:03:45 INFO SecurityManager: Changing modify acls to: root
-17/03/10 04:03:45 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: Set(root); users with modify permissions: Set(root)
-17/03/10 04:03:45 INFO Utils: Successfully started service 'sparkDriver' on port 41186.
-17/03/10 04:03:45 INFO Slf4jLogger: Slf4jLogger started
-17/03/10 04:03:46 INFO Remoting: Starting remoting
-17/03/10 04:03:46 INFO Remoting: Remoting started; listening on addresses :[akka.tcp://sparkDriverActorSystem@172.17.0.2:37973]
-17/03/10 04:03:46 INFO Utils: Successfully started service 'sparkDriverActorSystem' on port 37973.
-17/03/10 04:03:46 INFO SparkEnv: Registering MapOutputTracker
-17/03/10 04:03:46 INFO SparkEnv: Registering BlockManagerMaster
-17/03/10 04:03:46 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-01a76776-a330-4222-9f3e-c57cd48eb2d5
-17/03/10 04:03:46 INFO MemoryStore: MemoryStore started with capacity 511.1 MB
-17/03/10 04:03:46 INFO SparkEnv: Registering OutputCommitCoordinator
-17/03/10 04:03:46 INFO Server: jetty-8.y.z-SNAPSHOT
-17/03/10 04:03:46 INFO AbstractConnector: Started SelectChannelConnector@0.0.0.0:4040
-17/03/10 04:03:46 INFO Utils: Successfully started service 'SparkUI' on port 4040.
-17/03/10 04:03:46 INFO SparkUI: Bound SparkUI to 0.0.0.0, and started at http://172.17.0.2:4040
-17/03/10 04:03:46 INFO Utils: Copying /root/test/test_prog.py to /tmp/spark-95dbcfea-b912-4390-9b03-28be5e751d7c/userFiles-7025eb1d-503e-45f3-ad7c-746fa53376bf/test_prog.py
-17/03/10 04:03:46 INFO SparkContext: Added file file:/root/test/test_prog.py at file:/root/test/test_prog.py with timestamp 1489118626557
-17/03/10 04:03:46 INFO Executor: Starting executor ID driver on host localhost
-17/03/10 04:03:46 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 46580.
-17/03/10 04:03:46 INFO NettyBlockTransferService: Server created on 46580
-17/03/10 04:03:46 INFO BlockManagerMaster: Trying to register BlockManager
-17/03/10 04:03:46 INFO BlockManagerMasterEndpoint: Registering block manager localhost:46580 with 511.1 MB RAM, BlockManagerId(driver, localhost, 46580)
-17/03/10 04:03:46 INFO BlockManagerMaster: Registered BlockManager
-17/03/10 04:03:47 INFO EventLoggingListener: Logging events to hdfs:///spark-history/local-1489118626618
-17/03/10 04:03:47 INFO SparkContext: Starting job: reduce at /root/test/test_prog.py:66
-17/03/10 04:03:47 INFO DAGScheduler: Got job 0 (reduce at /root/test/test_prog.py:66) with 4 output partitions
-17/03/10 04:03:47 INFO DAGScheduler: Final stage: ResultStage 0 (reduce at /root/test/test_prog.py:66)
-17/03/10 04:03:47 INFO DAGScheduler: Parents of final stage: List()
-17/03/10 04:03:47 INFO DAGScheduler: Missing parents: List()
-17/03/10 04:03:47 INFO DAGScheduler: Submitting ResultStage 0 (PythonRDD[1] at reduce at /root/test/test_prog.py:66), which has no missing parents
-17/03/10 04:03:47 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 4.7 KB, free 4.7 KB)
-17/03/10 04:03:47 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 3.2 KB, free 7.9 KB)
-17/03/10 04:03:47 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on localhost:46580 (size: 3.2 KB, free: 511.1 MB)
-17/03/10 04:03:47 INFO SparkContext: Created broadcast 0 from broadcast at DAGScheduler.scala:1008
-17/03/10 04:03:47 INFO DAGScheduler: Submitting 4 missing tasks from ResultStage 0 (PythonRDD[1] at reduce at /root/test/test_prog.py:66)
-17/03/10 04:03:47 INFO TaskSchedulerImpl: Adding task set 0.0 with 4 tasks
-17/03/10 04:03:47 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0, localhost, partition 0,PROCESS_LOCAL, 2251 bytes)
-17/03/10 04:03:47 INFO Executor: Running task 0.0 in stage 0.0 (TID 0)
-17/03/10 04:03:47 INFO Executor: Fetching file:/root/test/test_prog.py with timestamp 1489118626557
-17/03/10 04:03:47 INFO Utils: /root/test/test_prog.py has been previously copied to /tmp/spark-95dbcfea-b912-4390-9b03-28be5e751d7c/userFiles-7025eb1d-503e-45f3-ad7c-746fa53376bf/test_prog.py
-17/03/10 04:03:48 INFO PythonRunner: Times: total = 1524, boot = 115, init = 3, finish = 1406
-17/03/10 04:03:48 INFO Executor: Finished task 0.0 in stage 0.0 (TID 0). 1165 bytes result sent to driver
-17/03/10 04:03:48 INFO TaskSetManager: Starting task 1.0 in stage 0.0 (TID 1, localhost, partition 1,PROCESS_LOCAL, 2251 bytes)
-17/03/10 04:03:48 INFO Executor: Running task 1.0 in stage 0.0 (TID 1)
-17/03/10 04:03:48 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 1601 ms on localhost (1/4)
-17/03/10 04:03:50 INFO PythonRunner: Times: total = 1988, boot = -20, init = 23, finish = 1985
-17/03/10 04:03:50 INFO Executor: Finished task 1.0 in stage 0.0 (TID 1). 1165 bytes result sent to driver
-17/03/10 04:03:50 INFO TaskSetManager: Starting task 2.0 in stage 0.0 (TID 2, localhost, partition 2,PROCESS_LOCAL, 2251 bytes)
-17/03/10 04:03:50 INFO TaskSetManager: Finished task 1.0 in stage 0.0 (TID 1) in 1993 ms on localhost (2/4)
-17/03/10 04:03:50 INFO Executor: Running task 2.0 in stage 0.0 (TID 2)
-17/03/10 04:03:52 INFO PythonRunner: Times: total = 1473, boot = 1, init = 0, finish = 1472
-17/03/10 04:03:52 INFO Executor: Finished task 2.0 in stage 0.0 (TID 2). 1165 bytes result sent to driver
-17/03/10 04:03:52 INFO TaskSetManager: Starting task 3.0 in stage 0.0 (TID 3, localhost, partition 3,PROCESS_LOCAL, 2251 bytes)
-17/03/10 04:03:52 INFO Executor: Running task 3.0 in stage 0.0 (TID 3)
-17/03/10 04:03:52 INFO TaskSetManager: Finished task 2.0 in stage 0.0 (TID 2) in 1479 ms on localhost (3/4)
-17/03/10 04:03:53 INFO PythonRunner: Times: total = 1383, boot = 0, init = 1, finish = 1382
-17/03/10 04:03:53 INFO Executor: Finished task 3.0 in stage 0.0 (TID 3). 1165 bytes result sent to driver
-17/03/10 04:03:53 INFO TaskSetManager: Finished task 3.0 in stage 0.0 (TID 3) in 1391 ms on localhost (4/4)
-17/03/10 04:03:53 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool
-17/03/10 04:03:53 INFO DAGScheduler: ResultStage 0 (reduce at /root/test/test_prog.py:66) finished in 6.465 s
-17/03/10 04:03:53 INFO DAGScheduler: Job 0 finished: reduce at /root/test/test_prog.py:66, took 6.578898 s
-Pi estimation is 3.14177628 for 100000000 simulation points
-N points in circle: 78544407
-N points in square: 21455593
-17/03/10 04:03:53 INFO SparkContext: Invoking stop() from shutdown hook
-17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/metrics/json,null}
-17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/stage/kill,null}
-17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/api,null}
-17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/,null}
-17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/static,null}
-17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/executors/threadDump/json,null}
-17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/executors/threadDump,null}
-17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/executors/json,null}
-17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/executors,null}
-17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/environment/json,null}
-17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/environment,null}
-17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/storage/rdd/json,null}
-17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/storage/rdd,null}
-17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/storage/json,null}
-17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/storage,null}
-17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/pool/json,null}
-17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/pool,null}
-17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/stage/json,null}
-17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/stage,null}
-17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/json,null}
-17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages,null}
-17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/jobs/job/json,null}
-17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/jobs/job,null}
-17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/jobs/json,null}
-17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/jobs,null}
-17/03/10 04:03:53 INFO SparkUI: Stopped Spark web UI at http://172.17.0.2:4040
-17/03/10 04:03:54 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
-17/03/10 04:03:54 INFO MemoryStore: MemoryStore cleared
-17/03/10 04:03:54 INFO BlockManager: BlockManager stopped
-17/03/10 04:03:54 INFO BlockManagerMaster: BlockManagerMaster stopped
-17/03/10 04:03:54 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
-17/03/10 04:03:54 INFO SparkContext: Successfully stopped SparkContext
-17/03/10 04:03:54 INFO ShutdownHookManager: Shutdown hook called
-17/03/10 04:03:54 INFO ShutdownHookManager: Deleting directory /tmp/spark-95dbcfea-b912-4390-9b03-28be5e751d7c/pyspark-8461cda7-7248-46e4-a013-39de807da0f2
-17/03/10 04:03:54 INFO ShutdownHookManager: Deleting directory /tmp/spark-95dbcfea-b912-4390-9b03-28be5e751d7c
-17/03/10 04:03:54 INFO RemoteActorRefProvider$RemotingTerminator: Shutting down remote daemon.
-17/03/10 04:03:54 INFO RemoteActorRefProvider$RemotingTerminator: Remote daemon shut down; proceeding with flushing remote transports.
-17/03/10 04:03:54 INFO RemoteActorRefProvider$RemotingTerminator: Remoting shut down.
+sshuser@hn0-testpl:~$ spark-submit /home/sshuser/test/compute_pi.py
+SPARK_MAJOR_VERSION is set to 2, using Spark2
+17/03/10 16:44:32 INFO SparkContext: Running Spark version 2.0.2.2.5.4.0-121
+17/03/10 16:44:32 INFO SecurityManager: Changing view acls to: sshuser
+17/03/10 16:44:32 INFO SecurityManager: Changing modify acls to: sshuser
+17/03/10 16:44:32 INFO SecurityManager: Changing view acls groups to:
+17/03/10 16:44:32 INFO SecurityManager: Changing modify acls groups to:
+17/03/10 16:44:32 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(sshuser); groups with view permissions: Set(); users  with modify permissions: Set(sshuser); groups with modify permissions: Set()
+17/03/10 16:44:33 INFO Utils: Successfully started service 'sparkDriver' on port 36305.
+17/03/10 16:44:33 INFO SparkEnv: Registering MapOutputTracker
+17/03/10 16:44:33 INFO SparkEnv: Registering BlockManagerMaster
+17/03/10 16:44:33 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-8f51dd08-4e88-4595-ac0c-667a37fb6117
+17/03/10 16:44:33 INFO MemoryStore: MemoryStore started with capacity 366.3 MB
+17/03/10 16:44:33 INFO SparkEnv: Registering OutputCommitCoordinator
+17/03/10 16:44:33 INFO log: Logging initialized @2298ms
+17/03/10 16:44:33 INFO Server: jetty-9.2.z-SNAPSHOT
+17/03/10 16:44:33 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@6afb375d{/jobs,null,AVAILABLE}
+17/03/10 16:44:33 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@9063291{/jobs/json,null,AVAILABLE}
+17/03/10 16:44:33 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@442f6503{/jobs/job,null,AVAILABLE}
+17/03/10 16:44:33 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@14822cbd{/jobs/job/json,null,AVAILABLE}
+17/03/10 16:44:33 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@27f0a0af{/stages,null,AVAILABLE}
+17/03/10 16:44:33 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@1fda9c7a{/stages/json,null,AVAILABLE}
+17/03/10 16:44:33 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@2062e5ff{/stages/stage,null,AVAILABLE}
+17/03/10 16:44:33 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@2500d28a{/stages/stage/json,null,AVAILABLE}
+17/03/10 16:44:33 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@7d7fb5d{/stages/pool,null,AVAILABLE}
+17/03/10 16:44:33 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@4c258e91{/stages/pool/json,null,AVAILABLE}
+17/03/10 16:44:33 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@7bdfc7f7{/storage,null,AVAILABLE}
+17/03/10 16:44:33 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@5868de84{/storage/json,null,AVAILABLE}
+17/03/10 16:44:33 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@60ddcbc7{/storage/rdd,null,AVAILABLE}
+17/03/10 16:44:33 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@6c804b{/storage/rdd/json,null,AVAILABLE}
+17/03/10 16:44:33 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@5091fce{/environment,null,AVAILABLE}
+17/03/10 16:44:33 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@1b8b6d15{/environment/json,null,AVAILABLE}
+17/03/10 16:44:33 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@15060e50{/executors,null,AVAILABLE}
+17/03/10 16:44:33 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@710caa63{/executors/json,null,AVAILABLE}
+17/03/10 16:44:33 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@3c362ce3{/executors/threadDump,null,AVAILABLE}
+17/03/10 16:44:33 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@7c150db5{/executors/threadDump/json,null,AVAILABLE}
+17/03/10 16:44:33 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@59c4e8e9{/static,null,AVAILABLE}
+17/03/10 16:44:33 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@4d0f0e00{/,null,AVAILABLE}
+17/03/10 16:44:33 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@40d37276{/api,null,AVAILABLE}
+17/03/10 16:44:33 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@14ffa77c{/stages/stage/kill,null,AVAILABLE}
+17/03/10 16:44:33 INFO ServerConnector: Started ServerConnector@2f888bef{HTTP/1.1}{0.0.0.0:4040}
+17/03/10 16:44:33 INFO Server: Started @2430ms
+17/03/10 16:44:33 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+17/03/10 16:44:33 INFO SparkUI: Bound SparkUI to 0.0.0.0, and started at http://10.0.0.14:4040
+17/03/10 16:44:33 INFO Executor: Starting executor ID driver on host localhost
+17/03/10 16:44:33 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 41911.
+17/03/10 16:44:33 INFO NettyBlockTransferService: Server created on 10.0.0.14:41911
+17/03/10 16:44:33 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 10.0.0.14, 41911)
+17/03/10 16:44:33 INFO BlockManagerMasterEndpoint: Registering block manager 10.0.0.14:41911 with 366.3 MB RAM, BlockManagerId(driver, 10.0.0.14, 41911)
+17/03/10 16:44:33 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 10.0.0.14, 41911)
+17/03/10 16:44:33 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@18c33ee{/metrics/json,null,AVAILABLE}
+17/03/10 16:44:34 INFO MetricsConfig: loaded properties from hadoop-metrics2-azure-file-system.properties
+17/03/10 16:44:34 INFO WasbAzureIaasSink: Init starting.
+17/03/10 16:44:34 INFO AzureIaasSink: Init starting. Initializing MdsLogger.
+17/03/10 16:44:34 INFO AzureIaasSink: Init completed.
+17/03/10 16:44:34 INFO WasbAzureIaasSink: Init completed.
+17/03/10 16:44:34 INFO MetricsSinkAdapter: Sink azurefs2 started
+17/03/10 16:44:34 INFO MetricsSystemImpl: Scheduled snapshot period at 60 second(s).
+17/03/10 16:44:34 INFO MetricsSystemImpl: azure-file-system metrics system started
+17/03/10 16:44:34 INFO EventLoggingListener: Logging events to wasb:///hdp/spark2-events/local-1489164273621
+17/03/10 16:44:35 INFO SparkContext: Starting job: reduce at /home/sshuser/test/compute_pi.py:71
+17/03/10 16:44:35 INFO DAGScheduler: Got job 0 (reduce at /home/sshuser/test/compute_pi.py:71) with 25 output partitions
+17/03/10 16:44:35 INFO DAGScheduler: Final stage: ResultStage 0 (reduce at /home/sshuser/test/compute_pi.py:71)
+17/03/10 16:44:35 INFO DAGScheduler: Parents of final stage: List()
+17/03/10 16:44:35 INFO DAGScheduler: Missing parents: List()
+17/03/10 16:44:35 INFO DAGScheduler: Submitting ResultStage 0 (PythonRDD[1] at reduce at /home/sshuser/test/compute_pi.py:71), which has no missing parents
+17/03/10 16:44:35 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 5.2 KB, free 366.3 MB)
+17/03/10 16:44:35 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 3.5 KB, free 366.3 MB)
+17/03/10 16:44:35 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.0.0.14:41911 (size: 3.5 KB, free: 366.3 MB)
+17/03/10 16:44:35 INFO SparkContext: Created broadcast 0 from broadcast at DAGScheduler.scala:1012
+17/03/10 16:44:35 INFO DAGScheduler: Submitting 25 missing tasks from ResultStage 0 (PythonRDD[1] at reduce at /home/sshuser/test/compute_pi.py:71)
+17/03/10 16:44:35 INFO TaskSchedulerImpl: Adding task set 0.0 with 25 tasks
+17/03/10 16:44:35 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0, localhost, partition 0, PROCESS_LOCAL, 5573 bytes)
+17/03/10 16:44:35 INFO Executor: Running task 0.0 in stage 0.0 (TID 0)
+17/03/10 16:44:38 INFO PythonRunner: Times: total = 3118, boot = 278, init = 12, finish = 2828
+17/03/10 16:44:38 INFO Executor: Finished task 0.0 in stage 0.0 (TID 0). 1471 bytes result sent to driver
+17/03/10 16:44:38 INFO TaskSetManager: Starting task 1.0 in stage 0.0 (TID 1, localhost, partition 1, PROCESS_LOCAL, 5573 bytes)
+17/03/10 16:44:38 INFO Executor: Running task 1.0 in stage 0.0 (TID 1)
+17/03/10 16:44:38 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 3266 ms on localhost (1/25)
+17/03/10 16:44:41 INFO PythonRunner: Times: total = 2932, boot = -35, init = 40, finish = 2927
+17/03/10 16:44:41 INFO Executor: Finished task 1.0 in stage 0.0 (TID 1). 1471 bytes result sent to driver
+17/03/10 16:44:41 INFO TaskSetManager: Starting task 2.0 in stage 0.0 (TID 2, localhost, partition 2, PROCESS_LOCAL, 5573 bytes)
+17/03/10 16:44:41 INFO Executor: Running task 2.0 in stage 0.0 (TID 2)
+17/03/10 16:44:41 INFO TaskSetManager: Finished task 1.0 in stage 0.0 (TID 1) in 2962 ms on localhost (2/25)
+17/03/10 16:44:44 INFO PythonRunner: Times: total = 3003, boot = -9, init = 17, finish = 2995
+17/03/10 16:44:44 INFO Executor: Finished task 2.0 in stage 0.0 (TID 2). 1471 bytes result sent to driver
+17/03/10 16:44:44 INFO TaskSetManager: Starting task 3.0 in stage 0.0 (TID 3, localhost, partition 3, PROCESS_LOCAL, 5573 bytes)
+17/03/10 16:44:44 INFO Executor: Running task 3.0 in stage 0.0 (TID 3)
+17/03/10 16:44:44 INFO TaskSetManager: Finished task 2.0 in stage 0.0 (TID 2) in 3029 ms on localhost (3/25)
+17/03/10 16:44:47 INFO PythonRunner: Times: total = 2883, boot = -4, init = 5, finish = 2882
+17/03/10 16:44:47 INFO Executor: Finished task 3.0 in stage 0.0 (TID 3). 1471 bytes result sent to driver
+17/03/10 16:44:47 INFO TaskSetManager: Starting task 4.0 in stage 0.0 (TID 4, localhost, partition 4, PROCESS_LOCAL, 5573 bytes)
+17/03/10 16:44:47 INFO Executor: Running task 4.0 in stage 0.0 (TID 4)
+17/03/10 16:44:47 INFO TaskSetManager: Finished task 3.0 in stage 0.0 (TID 3) in 2904 ms on localhost (4/25)
+17/03/10 16:44:50 INFO PythonRunner: Times: total = 2779, boot = -3, init = 4, finish = 2778
+17/03/10 16:44:50 INFO Executor: Finished task 4.0 in stage 0.0 (TID 4). 1471 bytes result sent to driver
+17/03/10 16:44:50 INFO TaskSetManager: Starting task 5.0 in stage 0.0 (TID 5, localhost, partition 5, PROCESS_LOCAL, 5573 bytes)
+17/03/10 16:44:50 INFO TaskSetManager: Finished task 4.0 in stage 0.0 (TID 4) in 2792 ms on localhost (5/25)
+17/03/10 16:44:50 INFO Executor: Running task 5.0 in stage 0.0 (TID 5)
+17/03/10 16:44:52 INFO PythonRunner: Times: total = 2729, boot = 6, init = 1, finish = 2722
+17/03/10 16:44:52 INFO Executor: Finished task 5.0 in stage 0.0 (TID 5). 1471 bytes result sent to driver
+17/03/10 16:44:52 INFO TaskSetManager: Starting task 6.0 in stage 0.0 (TID 6, localhost, partition 6, PROCESS_LOCAL, 5573 bytes)
+17/03/10 16:44:52 INFO TaskSetManager: Finished task 5.0 in stage 0.0 (TID 5) in 2743 ms on localhost (6/25)
+17/03/10 16:44:52 INFO Executor: Running task 6.0 in stage 0.0 (TID 6)
+17/03/10 16:44:55 INFO PythonRunner: Times: total = 2803, boot = -5, init = 5, finish = 2803
+17/03/10 16:44:55 INFO Executor: Finished task 6.0 in stage 0.0 (TID 6). 1471 bytes result sent to driver
+17/03/10 16:44:55 INFO TaskSetManager: Starting task 7.0 in stage 0.0 (TID 7, localhost, partition 7, PROCESS_LOCAL, 5573 bytes)
+17/03/10 16:44:55 INFO TaskSetManager: Finished task 6.0 in stage 0.0 (TID 6) in 2819 ms on localhost (7/25)
+17/03/10 16:44:55 INFO Executor: Running task 7.0 in stage 0.0 (TID 7)
+17/03/10 16:44:58 INFO PythonRunner: Times: total = 2734, boot = -6, init = 7, finish = 2733
+17/03/10 16:44:58 INFO Executor: Finished task 7.0 in stage 0.0 (TID 7). 1471 bytes result sent to driver
+17/03/10 16:44:58 INFO TaskSetManager: Starting task 8.0 in stage 0.0 (TID 8, localhost, partition 8, PROCESS_LOCAL, 5573 bytes)
+17/03/10 16:44:58 INFO TaskSetManager: Finished task 7.0 in stage 0.0 (TID 7) in 2745 ms on localhost (8/25)
+17/03/10 16:44:58 INFO Executor: Running task 8.0 in stage 0.0 (TID 8)
+17/03/10 16:45:01 INFO PythonRunner: Times: total = 3044, boot = 2, init = 0, finish = 3042
+17/03/10 16:45:01 INFO Executor: Finished task 8.0 in stage 0.0 (TID 8). 1471 bytes result sent to driver
+17/03/10 16:45:01 INFO TaskSetManager: Starting task 9.0 in stage 0.0 (TID 9, localhost, partition 9, PROCESS_LOCAL, 5573 bytes)
+17/03/10 16:45:01 INFO Executor: Running task 9.0 in stage 0.0 (TID 9)
+17/03/10 16:45:01 INFO TaskSetManager: Finished task 8.0 in stage 0.0 (TID 8) in 3058 ms on localhost (9/25)
+17/03/10 16:45:04 INFO PythonRunner: Times: total = 2818, boot = -4, init = 5, finish = 2817
+17/03/10 16:45:04 INFO Executor: Finished task 9.0 in stage 0.0 (TID 9). 1471 bytes result sent to driver
+17/03/10 16:45:04 INFO TaskSetManager: Starting task 10.0 in stage 0.0 (TID 10, localhost, partition 10, PROCESS_LOCAL, 5573 bytes)
+17/03/10 16:45:04 INFO TaskSetManager: Finished task 9.0 in stage 0.0 (TID 9) in 2838 ms on localhost (10/25)
+17/03/10 16:45:04 INFO Executor: Running task 10.0 in stage 0.0 (TID 10)
+17/03/10 16:45:07 INFO PythonRunner: Times: total = 2810, boot = -9, init = 13, finish = 2806
+17/03/10 16:45:07 INFO Executor: Finished task 10.0 in stage 0.0 (TID 10). 1471 bytes result sent to driver
+17/03/10 16:45:07 INFO TaskSetManager: Starting task 11.0 in stage 0.0 (TID 11, localhost, partition 11, PROCESS_LOCAL, 5573 bytes)
+17/03/10 16:45:07 INFO Executor: Running task 11.0 in stage 0.0 (TID 11)
+17/03/10 16:45:07 INFO TaskSetManager: Finished task 10.0 in stage 0.0 (TID 10) in 2823 ms on localhost (11/25)
+17/03/10 16:45:09 INFO PythonRunner: Times: total = 2745, boot = 4, init = 0, finish = 2741
+17/03/10 16:45:09 INFO Executor: Finished task 11.0 in stage 0.0 (TID 11). 1471 bytes result sent to driver
+17/03/10 16:45:09 INFO TaskSetManager: Starting task 12.0 in stage 0.0 (TID 12, localhost, partition 12, PROCESS_LOCAL, 5573 bytes)
+17/03/10 16:45:09 INFO TaskSetManager: Finished task 11.0 in stage 0.0 (TID 11) in 2755 ms on localhost (12/25)
+17/03/10 16:45:09 INFO Executor: Running task 12.0 in stage 0.0 (TID 12)
+17/03/10 16:45:12 INFO PythonRunner: Times: total = 2820, boot = 6, init = 0, finish = 2814
+17/03/10 16:45:12 INFO Executor: Finished task 12.0 in stage 0.0 (TID 12). 1471 bytes result sent to driver
+17/03/10 16:45:12 INFO TaskSetManager: Starting task 13.0 in stage 0.0 (TID 13, localhost, partition 13, PROCESS_LOCAL, 5573 bytes)
+17/03/10 16:45:12 INFO TaskSetManager: Finished task 12.0 in stage 0.0 (TID 12) in 2830 ms on localhost (13/25)
+17/03/10 16:45:12 INFO Executor: Running task 13.0 in stage 0.0 (TID 13)
+17/03/10 16:45:15 INFO PythonRunner: Times: total = 2796, boot = -1, init = 2, finish = 2795
+17/03/10 16:45:15 INFO Executor: Finished task 13.0 in stage 0.0 (TID 13). 1471 bytes result sent to driver
+17/03/10 16:45:15 INFO TaskSetManager: Starting task 14.0 in stage 0.0 (TID 14, localhost, partition 14, PROCESS_LOCAL, 5573 bytes)
+17/03/10 16:45:15 INFO TaskSetManager: Finished task 13.0 in stage 0.0 (TID 13) in 2811 ms on localhost (14/25)
+17/03/10 16:45:15 INFO Executor: Running task 14.0 in stage 0.0 (TID 14)
+17/03/10 16:45:18 INFO PythonRunner: Times: total = 2964, boot = -2, init = 4, finish = 2962
+17/03/10 16:45:18 INFO Executor: Finished task 14.0 in stage 0.0 (TID 14). 1471 bytes result sent to driver
+17/03/10 16:45:18 INFO TaskSetManager: Starting task 15.0 in stage 0.0 (TID 15, localhost, partition 15, PROCESS_LOCAL, 5573 bytes)
+17/03/10 16:45:18 INFO Executor: Running task 15.0 in stage 0.0 (TID 15)
+17/03/10 16:45:18 INFO TaskSetManager: Finished task 14.0 in stage 0.0 (TID 14) in 2976 ms on localhost (15/25)
+17/03/10 16:45:21 INFO PythonRunner: Times: total = 2837, boot = 4, init = 1, finish = 2832
+17/03/10 16:45:21 INFO Executor: Finished task 15.0 in stage 0.0 (TID 15). 1471 bytes result sent to driver
+17/03/10 16:45:21 INFO TaskSetManager: Starting task 16.0 in stage 0.0 (TID 16, localhost, partition 16, PROCESS_LOCAL, 5573 bytes)
+17/03/10 16:45:21 INFO Executor: Running task 16.0 in stage 0.0 (TID 16)
+17/03/10 16:45:21 INFO TaskSetManager: Finished task 15.0 in stage 0.0 (TID 15) in 2851 ms on localhost (16/25)
+17/03/10 16:45:24 INFO PythonRunner: Times: total = 2900, boot = 9, init = 0, finish = 2891
+17/03/10 16:45:24 INFO Executor: Finished task 16.0 in stage 0.0 (TID 16). 1471 bytes result sent to driver
+17/03/10 16:45:24 INFO TaskSetManager: Starting task 17.0 in stage 0.0 (TID 17, localhost, partition 17, PROCESS_LOCAL, 5573 bytes)
+17/03/10 16:45:24 INFO TaskSetManager: Finished task 16.0 in stage 0.0 (TID 16) in 2913 ms on localhost (17/25)
+17/03/10 16:45:24 INFO Executor: Running task 17.0 in stage 0.0 (TID 17)
+17/03/10 16:45:27 INFO PythonRunner: Times: total = 2752, boot = -15, init = 17, finish = 2750
+17/03/10 16:45:27 INFO Executor: Finished task 17.0 in stage 0.0 (TID 17). 1471 bytes result sent to driver
+17/03/10 16:45:27 INFO TaskSetManager: Starting task 18.0 in stage 0.0 (TID 18, localhost, partition 18, PROCESS_LOCAL, 5573 bytes)
+17/03/10 16:45:27 INFO TaskSetManager: Finished task 17.0 in stage 0.0 (TID 17) in 2774 ms on localhost (18/25)
+17/03/10 16:45:27 INFO Executor: Running task 18.0 in stage 0.0 (TID 18)
+17/03/10 16:45:29 INFO PythonRunner: Times: total = 2694, boot = -6, init = 7, finish = 2693
+17/03/10 16:45:29 INFO Executor: Finished task 18.0 in stage 0.0 (TID 18). 1471 bytes result sent to driver
+17/03/10 16:45:29 INFO TaskSetManager: Starting task 19.0 in stage 0.0 (TID 19, localhost, partition 19, PROCESS_LOCAL, 5573 bytes)
+17/03/10 16:45:29 INFO Executor: Running task 19.0 in stage 0.0 (TID 19)
+17/03/10 16:45:29 INFO TaskSetManager: Finished task 18.0 in stage 0.0 (TID 18) in 2704 ms on localhost (19/25)
+17/03/10 16:45:32 INFO PythonRunner: Times: total = 2805, boot = -9, init = 10, finish = 2804
+17/03/10 16:45:32 INFO Executor: Finished task 19.0 in stage 0.0 (TID 19). 1558 bytes result sent to driver
+17/03/10 16:45:32 INFO TaskSetManager: Starting task 20.0 in stage 0.0 (TID 20, localhost, partition 20, PROCESS_LOCAL, 5573 bytes)
+17/03/10 16:45:32 INFO Executor: Running task 20.0 in stage 0.0 (TID 20)
+17/03/10 16:45:32 INFO TaskSetManager: Finished task 19.0 in stage 0.0 (TID 19) in 2832 ms on localhost (20/25)
+17/03/10 16:45:35 INFO PythonRunner: Times: total = 3079, boot = -8, init = 10, finish = 3077
+17/03/10 16:45:35 INFO Executor: Finished task 20.0 in stage 0.0 (TID 20). 1471 bytes result sent to driver
+17/03/10 16:45:35 INFO TaskSetManager: Starting task 21.0 in stage 0.0 (TID 21, localhost, partition 21, PROCESS_LOCAL, 5573 bytes)
+17/03/10 16:45:35 INFO Executor: Running task 21.0 in stage 0.0 (TID 21)
+17/03/10 16:45:35 INFO TaskSetManager: Finished task 20.0 in stage 0.0 (TID 20) in 3090 ms on localhost (21/25)
+17/03/10 16:45:38 INFO PythonRunner: Times: total = 2889, boot = -3, init = 5, finish = 2887
+17/03/10 16:45:38 INFO Executor: Finished task 21.0 in stage 0.0 (TID 21). 1471 bytes result sent to driver
+17/03/10 16:45:38 INFO TaskSetManager: Starting task 22.0 in stage 0.0 (TID 22, localhost, partition 22, PROCESS_LOCAL, 5573 bytes)
+17/03/10 16:45:38 INFO Executor: Running task 22.0 in stage 0.0 (TID 22)
+17/03/10 16:45:38 INFO TaskSetManager: Finished task 21.0 in stage 0.0 (TID 21) in 2905 ms on localhost (22/25)
+17/03/10 16:45:41 INFO PythonRunner: Times: total = 2769, boot = 6, init = 1, finish = 2762
+17/03/10 16:45:41 INFO Executor: Finished task 22.0 in stage 0.0 (TID 22). 1471 bytes result sent to driver
+17/03/10 16:45:41 INFO TaskSetManager: Starting task 23.0 in stage 0.0 (TID 23, localhost, partition 23, PROCESS_LOCAL, 5573 bytes)
+17/03/10 16:45:41 INFO TaskSetManager: Finished task 22.0 in stage 0.0 (TID 22) in 2779 ms on localhost (23/25)
+17/03/10 16:45:41 INFO Executor: Running task 23.0 in stage 0.0 (TID 23)
+17/03/10 16:45:44 INFO PythonRunner: Times: total = 2898, boot = -3, init = 11, finish = 2890
+17/03/10 16:45:44 INFO Executor: Finished task 23.0 in stage 0.0 (TID 23). 1471 bytes result sent to driver
+17/03/10 16:45:44 INFO TaskSetManager: Starting task 24.0 in stage 0.0 (TID 24, localhost, partition 24, PROCESS_LOCAL, 5573 bytes)
+17/03/10 16:45:44 INFO Executor: Running task 24.0 in stage 0.0 (TID 24)
+17/03/10 16:45:44 INFO TaskSetManager: Finished task 23.0 in stage 0.0 (TID 23) in 2908 ms on localhost (24/25)
+17/03/10 16:45:46 INFO PythonRunner: Times: total = 2769, boot = 2, init = 0, finish = 2767
+17/03/10 16:45:46 INFO Executor: Finished task 24.0 in stage 0.0 (TID 24). 1471 bytes result sent to driver
+17/03/10 16:45:46 INFO TaskSetManager: Finished task 24.0 in stage 0.0 (TID 24) in 2779 ms on localhost (25/25)
+17/03/10 16:45:46 INFO DAGScheduler: ResultStage 0 (reduce at /home/sshuser/test/compute_pi.py:71) finished in 71.790 s
+17/03/10 16:45:46 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool
+17/03/10 16:45:47 INFO DAGScheduler: Job 0 finished: reduce at /home/sshuser/test/compute_pi.py:71, took 71.977299 s
+Pi estimation is 3.141694428 for 1000000000 simulation points
+N points in circle: 785423607
+N points in square: 214576393
+17/03/10 16:45:47 INFO BlockManagerInfo: Removed broadcast_0_piece0 on 10.0.0.14:41911 in memory (size: 3.5 KB, free: 366.3 MB)
+17/03/10 16:45:47 INFO SparkContext: Invoking stop() from shutdown hook
+17/03/10 16:45:47 INFO ServerConnector: Stopped ServerConnector@2f888bef{HTTP/1.1}{0.0.0.0:4040}
+17/03/10 16:45:47 INFO ContextHandler: Stopped o.s.j.s.ServletContextHandler@14ffa77c{/stages/stage/kill,null,UNAVAILABLE}
+17/03/10 16:45:47 INFO ContextHandler: Stopped o.s.j.s.ServletContextHandler@40d37276{/api,null,UNAVAILABLE}
+17/03/10 16:45:47 INFO ContextHandler: Stopped o.s.j.s.ServletContextHandler@4d0f0e00{/,null,UNAVAILABLE}
+17/03/10 16:45:47 INFO ContextHandler: Stopped o.s.j.s.ServletContextHandler@59c4e8e9{/static,null,UNAVAILABLE}
+17/03/10 16:45:47 INFO ContextHandler: Stopped o.s.j.s.ServletContextHandler@7c150db5{/executors/threadDump/json,null,UNAVAILABLE}
+17/03/10 16:45:47 INFO ContextHandler: Stopped o.s.j.s.ServletContextHandler@3c362ce3{/executors/threadDump,null,UNAVAILABLE}
+17/03/10 16:45:47 INFO ContextHandler: Stopped o.s.j.s.ServletContextHandler@710caa63{/executors/json,null,UNAVAILABLE}
+17/03/10 16:45:47 INFO ContextHandler: Stopped o.s.j.s.ServletContextHandler@15060e50{/executors,null,UNAVAILABLE}
+17/03/10 16:45:47 INFO ContextHandler: Stopped o.s.j.s.ServletContextHandler@1b8b6d15{/environment/json,null,UNAVAILABLE}
+17/03/10 16:45:47 INFO ContextHandler: Stopped o.s.j.s.ServletContextHandler@5091fce{/environment,null,UNAVAILABLE}
+17/03/10 16:45:47 INFO ContextHandler: Stopped o.s.j.s.ServletContextHandler@6c804b{/storage/rdd/json,null,UNAVAILABLE}
+17/03/10 16:45:47 INFO ContextHandler: Stopped o.s.j.s.ServletContextHandler@60ddcbc7{/storage/rdd,null,UNAVAILABLE}
+17/03/10 16:45:47 INFO ContextHandler: Stopped o.s.j.s.ServletContextHandler@5868de84{/storage/json,null,UNAVAILABLE}
+17/03/10 16:45:47 INFO ContextHandler: Stopped o.s.j.s.ServletContextHandler@7bdfc7f7{/storage,null,UNAVAILABLE}
+17/03/10 16:45:47 INFO ContextHandler: Stopped o.s.j.s.ServletContextHandler@4c258e91{/stages/pool/json,null,UNAVAILABLE}
+17/03/10 16:45:47 INFO ContextHandler: Stopped o.s.j.s.ServletContextHandler@7d7fb5d{/stages/pool,null,UNAVAILABLE}
+17/03/10 16:45:47 INFO ContextHandler: Stopped o.s.j.s.ServletContextHandler@2500d28a{/stages/stage/json,null,UNAVAILABLE}
+17/03/10 16:45:47 INFO ContextHandler: Stopped o.s.j.s.ServletContextHandler@2062e5ff{/stages/stage,null,UNAVAILABLE}
+17/03/10 16:45:47 INFO ContextHandler: Stopped o.s.j.s.ServletContextHandler@1fda9c7a{/stages/json,null,UNAVAILABLE}
+17/03/10 16:45:47 INFO ContextHandler: Stopped o.s.j.s.ServletContextHandler@27f0a0af{/stages,null,UNAVAILABLE}
+17/03/10 16:45:47 INFO ContextHandler: Stopped o.s.j.s.ServletContextHandler@14822cbd{/jobs/job/json,null,UNAVAILABLE}
+17/03/10 16:45:47 INFO ContextHandler: Stopped o.s.j.s.ServletContextHandler@442f6503{/jobs/job,null,UNAVAILABLE}
+17/03/10 16:45:47 INFO ContextHandler: Stopped o.s.j.s.ServletContextHandler@9063291{/jobs/json,null,UNAVAILABLE}
+17/03/10 16:45:47 INFO ContextHandler: Stopped o.s.j.s.ServletContextHandler@6afb375d{/jobs,null,UNAVAILABLE}
+17/03/10 16:45:47 INFO SparkUI: Stopped Spark web UI at http://10.0.0.14:4040
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.BlockManager.disk.diskSpaceUsed_MB, value=0
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.BlockManager.memory.maxMem_MB, value=366
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.BlockManager.memory.memUsed_MB, value=0
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.BlockManager.memory.remainingMem_MB, value=366
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.DAGScheduler.job.activeJobs, value=0
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.DAGScheduler.job.allJobs, value=1
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.DAGScheduler.stage.failedStages, value=0
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.DAGScheduler.stage.runningStages, value=0
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.DAGScheduler.stage.waitingStages, value=0
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.PS-MarkSweep.count, value=2
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.PS-MarkSweep.time, value=66
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.PS-Scavenge.count, value=5
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.PS-Scavenge.time, value=68
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.heap.committed, value=472907776
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.heap.init, value=461373440
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.heap.max, value=954728448
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.heap.usage, value=0.04508781118879994
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.heap.used, value=43046616
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.non-heap.committed, value=62873600
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.non-heap.init, value=2555904
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.non-heap.max, value=-1
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.non-heap.usage, value=-6.1443936E7
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.non-heap.used, value=61444832
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.Code-Cache.committed, value=9699328
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.Code-Cache.init, value=2555904
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.Code-Cache.max, value=251658240
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.Code-Cache.usage, value=0.036058298746744794
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.Code-Cache.used, value=9074368
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.Compressed-Class-Space.committed, value=6553600
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.Compressed-Class-Space.init, value=0
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.Compressed-Class-Space.max, value=1073741824
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.Compressed-Class-Space.usage, value=0.005981609225273132
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.Compressed-Class-Space.used, value=6422704
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.Metaspace.committed, value=46620672
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.Metaspace.init, value=0
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.Metaspace.max, value=-1
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.Metaspace.usage, value=0.9861364503712001
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.Metaspace.used, value=45974344
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.PS-Eden-Space.committed, value=177209344
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.PS-Eden-Space.init, value=115867648
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.PS-Eden-Space.max, value=324534272
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.PS-Eden-Space.usage, value=0.06870956297644891
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.PS-Eden-Space.used, value=22298608
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.PS-Old-Gen.committed, value=276824064
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.PS-Old-Gen.init, value=307757056
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.PS-Old-Gen.max, value=716177408
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.PS-Old-Gen.usage, value=0.016285920038404785
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.PS-Old-Gen.used, value=11663608
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.PS-Survivor-Space.committed, value=18874368
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.PS-Survivor-Space.init, value=18874368
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.PS-Survivor-Space.max, value=18874368
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.PS-Survivor-Space.usage, value=0.5697161356608073
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.PS-Survivor-Space.used, value=10753032
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.total.committed, value=535781376
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.total.init, value=463929344
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.total.max, value=954728447
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.total.used, value=106820536
+17/03/10 16:45:47 INFO metrics: type=HISTOGRAM, name=local-1489164273621.driver.CodeGenerator.compilationTime, count=0, min=0, max=0, mean=0.0, stddev=0.0, median=0.0, p75=0.0, p95=0.0, p98=0.0, p99=0.0, p999=0.0
+17/03/10 16:45:47 INFO metrics: type=HISTOGRAM, name=local-1489164273621.driver.CodeGenerator.generatedClassSize, count=0, min=0, max=0, mean=0.0, stddev=0.0, median=0.0, p75=0.0, p95=0.0, p98=0.0, p99=0.0, p999=0.0
+17/03/10 16:45:47 INFO metrics: type=HISTOGRAM, name=local-1489164273621.driver.CodeGenerator.generatedMethodSize, count=0, min=0, max=0, mean=0.0, stddev=0.0, median=0.0, p75=0.0, p95=0.0, p98=0.0, p99=0.0, p999=0.0
+17/03/10 16:45:47 INFO metrics: type=HISTOGRAM, name=local-1489164273621.driver.CodeGenerator.sourceCodeSize, count=0, min=0, max=0, mean=0.0, stddev=0.0, median=0.0, p75=0.0, p95=0.0, p98=0.0, p99=0.0, p999=0.0
+17/03/10 16:45:47 INFO metrics: type=TIMER, name=local-1489164273621.driver.DAGScheduler.messageProcessingTime, count=52, min=0.06776599999999999, max=173.159377, mean=2.99833179316809, stddev=17.97814655076735, median=0.511444, p75=1.307545, p95=10.024185, p98=10.75532, p99=173.159377, p999=173.159377, mean_rate=0.7069970819039019, m1=0.7846087457812286, m5=0.9370441095002231, m15=0.9774885416863216, rate_unit=events/second, duration_unit=milliseconds
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.BlockManager.disk.diskSpaceUsed_MB, value=0
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.BlockManager.memory.maxMem_MB, value=366
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.BlockManager.memory.memUsed_MB, value=0
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.BlockManager.memory.remainingMem_MB, value=366
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.DAGScheduler.job.activeJobs, value=0
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.DAGScheduler.job.allJobs, value=1
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.DAGScheduler.stage.failedStages, value=0
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.DAGScheduler.stage.runningStages, value=0
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.DAGScheduler.stage.waitingStages, value=0
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.PS-MarkSweep.count, value=2
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.PS-MarkSweep.time, value=66
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.PS-Scavenge.count, value=5
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.PS-Scavenge.time, value=68
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.heap.committed, value=472907776
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.heap.init, value=461373440
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.heap.max, value=954728448
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.heap.usage, value=0.05972822127533378
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.heap.used, value=57024232
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.non-heap.committed, value=63397888
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.non-heap.init, value=2555904
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.non-heap.max, value=-1
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.non-heap.usage, value=-6.2124592E7
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.non-heap.used, value=62124592
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.Code-Cache.committed, value=9699328
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.Code-Cache.init, value=2555904
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.Code-Cache.max, value=251658240
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.Code-Cache.usage, value=0.03782780965169271
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.Code-Cache.used, value=9519680
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.Compressed-Class-Space.committed, value=6684672
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.Compressed-Class-Space.init, value=0
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.Compressed-Class-Space.max, value=1073741824
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.Compressed-Class-Space.usage, value=0.006010167300701141
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.Compressed-Class-Space.used, value=6453368
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.Metaspace.committed, value=47013888
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.Metaspace.init, value=0
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.Metaspace.max, value=-1
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.Metaspace.usage, value=0.9816687358424813
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.Metaspace.used, value=46152064
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.PS-Eden-Space.committed, value=177209344
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.PS-Eden-Space.init, value=115867648
+17/03/10 16:45:47 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.PS-Eden-Space.max, value=324534272
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.PS-Eden-Space.usage, value=0.11047964758557148
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.PS-Eden-Space.used, value=35854432
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.PS-Old-Gen.committed, value=276824064
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.PS-Old-Gen.init, value=307757056
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.PS-Old-Gen.max, value=716177408
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.PS-Old-Gen.usage, value=0.016285920038404785
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.PS-Old-Gen.used, value=11663608
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.PS-Survivor-Space.committed, value=18874368
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.PS-Survivor-Space.init, value=18874368
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.PS-Survivor-Space.max, value=18874368
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.PS-Survivor-Space.usage, value=0.5697161356608073
+17/03/10 16:45:47 INFO MemoryStore: MemoryStore cleared
+17/03/10 16:45:47 INFO BlockManager: BlockManager stopped
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.pools.PS-Survivor-Space.used, value=10753032
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.total.committed, value=536305664
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.total.init, value=463929344
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.total.max, value=954728447
+17/03/10 16:45:47 INFO metrics: type=GAUGE, name=local-1489164273621.driver.jvm.total.used, value=122565600
+17/03/10 16:45:47 INFO metrics: type=HISTOGRAM, name=local-1489164273621.driver.CodeGenerator.compilationTime, count=0, min=0, max=0, mean=0.0, stddev=0.0, median=0.0, p75=0.0, p95=0.0, p98=0.0, p99=0.0, p999=0.0
+17/03/10 16:45:47 INFO BlockManagerMaster: BlockManagerMaster stopped
+17/03/10 16:45:47 INFO metrics: type=HISTOGRAM, name=local-1489164273621.driver.CodeGenerator.generatedClassSize, count=0, min=0, max=0, mean=0.0, stddev=0.0, median=0.0, p75=0.0, p95=0.0, p98=0.0, p99=0.0, p999=0.0
+17/03/10 16:45:47 INFO metrics: type=HISTOGRAM, name=local-1489164273621.driver.CodeGenerator.generatedMethodSize, count=0, min=0, max=0, mean=0.0, stddev=0.0, median=0.0, p75=0.0, p95=0.0, p98=0.0, p99=0.0, p999=0.0
+17/03/10 16:45:47 INFO metrics: type=HISTOGRAM, name=local-1489164273621.driver.CodeGenerator.sourceCodeSize, count=0, min=0, max=0, mean=0.0, stddev=0.0, median=0.0, p75=0.0, p95=0.0, p98=0.0, p99=0.0, p999=0.0
+17/03/10 16:45:47 INFO metrics: type=TIMER, name=local-1489164273621.driver.DAGScheduler.messageProcessingTime, count=52, min=0.06776599999999999, max=173.159377, mean=2.99833179316809, stddev=17.97814655076735, median=0.511444, p75=1.307545, p95=10.024185, p98=10.75532, p99=173.159377, p999=173.159377, mean_rate=0.7034476206043422, m1=0.7846087457812286, m5=0.9370441095002231, m15=0.9774885416863216, rate_unit=events/second, duration_unit=milliseconds
+17/03/10 16:45:47 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+17/03/10 16:45:47 INFO SparkContext: Successfully stopped SparkContext
+17/03/10 16:45:47 INFO ShutdownHookManager: Shutdown hook called
+17/03/10 16:45:47 INFO ShutdownHookManager: Deleting directory /tmp/spark-4a217305-0689-4c9e-9c45-8a4a22714ef0
+17/03/10 16:45:47 INFO ShutdownHookManager: Deleting directory /tmp/spark-4a217305-0689-4c9e-9c45-8a4a22714ef0/pyspark-e7c7040e-8260-423c-8d36-4e672412aa13
+17/03/10 16:45:47 INFO MetricsSystemImpl: Stopping azure-file-system metrics system...
+17/03/10 16:45:47 INFO MetricsSinkAdapter: azurefs2 thread interrupted.
+17/03/10 16:45:47 INFO MetricsSystemImpl: azure-file-system metrics system stopped.
+17/03/10 16:45:47 INFO MetricsSystemImpl: azure-file-system metrics system shutdown complete.
