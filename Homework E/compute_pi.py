@@ -30,7 +30,7 @@ def pi_estimation(data_packet):
     # landed in the square. Otherwise, in the inscribed circle
     #
     # To get radii, we use pythagoras theorem to find hypotenus
-    in_square = np.sqrt(np.power(xpos, 2) + np.power(ypos, 2)) > radius_sq
+    in_square = np.power(xpos, 2) + np.power(ypos, 2) > radius_sq
 
     n_square = np.sum(in_square, dtype=np.int64)
     n_circle = np.int64(in_square.size) - n_square
