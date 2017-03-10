@@ -1,0 +1,109 @@
+[root@sandbox ~]# spark-submit /root/test/test_prog.py
+Multiple versions of Spark are installed but SPARK_MAJOR_VERSION is not set
+Spark1 will be picked by default
+17/03/10 04:03:45 INFO SparkContext: Running Spark version 1.6.2
+17/03/10 04:03:45 INFO SecurityManager: Changing view acls to: root
+17/03/10 04:03:45 INFO SecurityManager: Changing modify acls to: root
+17/03/10 04:03:45 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: Set(root); users with modify permissions: Set(root)
+17/03/10 04:03:45 INFO Utils: Successfully started service 'sparkDriver' on port 41186.
+17/03/10 04:03:45 INFO Slf4jLogger: Slf4jLogger started
+17/03/10 04:03:46 INFO Remoting: Starting remoting
+17/03/10 04:03:46 INFO Remoting: Remoting started; listening on addresses :[akka.tcp://sparkDriverActorSystem@172.17.0.2:37973]
+17/03/10 04:03:46 INFO Utils: Successfully started service 'sparkDriverActorSystem' on port 37973.
+17/03/10 04:03:46 INFO SparkEnv: Registering MapOutputTracker
+17/03/10 04:03:46 INFO SparkEnv: Registering BlockManagerMaster
+17/03/10 04:03:46 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-01a76776-a330-4222-9f3e-c57cd48eb2d5
+17/03/10 04:03:46 INFO MemoryStore: MemoryStore started with capacity 511.1 MB
+17/03/10 04:03:46 INFO SparkEnv: Registering OutputCommitCoordinator
+17/03/10 04:03:46 INFO Server: jetty-8.y.z-SNAPSHOT
+17/03/10 04:03:46 INFO AbstractConnector: Started SelectChannelConnector@0.0.0.0:4040
+17/03/10 04:03:46 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+17/03/10 04:03:46 INFO SparkUI: Bound SparkUI to 0.0.0.0, and started at http://172.17.0.2:4040
+17/03/10 04:03:46 INFO Utils: Copying /root/test/test_prog.py to /tmp/spark-95dbcfea-b912-4390-9b03-28be5e751d7c/userFiles-7025eb1d-503e-45f3-ad7c-746fa53376bf/test_prog.py
+17/03/10 04:03:46 INFO SparkContext: Added file file:/root/test/test_prog.py at file:/root/test/test_prog.py with timestamp 1489118626557
+17/03/10 04:03:46 INFO Executor: Starting executor ID driver on host localhost
+17/03/10 04:03:46 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 46580.
+17/03/10 04:03:46 INFO NettyBlockTransferService: Server created on 46580
+17/03/10 04:03:46 INFO BlockManagerMaster: Trying to register BlockManager
+17/03/10 04:03:46 INFO BlockManagerMasterEndpoint: Registering block manager localhost:46580 with 511.1 MB RAM, BlockManagerId(driver, localhost, 46580)
+17/03/10 04:03:46 INFO BlockManagerMaster: Registered BlockManager
+17/03/10 04:03:47 INFO EventLoggingListener: Logging events to hdfs:///spark-history/local-1489118626618
+17/03/10 04:03:47 INFO SparkContext: Starting job: reduce at /root/test/test_prog.py:66
+17/03/10 04:03:47 INFO DAGScheduler: Got job 0 (reduce at /root/test/test_prog.py:66) with 4 output partitions
+17/03/10 04:03:47 INFO DAGScheduler: Final stage: ResultStage 0 (reduce at /root/test/test_prog.py:66)
+17/03/10 04:03:47 INFO DAGScheduler: Parents of final stage: List()
+17/03/10 04:03:47 INFO DAGScheduler: Missing parents: List()
+17/03/10 04:03:47 INFO DAGScheduler: Submitting ResultStage 0 (PythonRDD[1] at reduce at /root/test/test_prog.py:66), which has no missing parents
+17/03/10 04:03:47 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 4.7 KB, free 4.7 KB)
+17/03/10 04:03:47 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 3.2 KB, free 7.9 KB)
+17/03/10 04:03:47 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on localhost:46580 (size: 3.2 KB, free: 511.1 MB)
+17/03/10 04:03:47 INFO SparkContext: Created broadcast 0 from broadcast at DAGScheduler.scala:1008
+17/03/10 04:03:47 INFO DAGScheduler: Submitting 4 missing tasks from ResultStage 0 (PythonRDD[1] at reduce at /root/test/test_prog.py:66)
+17/03/10 04:03:47 INFO TaskSchedulerImpl: Adding task set 0.0 with 4 tasks
+17/03/10 04:03:47 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0, localhost, partition 0,PROCESS_LOCAL, 2251 bytes)
+17/03/10 04:03:47 INFO Executor: Running task 0.0 in stage 0.0 (TID 0)
+17/03/10 04:03:47 INFO Executor: Fetching file:/root/test/test_prog.py with timestamp 1489118626557
+17/03/10 04:03:47 INFO Utils: /root/test/test_prog.py has been previously copied to /tmp/spark-95dbcfea-b912-4390-9b03-28be5e751d7c/userFiles-7025eb1d-503e-45f3-ad7c-746fa53376bf/test_prog.py
+17/03/10 04:03:48 INFO PythonRunner: Times: total = 1524, boot = 115, init = 3, finish = 1406
+17/03/10 04:03:48 INFO Executor: Finished task 0.0 in stage 0.0 (TID 0). 1165 bytes result sent to driver
+17/03/10 04:03:48 INFO TaskSetManager: Starting task 1.0 in stage 0.0 (TID 1, localhost, partition 1,PROCESS_LOCAL, 2251 bytes)
+17/03/10 04:03:48 INFO Executor: Running task 1.0 in stage 0.0 (TID 1)
+17/03/10 04:03:48 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 1601 ms on localhost (1/4)
+17/03/10 04:03:50 INFO PythonRunner: Times: total = 1988, boot = -20, init = 23, finish = 1985
+17/03/10 04:03:50 INFO Executor: Finished task 1.0 in stage 0.0 (TID 1). 1165 bytes result sent to driver
+17/03/10 04:03:50 INFO TaskSetManager: Starting task 2.0 in stage 0.0 (TID 2, localhost, partition 2,PROCESS_LOCAL, 2251 bytes)
+17/03/10 04:03:50 INFO TaskSetManager: Finished task 1.0 in stage 0.0 (TID 1) in 1993 ms on localhost (2/4)
+17/03/10 04:03:50 INFO Executor: Running task 2.0 in stage 0.0 (TID 2)
+17/03/10 04:03:52 INFO PythonRunner: Times: total = 1473, boot = 1, init = 0, finish = 1472
+17/03/10 04:03:52 INFO Executor: Finished task 2.0 in stage 0.0 (TID 2). 1165 bytes result sent to driver
+17/03/10 04:03:52 INFO TaskSetManager: Starting task 3.0 in stage 0.0 (TID 3, localhost, partition 3,PROCESS_LOCAL, 2251 bytes)
+17/03/10 04:03:52 INFO Executor: Running task 3.0 in stage 0.0 (TID 3)
+17/03/10 04:03:52 INFO TaskSetManager: Finished task 2.0 in stage 0.0 (TID 2) in 1479 ms on localhost (3/4)
+17/03/10 04:03:53 INFO PythonRunner: Times: total = 1383, boot = 0, init = 1, finish = 1382
+17/03/10 04:03:53 INFO Executor: Finished task 3.0 in stage 0.0 (TID 3). 1165 bytes result sent to driver
+17/03/10 04:03:53 INFO TaskSetManager: Finished task 3.0 in stage 0.0 (TID 3) in 1391 ms on localhost (4/4)
+17/03/10 04:03:53 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool
+17/03/10 04:03:53 INFO DAGScheduler: ResultStage 0 (reduce at /root/test/test_prog.py:66) finished in 6.465 s
+17/03/10 04:03:53 INFO DAGScheduler: Job 0 finished: reduce at /root/test/test_prog.py:66, took 6.578898 s
+Pi estimation is 3.14177628 for 100000000 simulation points
+N points in circle: 78544407
+N points in square: 21455593
+17/03/10 04:03:53 INFO SparkContext: Invoking stop() from shutdown hook
+17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/metrics/json,null}
+17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/stage/kill,null}
+17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/api,null}
+17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/,null}
+17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/static,null}
+17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/executors/threadDump/json,null}
+17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/executors/threadDump,null}
+17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/executors/json,null}
+17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/executors,null}
+17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/environment/json,null}
+17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/environment,null}
+17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/storage/rdd/json,null}
+17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/storage/rdd,null}
+17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/storage/json,null}
+17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/storage,null}
+17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/pool/json,null}
+17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/pool,null}
+17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/stage/json,null}
+17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/stage,null}
+17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/json,null}
+17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages,null}
+17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/jobs/job/json,null}
+17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/jobs/job,null}
+17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/jobs/json,null}
+17/03/10 04:03:53 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/jobs,null}
+17/03/10 04:03:53 INFO SparkUI: Stopped Spark web UI at http://172.17.0.2:4040
+17/03/10 04:03:54 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+17/03/10 04:03:54 INFO MemoryStore: MemoryStore cleared
+17/03/10 04:03:54 INFO BlockManager: BlockManager stopped
+17/03/10 04:03:54 INFO BlockManagerMaster: BlockManagerMaster stopped
+17/03/10 04:03:54 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+17/03/10 04:03:54 INFO SparkContext: Successfully stopped SparkContext
+17/03/10 04:03:54 INFO ShutdownHookManager: Shutdown hook called
+17/03/10 04:03:54 INFO ShutdownHookManager: Deleting directory /tmp/spark-95dbcfea-b912-4390-9b03-28be5e751d7c/pyspark-8461cda7-7248-46e4-a013-39de807da0f2
+17/03/10 04:03:54 INFO ShutdownHookManager: Deleting directory /tmp/spark-95dbcfea-b912-4390-9b03-28be5e751d7c
+17/03/10 04:03:54 INFO RemoteActorRefProvider$RemotingTerminator: Shutting down remote daemon.
+17/03/10 04:03:54 INFO RemoteActorRefProvider$RemotingTerminator: Remote daemon shut down; proceeding with flushing remote transports.
+17/03/10 04:03:54 INFO RemoteActorRefProvider$RemotingTerminator: Remoting shut down.
