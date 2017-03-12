@@ -6,29 +6,20 @@ from mpi4py import MPI
 import re
 import ntpath
 import numpy as np
+import cProfile
 
 
-def worker(dataloc, noisefile, row_index, rank, execlogger, noiserow_check,
+def worker(rows, noisefile, row_index, rank, execlogger, noiserow_check,
            delimiter=","):
     start_row = row_index[0]
     nrows_read = row_index[1] - row_index[0] + 1
-    reader = chk.row_reader(dataloc, start_row, nrows_read)
-    rows = [a_row for a_row in reader]
+    # reader = chk.row_reader(dataloc, start_row, nrows_read)
+    # rows = [a_row for a_row in reader]
     nrows_parsed = len(rows)
 
     msg = "rank{0} start index: {1}, nrows: {2}"
     msg = msg.format(rank, start_row, nrows_read)
     execlogger.debug(msg)
-
-    if rows[0].endswith("\r\n") and rows[-1].endswith("\r\n"):
-        rows = [i[:-2] for i in rows]
-
-        execlogger.debug("\\r\\n newline detected")
-
-    elif rows[0].endswith("\n") and rows[-1].endswith("\n"):
-        rows = [i[:-1] for i in rows]
-
-        execlogger.debug("\\n newline detected")
 
     row_indices = xrange(start_row, start_row + nrows_read)
     indexed_rows = [(a_row, i) for a_row, i in zip(rows, row_indices)]
@@ -155,8 +146,8 @@ if __name__ == "__main__":
 
         # Create time tracker -------------------------------------------------
         # ---------------------------------------------------------------------
-        import TimeTrack
-        tt = TimeTrack.TimeTrack()
+        import Timetrack
+        tt = Timetrack.Timetrack()
 
         # Create result logger
         # ---------------------------------------------------------------------
@@ -186,21 +177,24 @@ if __name__ == "__main__":
         nworkers = size
         scrub_results = list()
         worker_row_indices = list()
+        row_indices = list()
         for i in range(nworkers):
             worker_row_indices.insert(i, [])
 
         while nrows_left != 0:
-            row_indices = utils.size_sequencer(nchunk, nworkers, s_index)
-
-            for a_row_indices in range(len(row_indices)):
-                index_interval = row_indices[a_row_indices]
-                worker_row_indices[a_row_indices].append(index_interval)
+            row_indices.append(utils.size_sequencer(nchunk, nworkers, s_index))
 
             nrows_left -= nchunk
             s_index += nchunk
 
             if nchunk > nrows_left:
                 nchunk = nrows_left
+
+        row_indices = [item for sublist in row_indices for item in sublist]
+        row_indices = utils.even_split(row_indices, size)
+
+        for ipair, wp in zip(row_indices, worker_row_indices):
+            wp.extend(ipair)
 
     else:
         worker_row_indices = None
@@ -211,8 +205,10 @@ if __name__ == "__main__":
     row_indices = comm.scatter(worker_row_indices, root=0)
 
     if rank == 0:
-        extt = TimeTrack.TimeTrack()
+        extt = Timetrack.Timetrack()
 
+    # Create row reader object
+    rowreader = chk.Rowread(dataloc, row_indices[0][0])
     # Open a file for workers to write noise row indicies
     filename = "noise-rank" + str(rank) + "-"
     filename += dt.datetime.strftime(dt.datetime.utcnow(),
@@ -221,7 +217,9 @@ if __name__ == "__main__":
     with open(filename, "w") as file:
         work_result = list()
         for index_interval in row_indices:
-            r = worker(dataloc, file, index_interval, rank, lg, noiserow_check,
+            rowreader.set_startrow(index_interval[0] + 1)
+            rows = rowreader.read(index_interval[1] - index_interval[0] + 1)
+            r = worker(rows, file, index_interval, rank, lg, noiserow_check,
                        row_delim)
             work_result.append(r)
 
@@ -242,9 +240,8 @@ if __name__ == "__main__":
 
         # Combine noise files
         noise = list()
-        if os.path.exists(noiseloc) is not True:
-            file = open(noiseloc, "w")
-            file.close()
+        if os.path.exists(noiseloc) is True:
+            os.remove(noiseloc)
 
         for a_file in os.listdir("cache"):
             with open("cache/" + a_file, "r") as cachenoisefile:
