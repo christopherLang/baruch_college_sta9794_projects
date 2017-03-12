@@ -6,7 +6,6 @@ from mpi4py import MPI
 import re
 import ntpath
 import numpy as np
-import cProfile
 
 
 def worker(rows, noisefile, row_index, rank, execlogger, noiserow_check,
@@ -21,7 +20,7 @@ def worker(rows, noisefile, row_index, rank, execlogger, noiserow_check,
     msg = msg.format(rank, start_row, nrows_read)
     execlogger.debug(msg)
 
-    row_indices = xrange(start_row, start_row + nrows_read)
+    row_indices = xrange(start_row + 1, start_row + nrows_read + 1)
     indexed_rows = [(a_row, i) for a_row, i in zip(rows, row_indices)]
 
     noise_i = set(a_row[1] for a_row in indexed_rows
