@@ -2,7 +2,7 @@ import datetime as dt
 from utils import pretty_time_string, execution_time
 
 
-class TimeTrack(object):
+class Timetrack(object):
     def __init__(self, initialize_time=True):
         self.start_time = None
         self.end_time = None
