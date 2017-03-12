@@ -43,6 +43,40 @@ def get_nrows(file, read_mode="rb"):
     return counter
 
 
+class Rowread(object):
+    def __init__(self, file, start_row, read_mode="rb"):
+        self.file = open(file, read_mode)
+        self.start_row = start_row
+        self.current_row = 1
+
+    def set_startrow(self, start_row):
+        if start_row < self.current_row:
+            raise Exception("Start row is lower than current row")
+
+        else:
+            self.start_row = start_row
+
+    def read(self, nrows):
+        while self.current_row < self.start_row:
+            next(self.file)
+            self.current_row += 1
+
+        result = list()
+        rrows = 0
+        for a_row in self.file:
+            result.append(a_row)
+            self.current_row += 1
+            rrows += 1
+
+            if rrows >= nrows:
+                break
+
+        if len(result) == 0:
+            result = None
+
+        return result
+
+
 def row_reader(file, start_n, nrows, read_mode="rb"):
     counter = 0
     rows_read = 0
