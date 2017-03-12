@@ -7,178 +7,80 @@ import re
 import ntpath
 import numpy as np
 
-comm = MPI.COMM_WORLD
-rank = comm.Get_rank()
-size = comm.Get_size()
 
-
-def worker(file, row_index, rank, delimiter=",", logger=None):
+def worker(dataloc, noisefile, row_index, rank, execlogger, noiserow_check,
+           delimiter=","):
     start_row = row_index[0]
     nrows_read = row_index[1] - row_index[0] + 1
-    reader = chk.row_reader(file, start_row, nrows_read)
+    reader = chk.row_reader(dataloc, start_row, nrows_read)
+    rows = [a_row for a_row in reader]
+    nrows_parsed = len(rows)
 
-    if logger is not None:
-        msg = "rank{0} start index: {1}, nrows: {2}"
-        msg = msg.format(rank, start_row, nrows_read)
-        logger.debug(msg)
-
-    nrows_parsed = 0
-    rows = list()
-    for a_row in reader:
-        nrows_parsed += 1
-        rows.append(a_row)
+    msg = "rank{0} start index: {1}, nrows: {2}"
+    msg = msg.format(rank, start_row, nrows_read)
+    execlogger.debug(msg)
 
     if rows[0].endswith("\r\n") and rows[-1].endswith("\r\n"):
         rows = [i[:-2] for i in rows]
 
-        logger.debug("\\r\\n newline detected")
+        execlogger.debug("\\r\\n newline detected")
 
     elif rows[0].endswith("\n") and rows[-1].endswith("\n"):
         rows = [i[:-1] for i in rows]
 
-        logger.debug("\\n newline detected")
+        execlogger.debug("\\n newline detected")
 
-    rows = [i.split(delimiter) for i in rows]
+    row_indices = xrange(start_row, start_row + nrows_read)
+    indexed_rows = [(a_row, i) for a_row, i in zip(rows, row_indices)]
 
-    rows = row_clean(rows, start_row, start_row + nrows_read)
+    noise_i = set(a_row[1] for a_row in indexed_rows
+                  if noiserow_check.match(a_row[0]) is None)
 
-    if logger is not None:
-        msg = "rank{0} finished cleaning, nrows {1}"
-        msg = msg.format(rank, len(rows))
-        logger.debug(msg)
+    indexed_rows.sort(key=lambda x: x[0])
 
-    rows = detect_noise(rows, logger)
+    noise_i.update((indexed_rows[i][1] for i in range(1, len(indexed_rows))
+                    if (indexed_rows[i][0] == indexed_rows[i - 1][0]) is True))
 
-    if logger is not None:
-        msg = "rank{0} detect noise finished, nrows {1}"
-        msg = msg.format(rank, len(rows))
-        logger.debug(msg)
+    indexed_rows = [i for i in indexed_rows if i[1] not in noise_i]
 
-    result = dict()
-    result['rows_parsed'] = nrows_parsed
+    prices = np.array([i[0].split(delimiter)[1] for i in indexed_rows],
+                      dtype=np.float64)
 
-    if len(rows['noise_rows']) > 0:
-        filename = "noise-rank" + str(rank) + "-"
-        filename += dt.datetime.strftime(dt.datetime.utcnow(),
-                                         format="%Y%m%dT%H%M%S")
-        filename = "cache/" + filename + ".txt"
-
-        with open(filename, "w") as f:
-            f.writelines([str(i) + "\n" for i in rows['noise_rows']])
-
-            if logger is not None:
-                msg = "rank{0} wrote {1} noise files to disk"
-                msg = msg.format(rank, len(rows['noise_rows']))
-                logger.info(msg)
-
-    rows.pop('noise_rows')
-    result.update(rows)
-
-    return result
-
-
-def row_clean(rows, start_index, end_index):
-    for a_row, row_index, in zip(rows, range(start_index, end_index)):
-        a_row[1:3] = [float(a_row[1]), int(a_row[2])]
-        a_row += [row_index]
-
-    rows.sort(key=lambda x: x[0])
-
-    result = [tuple(i) for i in rows]
-
-    return result
-
-
-def detect_noise(rows, logger=None):
-    noise_indices = set()
-    result = dict()
-
-    result['noise_rows'] = None
-    result['n_duplicates'] = 0
-    result['n_wrongLength'] = 0
-    result['n_negativeNum'] = 0
-    result['n_timestampFormat'] = 0
-    result['n_sixsigma'] = 0
-
-    for i in range(len(rows)):
-        if i >= 1:
-            # Starting from row 2, check for duplicates. Probably very slow
-            # TODO - Find a way to avoid constantly check if we're starting
-            #        from row 1 or above
-            if rows[i][:-1] == rows[i - 1][:-1]:
-                # This check if current row is the same as before. This only
-                # works if row objects are immutable. Therefore, before running
-                # detect_noise, row_clean must be run as it converts to tuples
-                #
-                # This also assumings that rows are sorted by time in ascending
-                # order
-                noise_indices.add(rows[i][-1])
-                result['n_duplicates'] += 1
-
-                msg = "rank{0} found row {1} and {2} are duplicates"
-                msg = msg.format(rank, rows[i][3], rows[i - 1][3])
-                logger.debug(msg)
-
-        # Presuming all rows should have 4 elements, one for each column
-        if len(rows[i]) != 4:
-            noise_indices.add(rows[i][-1])
-            result['n_wrongLength'] += 1
-
-            msg = "rank{0} found row {1} does not have 3 columns"
-            msg = msg.format(rank, rows[i][3])
-            logger.debug(msg)
-
-        # Look for negative "price" (index 1) and "units traded" (index 2)
-        elif rows[i][1] < 0 or rows[i][2] < 0:
-            noise_indices.add(rows[i][-1])
-            result['n_negativeNum'] += 1
-
-            msg = "rank{0} found row {1} has a negative value"
-            msg = msg.format(rank, rows[i][3])
-            logger.debug(msg)
-
-        elif re.search("\d{8}([:]\d{2}){3}([.]\d+)?", rows[i][0]) is None:
-            noise_indices.add(rows[i][-1])
-            result['n_timestampFormat'] += 1
-
-            msg = "rank{0} found row {1} has incorrect timestamps"
-            msg = msg.format(rank, rows[i][3])
-            logger.debug(msg)
-
-    rows = [i for i in rows if i[-1] not in noise_indices]
-
-    stdev = np.std([i[1] for i in rows])
-    price_mean = np.mean([i[1] for i in rows])
+    stdev = np.std(prices)
+    price_mean = np.mean(prices)
     upp_stdev = 3 * stdev
     low_stdev = -3 * stdev
-    for i in range(len(rows)):
-        # This for loop probably can be replaced with numpy arrays
-        row_price_demeaned = rows[i][1] - price_mean
 
-        if row_price_demeaned < low_stdev or row_price_demeaned > upp_stdev:
-            noise_indices.add(rows[i][-1])
-            result['n_sixsigma'] += 1
+    prices = prices - price_mean
 
-            msg = "rank{0} found row {1} has beyond 6-sigma price"
-            msg = msg.format(rank, rows[i][3])
-            logger.debug(msg)
+    indices = np.array([i[1] for i in indexed_rows], dtype=np.int64)
 
-    # If no noise rows are found based on the above logic, then return None
-    if len(noise_indices) != 0:
-        result['noise_rows'] = noise_indices
+    noise_i.update(indices[np.logical_or(prices < low_stdev,
+                                         prices > upp_stdev)])
 
-    else:
-        result['noise_rows'] = set()
+    msg = "rank{0} detect noise finished, nrows {1}"
+    msg = msg.format(rank, nrows_parsed)
+    execlogger.debug(msg)
 
-    if logger is None:
-        msg = "rank{0} found {1} noise rows"
-        msg = msg.format(rank, len(noise_indices))
-        logger.info(msg)
+    if len(noise_i) > 0:
+        noisefile.writelines([str(i) + "\n" for i in noise_i])
+
+        msg = "rank{0} wrote {1} noise row indices to disk"
+        msg = msg.format(rank, len(noise_i))
+        execlogger.info(msg)
+
+    result = dict()
+    result['nrows'] = nrows_parsed
+    result['n_noise'] = len(noise_i)
 
     return result
 
 
 if __name__ == "__main__":
+    comm = MPI.COMM_WORLD
+    rank = comm.Get_rank()
+    size = comm.Get_size()
+
     # Set working directory to script's directory
     wdir = os.path.dirname(os.path.realpath(__file__))
     os.chdir(wdir)
@@ -189,6 +91,16 @@ if __name__ == "__main__":
     import ResultLogger as rl
     import utils
     import logging
+
+    # Create noise row checker regex searcher
+    row_regex = [
+        r"^\d{8}([:]\d{2}){3}[.]\d+",
+        r"[0-9.]+",
+        r"[0-9.]+$"]
+
+    row_regex = r"[,]".join(row_regex)
+
+    noiserow_check = re.compile(row_regex)
 
     # Load program settings
     with open("config/assignmentA_config.json", "r") as f:
@@ -301,10 +213,17 @@ if __name__ == "__main__":
     if rank == 0:
         extt = TimeTrack.TimeTrack()
 
-    work_result = list()
-    for index_interval in row_indices:
-        r = worker(dataloc, index_interval, rank, row_delim, lg)
-        work_result.append(r)
+    # Open a file for workers to write noise row indicies
+    filename = "noise-rank" + str(rank) + "-"
+    filename += dt.datetime.strftime(dt.datetime.utcnow(),
+                                     format="%Y%m%dT%H%M%S")
+    filename = "cache/" + filename + ".txt"
+    with open(filename, "w") as file:
+        work_result = list()
+        for index_interval in row_indices:
+            r = worker(dataloc, file, index_interval, rank, lg, noiserow_check,
+                       row_delim)
+            work_result.append(r)
 
     scrub_results = comm.gather(work_result, root=0)
 
@@ -314,20 +233,12 @@ if __name__ == "__main__":
         scrub_results = [item for sublist in scrub_results for item in sublist]
         # Total aggregate count
         r = dict()
-        r['rows_parsed'] = 0
-        r['n_duplicates'] = 0
-        r['n_negativeNum'] = 0
-        r['n_wrongLength'] = 0
-        r['n_timestampFormat'] = 0
-        r['n_sixsigma'] = 0
+        r['nrows'] = 0
+        r['n_noise'] = 0
 
         for a_result in scrub_results:
-            r['rows_parsed'] += a_result['rows_parsed']
-            r['n_duplicates'] += a_result['n_duplicates']
-            r['n_negativeNum'] += a_result['n_negativeNum']
-            r['n_wrongLength'] += a_result['n_wrongLength']
-            r['n_timestampFormat'] += a_result['n_timestampFormat']
-            r['n_sixsigma'] += a_result['n_sixsigma']
+            r['nrows'] += a_result['nrows']
+            r['n_noise'] += a_result['n_noise']
 
         # Combine noise files
         noise = list()
@@ -352,25 +263,11 @@ if __name__ == "__main__":
                                   tt.elapsed_pretty())
         result_log.add_section_kv("Row parse elapsed time",
                                   extt.elapsed_pretty())
-        result_log.add_section_kv("Row count", r['rows_parsed'])
+        result_log.add_section_kv("Row count", r['nrows'])
+        result_log.add_section_kv("Total # noise rows", r['n_noise'])
 
-        velocity = r['rows_parsed'] / extt.elapsed_seconds()
+        velocity = r['nrows'] / extt.elapsed_seconds()
         velocity = round(velocity, 2)
         result_log.add_section_kv("Velocity (rows parsed / sec)", velocity)
-        result_log.add_section_kv("Total # noise rows",
-                                  (r['n_duplicates'] + r['n_negativeNum'] +
-                                   r['n_wrongLength'] +
-                                   r['n_timestampFormat'] +
-                                   r['n_sixsigma']))
-        result_log.add_section_kv("Noise rows (duplicates)",
-                                  r['n_duplicates'])
-        result_log.add_section_kv("Noise rows (negative num.)",
-                                  r['n_negativeNum'])
-        result_log.add_section_kv("Noise rows (# of columns)",
-                                  r['n_wrongLength'])
-        result_log.add_section_kv("Noise rows (timestamp format)",
-                                  r['n_timestampFormat'])
-        result_log.add_section_kv("Noise rows (Six sigma)",
-                                  r['n_sixsigma'])
 
         result_log.exec_section()
