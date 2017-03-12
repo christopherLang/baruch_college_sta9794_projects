@@ -10,3 +10,6 @@ Assignment A/scratch.py
 **/*.pyc
 Assignment A/mpi_test.py
 *sublime*
+*bk.*
+*_results.txt
+*.log

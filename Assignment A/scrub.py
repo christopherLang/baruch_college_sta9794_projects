@@ -7,9 +7,6 @@ import re
 import ntpath
 import numpy as np
 
-# print wdir
-# print "/".join([os.getcwd(), "..", "lib"])
-
 comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
 size = comm.Get_size()
@@ -31,19 +28,15 @@ def worker(file, row_index, rank, delimiter=",", logger=None):
         nrows_parsed += 1
         rows.append(a_row)
 
-    if "\r\n" in rows[0] and "\r\n" in rows[-1]:
-        rows = [i.split("\r\n")[0] for i in rows]
+    if rows[0].endswith("\r\n") and rows[-1].endswith("\r\n"):
+        rows = [i[:-2] for i in rows]
 
-        if logger is not None:
-            msg = "\\r\\n end of line detected"
-            logger.debug(msg)
+        logger.debug("\\r\\n newline detected")
 
-    elif "\n" in rows[0] and "\n" in rows[-1]:
-        rows = [i.split("\n")[0] for i in rows]
+    elif rows[0].endswith("\n") and rows[-1].endswith("\n"):
+        rows = [i[:-1] for i in rows]
 
-        if logger is not None:
-            msg = "\\n end of line detected"
-            logger.debug(msg)
+        logger.debug("\\n newline detected")
 
     rows = [i.split(delimiter) for i in rows]
 
