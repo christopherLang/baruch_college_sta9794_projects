@@ -132,3 +132,13 @@ def size_sequencer(size, n_groups, start_index=0):
         result.append((start_index, start_index + size - 1))
 
     return result
+
+
+def gather_dict(listofdict):
+    result = listofdict[0]
+
+    for i in range(1, len(listofdict)):
+        for key in listofdict[i]:
+            result[key] += listofdict[i][key]
+
+    return result
