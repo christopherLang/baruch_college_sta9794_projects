@@ -1,0 +1,11 @@
+{
+  "chunk_size": 10000000,
+  "prog_title": "STA9794 Assignment A - Scrub Program",
+  "prog_description": "",
+  "dataloc": "../Archive/data-big.txt",
+  "exec_logloc": "log/scrub_execution.log",
+  "result_logloc": "result/scrub_results.log",
+  "col_delimiter": ",",
+  "enable_debug": true,
+  "noisefileloc": "result/noise.txt"
+}

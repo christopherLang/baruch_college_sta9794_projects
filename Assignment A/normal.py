@@ -26,7 +26,7 @@ if __name__ == "__main__":
     import logging
 
     # Load program settings
-    with open("config/assignmentA_config.json", "r") as f:
+    with open("config/normal_config.json", "r") as f:
         cfg = json.load(f)
 
     nchunk = cfg['chunk_size']

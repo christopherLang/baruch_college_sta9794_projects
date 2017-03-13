@@ -93,15 +93,14 @@ if __name__ == "__main__":
     noiserow_check = re.compile(row_regex)
 
     # Load program settings
-    with open("config/assignmentA_config.json", "r") as f:
+    with open("config/scrub_config.json", "r") as f:
         cfg = json.load(f)
 
-    n_cores = cfg['num_process']
     row_delim = cfg['col_delimiter']
     enable_debug = cfg['enable_debug']
     noiseloc = cfg['noisefileloc']
-    exec_logloc = cfg['exec_logloc'].format("scrub")
-    result_logloc = cfg['result_logloc'].format("scrub")
+    exec_logloc = cfg['exec_logloc']
+    result_logloc = cfg['result_logloc']
 
     # Create execution logger
     # ---------------------------------------------------------------------
@@ -153,9 +152,6 @@ if __name__ == "__main__":
         result_log = rl.ResultLogger(result_logloc, cfg['prog_title'])
 
         nrows = chk.get_nrows(dataloc)
-
-        print("MPI size: " + str(size))
-        print("Chunk size: " + str(cfg['chunk_size']))
 
         result_log.init_section("Program Information", level=0)
         result_log.add_section_kv("MPI size", size)
