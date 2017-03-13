@@ -16,7 +16,7 @@ def worker(rows, noisefile, row_index, rank, execlogger, noiserow_check,
     # rows = [a_row for a_row in reader]
     nrows_parsed = len(rows)
 
-    msg = "rank{0} start index: {1}, nrows: {2}"
+    msg = "rank-{0} start index: {1}, nrows: {2}"
     msg = msg.format(rank, start_row, nrows_read)
     execlogger.debug(msg)
 
@@ -48,14 +48,14 @@ def worker(rows, noisefile, row_index, rank, execlogger, noiserow_check,
     noise_i.update(indices[np.logical_or(prices < low_stdev,
                                          prices > upp_stdev)])
 
-    msg = "rank{0} detect noise finished, nrows {1}"
-    msg = msg.format(rank, nrows_parsed)
-    execlogger.debug(msg)
+    msg = "rank-{0} detect noise finished, nrows {1} parsed, {2} detected"
+    msg = msg.format(rank, nrows_parsed, len(noise_i))
+    execlogger.info(msg)
 
     if len(noise_i) > 0:
         noisefile.writelines([str(i) + "\n" for i in noise_i])
 
-        msg = "rank{0} wrote {1} noise row indices to disk"
+        msg = "rank-{0} wrote {1} noise row indices to disk"
         msg = msg.format(rank, len(noise_i))
         execlogger.info(msg)
 
@@ -81,6 +81,7 @@ if __name__ == "__main__":
     import ResultLogger as rl
     import utils
     import logging
+    import Timetrack
 
     # Create noise row checker regex searcher
     row_regex = [
@@ -115,6 +116,7 @@ if __name__ == "__main__":
     lgr_fmt = logging.Formatter('%(asctime)s : %(levelname)s : %(message)s')
     lgr_handler.setFormatter(lgr_fmt)
     lg.addHandler(lgr_handler)
+    lg.addHandler(logging.StreamHandler())
     lg.setLevel(log_level)
 
     # Get the location of the data file to be parsed
@@ -144,7 +146,6 @@ if __name__ == "__main__":
 
         # Create time tracker -------------------------------------------------
         # ---------------------------------------------------------------------
-        import Timetrack
         tt = Timetrack.Timetrack()
 
         # Create result logger
@@ -211,12 +212,19 @@ if __name__ == "__main__":
     filename = "cache/" + filename + ".txt"
     with open(filename, "w") as file:
         work_result = list()
+        wtt = Timetrack.Timetrack()
         for index_interval in row_indices:
             rowreader.set_startrow(index_interval[0] + 1)
             rows = rowreader.read(index_interval[1] - index_interval[0] + 1)
             r = worker(rows, file, index_interval, rank, lg, noiserow_check,
                        row_delim)
             work_result.append(r)
+
+            msg = "rank-{0} finished execution in {1} seconds"
+            msg = msg.format(rank, round(wtt.elapsed_seconds(), 4))
+            lg.info(msg)
+
+            wtt.reset_time()
 
     scrub_results = comm.gather(work_result, root=0)
 
