@@ -45,9 +45,18 @@ def get_nrows(file, read_mode="rb"):
 
 class Rowread(object):
     def __init__(self, file, start_row, read_mode="rb"):
+        self.filename = file
         self.file = open(file, read_mode)
         self.start_row = start_row
         self.current_row = 1
+        self.read_mode = read_mode
+
+    def reset(self, start_row):
+        self.file.close()
+        self.file = open(self.filename, self.read_mode)
+        self.current_row = 1
+
+        self.set_startrow(start_row)
 
     def set_startrow(self, start_row):
         if start_row < self.current_row:
