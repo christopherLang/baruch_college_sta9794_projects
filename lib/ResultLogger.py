@@ -2,6 +2,8 @@ import platform as plt
 import textwrap
 import datetime as dt
 import os
+import psutil
+import cpuinfo
 
 
 class ResultLogger(object):
@@ -21,14 +23,13 @@ class ResultLogger(object):
         self.section_initiated = False
 
         # Open the file for writing
-        if os.path.exists(file) is not True:
-            log_file = open(file, "w")
-            log_file.close()
+        log_file = open(file, "w")
+        log_file.close()
 
         if default_header is True:
-            dheaders = self.get_default_headers(title, description)
+            self.set_default_headers(title, description)
 
-            self.__write_lines(dheaders, write_mode="w")
+            # self.__write_lines(dheaders, write_mode="w")
 
     def add_line(self, textline, level=0):
         """Add line item to results log
@@ -230,7 +231,7 @@ class ResultLogger(object):
 
         self.section_cache['items'].extend(items)
 
-    def get_default_headers(self, title, description=None):
+    def set_default_headers(self, title, description=None):
         """Add a default header to the results file
 
         A default header contains program title, description and other items:
@@ -262,45 +263,55 @@ class ResultLogger(object):
         headers.append(h_border)
 
         if description is not None:
-
             descript_lines = self.wrap_text(description, pad_left, pad_right)
             headers.extend(descript_lines)
 
         headers.extend([newline for i in range(2)])
 
+        self.add_lines(headers)
+
         # Add general information
+        self.init_section("General Information", level=0)
+
         ginfo = list()
-
         log_dt = dt.datetime.utcnow()
-
         log_dt_format = log_dt.strftime('%A %B %d %Y | %I:%M:%S%p UTC')
 
         ginfo.append(("Datetime", log_dt_format))
         ginfo.append(("Datetime ISO", log_dt.isoformat() + "Z"))
 
-        ginfo = self.kv_format(ginfo)
-        headers.extend(self.section("General Information", ginfo))
+        self.add_section_kvs(ginfo)
+        self.exec_section()
 
         # Add info about python build
+        self.init_section("Python Information", level=0)
+
         py_build = list()
         py_build.append(("Version", "Python " + plt.python_version()))
         py_build.append(("Build", " ".join(plt.python_build())))
         py_build.append(("Compiler", plt.python_compiler()))
 
-        py_build = self.kv_format(py_build)
-
-        headers.extend(self.section("Python Information", py_build))
+        self.add_section_kvs(py_build)
+        self.exec_section()
 
         # Add info about platform (or host OS)
+        self.init_section("System Information", level=0)
+
+        cpu_info = cpuinfo.get_cpu_info()
+        memory_info = psutil.virtual_memory()[0:2]
+
         host = list()
         host.append(("Host", plt.platform() + " [" + plt.machine() + "]"))
-        host.append(("Processor", plt.processor()))
+        host.append(("Processor", cpu_info['brand']))
+        host.append(("CPU Architecture", cpu_info['arch']))
+        host.append(("# of CPU cores", cpu_info['count']))
+        host.append(("CPU core frequency", cpu_info['hz_actual']))
+        host.append(("CPU capabilities", ", ".join(cpu_info['flags'])))
+        host.append(("Total memory (GB)", round(memory_info[0] * 1e-9, 2)))
+        host.append(("Total available (GB)", round(memory_info[1] * 1e-9, 2)))
 
-        host = self.kv_format(host)
-
-        headers.extend(self.section("System Information", host))
-
-        return headers
+        self.add_section_kvs(host)
+        self.exec_section()
 
     def section(self, title, items, subtitle=None, level=0, nlines_above=1,
                 nlines_below=1):
