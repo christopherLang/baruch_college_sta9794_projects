@@ -14,3 +14,4 @@ Assignment A/mpi_test.py
 *_results.log
 *.log
 test.R
+*noise.txt

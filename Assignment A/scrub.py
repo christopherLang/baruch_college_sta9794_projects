@@ -28,7 +28,7 @@ def worker(rows, noisefile, row_index, rank, execlogger, noiserow_check,
 
     regex_noise = len(noise_i)
     msg = "rank-{0} found {1} noise rows with regex"
-    msg = msg.format(rank, len(noise_i))
+    msg = msg.format(rank, regex_noise)
     execlogger.debug(msg)
 
     indexed_rows.sort(key=lambda x: x[0])
@@ -43,24 +43,32 @@ def worker(rows, noisefile, row_index, rank, execlogger, noiserow_check,
 
     indexed_rows = [i for i in indexed_rows if i[1] not in noise_i]
 
-    prices = np.array([i[0].split(delimiter)[1] for i in indexed_rows],
-                      dtype=np.float64)
+    indices = np.array([i[1] for i in indexed_rows], dtype=np.int64)
+
+    numeric_data = [i[0].split(delimiter)[1:] for i in indexed_rows]
+    prices = np.array([i[0] for i in numeric_data], dtype=np.float64)
+    units_traded = np.array([i[1] for i in numeric_data], dtype=np.int64)
 
     stdev = np.std(prices)
     price_mean = np.mean(prices)
     upp_stdev = 3 * stdev
     low_stdev = -3 * stdev
 
-    prices = prices - price_mean
+    prices_demeaned = prices - price_mean
 
-    indices = np.array([i[1] for i in indexed_rows], dtype=np.int64)
+    noise_i.update(indices[np.logical_or(prices_demeaned < low_stdev,
+                                         prices_demeaned > upp_stdev)])
 
-    noise_i.update(indices[np.logical_or(prices < low_stdev,
-                                         prices > upp_stdev)])
+    price_sigma_noise = len(noise_i) - dup_noise
+    msg = "rank-{0} found {1} noise rows as price sigma noise"
+    msg = msg.format(rank, price_sigma_noise)
+    execlogger.debug(msg)
 
-    sigma_noise = len(noise_i) - dup_noise
-    msg = "rank-{0} found {1} noise rows as sigma noise"
-    msg = msg.format(rank, sigma_noise)
+    noise_i.update(indices[np.logical_and(prices > 0, units_traded == 0)])
+
+    units_sigma_noise = len(noise_i) - price_sigma_noise
+    msg = "rank-{0} found {1} noise rows as units traded noise"
+    msg = msg.format(rank, units_sigma_noise)
     execlogger.debug(msg)
 
     msg = "rank-{0} detect noise finished, nrows {1} parsed, {2} detected"
@@ -101,7 +109,7 @@ if __name__ == "__main__":
     # Create noise row checker regex searcher
     row_regex = [
         r"^\d{8}([:]\d{2}){3}[.]\d+",
-        r"[0-9.]+",
+        r"[1-9]+[0-9.]+",
         r"[0-9.]+\r?$"]
 
     row_regex = r"[,]".join(row_regex)
