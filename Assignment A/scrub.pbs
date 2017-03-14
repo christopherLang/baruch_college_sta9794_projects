@@ -1,0 +1,14 @@
+#!/bin/bash
+#PBS -q development
+#PBS -N scrub_job
+#PBS –l select=1:ncpus=8
+#PBS –l mem=16000mb
+#PBS -l place=free
+#PBS -V
+
+cd /scratch/c.lang/2017-STAT-9794-Christopher-Lang/Assignment A
+module load python
+
+export PYTHONPATH=$PYTHONPATH:/scratch/c.lang/lib/lib/python2.7/site-packages
+
+mpiexec -n 8 python scrub.py
