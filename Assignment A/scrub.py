@@ -26,10 +26,20 @@ def worker(rows, noisefile, row_index, rank, execlogger, noiserow_check,
     noise_i = set(a_row[1] for a_row in indexed_rows
                   if noiserow_check.match(a_row[0]) is None)
 
+    regex_noise = len(noise_i)
+    msg = "rank-{0} found {1} noise rows with regex"
+    msg = msg.format(rank, len(noise_i))
+    execlogger.debug(msg)
+
     indexed_rows.sort(key=lambda x: x[0])
 
     noise_i.update((indexed_rows[i][1] for i in range(1, len(indexed_rows))
                     if (indexed_rows[i][0] == indexed_rows[i - 1][0]) is True))
+
+    dup_noise = len(noise_i) - regex_noise
+    msg = "rank-{0} found {1} noise rows as duplicates"
+    msg = msg.format(rank, dup_noise)
+    execlogger.debug(msg)
 
     indexed_rows = [i for i in indexed_rows if i[1] not in noise_i]
 
@@ -47,6 +57,11 @@ def worker(rows, noisefile, row_index, rank, execlogger, noiserow_check,
 
     noise_i.update(indices[np.logical_or(prices < low_stdev,
                                          prices > upp_stdev)])
+
+    sigma_noise = len(noise_i) - dup_noise
+    msg = "rank-{0} found {1} noise rows as sigma noise"
+    msg = msg.format(rank, sigma_noise)
+    execlogger.debug(msg)
 
     msg = "rank-{0} detect noise finished, nrows {1} parsed, {2} detected"
     msg = msg.format(rank, nrows_parsed, len(noise_i))
@@ -87,7 +102,7 @@ if __name__ == "__main__":
     row_regex = [
         r"^\d{8}([:]\d{2}){3}[.]\d+",
         r"[0-9.]+",
-        r"[0-9.]+$"]
+        r"[0-9.]+\r?$"]
 
     row_regex = r"[,]".join(row_regex)
 
@@ -116,7 +131,7 @@ if __name__ == "__main__":
     lgr_fmt = logging.Formatter('%(asctime)s : %(levelname)s : %(message)s')
     lgr_handler.setFormatter(lgr_fmt)
     lg.addHandler(lgr_handler)
-    lg.addHandler(logging.StreamHandler())
+    # lg.addHandler(logging.StreamHandler())
     lg.setLevel(log_level)
 
     # Get the location of the data file to be parsed
@@ -155,10 +170,12 @@ if __name__ == "__main__":
         nrows = chk.get_nrows(dataloc)
 
         result_log.init_section("Program Information", level=0)
-        result_log.add_section_kv("MPI size", size)
-        result_log.add_section_kv("Chunk size", cfg['chunk_size'])
-        result_log.add_section_kv("File name", ntpath.basename(dataloc))
-        result_log.add_section_kv("Row count", nrows)
+        kvs = list()
+        kvs.append(("MPI size", size))
+        kvs.append(("Chunk size", cfg['chunk_size']))
+        kvs.append(("File name", ntpath.basename(dataloc)))
+        kvs.append(("Row count", nrows))
+        result_log.add_section_kvs(kvs)
         result_log.exec_section()
 
         if size == 1:
@@ -255,19 +272,19 @@ if __name__ == "__main__":
 
         tt.pause_time()
 
-        result_log.init_section("Analysis Output", level=0)
-        result_log.add_section_kv("Execution start time",
-                                  tt.start_time_pretty())
-        result_log.add_section_kv("Execution end time", tt.end_time_pretty())
-        result_log.add_section_kv("Execution elapsed time",
-                                  tt.elapsed_pretty())
-        result_log.add_section_kv("Row parse elapsed time",
-                                  extt.elapsed_pretty())
-        result_log.add_section_kv("Row count", r['nrows'])
-        result_log.add_section_kv("Total # noise rows", r['n_noise'])
+        result_log.init_section("Scrub Analysis Output", level=0)
+
+        kvs = list()
+        kvs.append(("Execution start time", tt.start_time_pretty()))
+        kvs.append(("Execution end time", tt.end_time_pretty()))
+        kvs.append(("Execution elapsed time", tt.elapsed_pretty()))
+        kvs.append(("Row parse elapsed time", extt.elapsed_pretty()))
+        kvs.append(("Row count", r['nrows']))
+        kvs.append(("Total # noise rows", r['n_noise']))
 
         velocity = r['nrows'] / extt.elapsed_seconds()
         velocity = round(velocity, 2)
-        result_log.add_section_kv("Velocity (rows parsed / sec)", velocity)
+        kvs.append(("Velocity (rows parsed / sec)", velocity))
 
+        result_log.add_section_kvs(kvs)
         result_log.exec_section()

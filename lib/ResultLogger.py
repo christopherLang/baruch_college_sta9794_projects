@@ -122,7 +122,39 @@ class ResultLogger(object):
 
     def init_section(self, title, subtitle=None, level=0, nlines_above=1,
                      nlines_below=1):
+        """Initiate section caching for later writing
+
+        Provides a internal class storing of items to be written in a single
+        section in results logging
+
+        Args:
+            title (str):
+                The title of the section
+
+            subtitle (str):
+                A subtitle to be added under the section title. The subtitle is
+                added immediately after the section title's horizontal border,
+                followed by a newline. items are added afterwards. If None, no
+                subtitles are added
+
+            level (int):
+                This dictates how many indentation should be added to the whole
+                section. A value of zero is no indentation, with values above 0
+                are indicated number of indentations
+
+            nlines_above(int):
+                Number of newlines above the section
+
+            nlines_below(int):
+                Number of newlines below the section
+
+        Returns (null):
+            Nothing is returned. The execution of this method initiates section
+            caching within the object
+        """
         self.section_initiated = True
+
+        self.section_cache = dict()
 
         self.section_cache['title'] = title
         self.section_cache['items'] = list()
@@ -132,6 +164,10 @@ class ResultLogger(object):
         self.section_cache['nlines_below'] = nlines_below
 
     def exec_section(self):
+        """Writes cached section items to file
+
+        Only works if section is initiated for caching
+        """
         if self.section_initiated is False:
             raise Exception("Section has not been initiated. see init_section")
 
@@ -149,6 +185,17 @@ class ResultLogger(object):
             self.section_cache = dict()
 
     def add_section_items(self, items):
+        """Add a section item into cache for later writing
+
+        Items should be strings within a list
+
+        Args:
+            items (list(str)):
+                List of strings to be written to file
+
+        Returns (null):
+            Nothing is returned
+        """
         if self.section_initiated is False:
             raise Exception("Section has not been initiated. see init_section")
 
@@ -158,25 +205,28 @@ class ResultLogger(object):
         if all([isinstance(i, str) for i in items]) is not True:
             raise TypeError("items' elements must be strings")
 
-        if self.section_cache is None:
-            self.section_cache['items'] = list()
-
         self.section_cache['items'].extend(items)
 
-    def add_section_kv(self, key, value, k_justify="left", split=" : ",
-                       width=None):
-        assert self.section_initiated
-        assert isinstance(key, str)
+    # def add_section_kv(self, key, value, k_justify="left", split=" : ",
+    #                    width=None):
+    #     assert self.section_initiated
+    #     assert isinstance(key, str)
 
-        if isinstance(value, str) is not True:
-            value = str(value)
+    #     if isinstance(value, str) is not True:
+    #         value = str(value)
 
-        item = [(key, value)]
-        items = self.kv_format(item, level=self.section_cache['level'],
+    #     item = [(key, value)]
+    #     items = self.kv_format(item, level=self.section_cache['level'],
+    #                            k_justify=k_justify, split=split, width=width)
+
+    #     self.section_cache['items'].extend(items)
+
+    def add_section_kvs(self, items, k_justify="left", split=" : ",
+                        width=None):
+        items = [(k, str(v)) for k, v in items]
+
+        items = self.kv_format(items, level=self.section_cache['level'],
                                k_justify=k_justify, split=split, width=width)
-
-        if self.section_cache is None:
-            self.section_cache['items'] = list()
 
         self.section_cache['items'].extend(items)
 
