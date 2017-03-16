@@ -175,7 +175,9 @@ if __name__ == "__main__":
         # ---------------------------------------------------------------------
         result_log = rl.ResultLogger(result_logloc, cfg['prog_title'])
 
+        tt.new_time('get_nrow')
         nrows = chk.get_nrows(dataloc)
+        tt.pause_time('get_nrow')
 
         result_log.init_section("Program Information", level=0)
         kvs = list()
@@ -287,6 +289,7 @@ if __name__ == "__main__":
         kvs.append(("Execution end time", tt.end_time_pretty()))
         kvs.append(("Execution elapsed time", tt.elapsed_pretty()))
         kvs.append(("Row parse elapsed time", extt.elapsed_pretty()))
+        kvs.append(("Initial file read (nrow)", tt.elapsed_pretty('get_nrow')))
         kvs.append(("Row count", r['nrows']))
         kvs.append(("Total # noise rows", r['n_noise']))
 

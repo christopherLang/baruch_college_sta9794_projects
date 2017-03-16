@@ -73,6 +73,21 @@ class Timetrack(object):
         """
         self.int_time[tag]['start'] = self.now(tag=tag)
 
+    def new_time(self, tag):
+        """Create new time instance named tag and start time
+
+        Parameter:
+          tag : str
+            Name of time instance. Default is 'root', the internal base time
+
+        Return:
+          Nothing is returned
+        """
+
+        self.int_time[tag] = dict()
+        self.int_time[tag]['start'] = dt.datetime.utcnow()
+        self.int_time[tag]['end'] = None
+
     def pause_time(self, tag='root'):
         """Pause tracking of time
 
@@ -85,7 +100,7 @@ class Timetrack(object):
         """
         self.int_time[tag]['end'] = self.now(tag=tag)
 
-    def start_time(self, tag='root'):
+    def unpause_time(self, tag='root'):
         """Set end time to None, effectively resetting pause time
 
         Parameter:
