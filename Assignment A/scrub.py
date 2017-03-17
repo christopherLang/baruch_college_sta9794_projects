@@ -6,6 +6,7 @@ from mpi4py import MPI
 import re
 import ntpath
 import numpy as np
+import psutil
 
 
 def worker(rows, noisefile, row_index, rank, execlogger, noiserow_check,
@@ -232,9 +233,6 @@ if __name__ == "__main__":
     else:
         worker_row_indices = None
 
-    if worker_row_indices is not None:
-        print(len(worker_row_indices))
-
     row_indices = comm.scatter(worker_row_indices, root=0)
 
     # Create row reader object
@@ -252,6 +250,12 @@ if __name__ == "__main__":
             rowreader.set_startrow(index_interval[0] + 1)
             rows = rowreader.read(index_interval[1] -
                                   index_interval[0] + 1)
+
+            msg = "rank-{0} read {1} rows, memory used: {2} GB"
+            msg = msg.format(rank, len(rows),
+                             round(psutil.virtual_memory()[3] * 1e-9), 2)
+            lg.info(msg)
+
             r = worker(rows, nfile, index_interval, rank, lg,
                        noiserow_check, row_delim)
             work_result.append(r)

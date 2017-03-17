@@ -1,7 +1,6 @@
 import sys
 import os
 import json
-import datetime as dt
 from mpi4py import MPI
 import ntpath
 import numpy as np
@@ -22,7 +21,6 @@ if __name__ == "__main__":
     import chunkers as chk
     import ResultLogger as rl
     import utils
-    import math_utils as mutils
     import logging
 
     # Load program settings
@@ -30,7 +28,6 @@ if __name__ == "__main__":
         cfg = json.load(f)
 
     nchunk = cfg['chunk_size']
-    n_cores = cfg['num_process']
     row_delim = cfg['col_delimiter']
     enable_debug = cfg['enable_debug']
     noiseloc = cfg['noisefileloc']
@@ -88,14 +85,13 @@ if __name__ == "__main__":
 
         nrows = chk.get_nrows(dataloc)
 
-        print("MPI size: " + str(size))
-        print("Chunk size: " + str(nchunk))
-
         result_log.init_section("Program Information", level=0)
-        result_log.add_section_kv("MPI size", size)
-        result_log.add_section_kv("Chunk size", nchunk)
-        result_log.add_section_kv("File name", ntpath.basename(dataloc))
-        result_log.add_section_kv("Row count", nrows)
+        kvs = list()
+        kvs.append(("MPI size", size))
+        kvs.append(("Chunk size", cfg['chunk_size']))
+        kvs.append(("File name", ntpath.basename(dataloc)))
+        kvs.append(("Row count", nrows))
+        result_log.add_section_kvs(kvs)
         result_log.exec_section()
 
         if size == 1:
@@ -269,6 +265,8 @@ if __name__ == "__main__":
         lg.info("significance 95% (JB Stat <= 5.99): {0}".format(jb_chisq <= np.float64(5.99)))
         lg.info("significance 99% (JB Stat <= 9.21): {0}".format(jb_chisq <= np.float64(9.21)))
 
+        result_log.init_section("Analysis Output", level=0)
+
         analysis_output = list()
         analysis_output.append(("Execution start time",
                                 tt.start_time_pretty()))
@@ -293,5 +291,5 @@ if __name__ == "__main__":
         analysis_output.append(("significance 95% (JB Stat <= 5.99)", str(jb_chisq <= np.float64(5.99))))
         analysis_output.append(("significance 99% (JB Stat <= 9.21)", str(jb_chisq <= np.float64(9.21))))
 
-        result_log.add_lines(result_log.section("Analysis Output", result_log.kv_format(analysis_output)))
-
+        result_log.add_section_kvs(analysis_output)
+        result_log.exec_section()
