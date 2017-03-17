@@ -1,0 +1,6 @@
+{
+  "total_size_gb": 10,
+  "chunk": 100000,
+  "saveloc": "data-synth.txt",
+  "noise_probs": [0.002, 0.002, 0.002]
+}

@@ -8,4 +8,13 @@ Archive/*
 Assignment A/scratch.py
 Assignment A/mpi_test.py
 *sublime*
-**/*pyc
+*.pyc
+**/*.pyc
+Assignment A/mpi_test.py
+*sublime*
+*bk.*
+*_results.log
+*.log
+test.R
+*noise.txt
+*signal.txt
