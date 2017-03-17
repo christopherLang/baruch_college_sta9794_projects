@@ -171,7 +171,7 @@ class Timetrack(object):
 
         return elapsed
 
-    def elapsed_pretty(self, tag='root'):
+    def elapsed_pretty(self, tag='root', **kwargs):
         """Get elapsed time as a string
 
         Parameter:
@@ -183,7 +183,7 @@ class Timetrack(object):
         """
         elapsed = self.elapsed(tag=tag)
         elapsed_str = pretty_time_string(elapsed.days, elapsed.seconds,
-                                         elapsed.microseconds)
+                                         elapsed.microseconds, **kwargs)
 
         return elapsed_str
 

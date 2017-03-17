@@ -1,7 +1,8 @@
 import math
 
 
-def pretty_time_string(days=None, seconds=None, microseconds=None):
+def pretty_time_string(days=None, seconds=None, microseconds=None,
+                       ndig_mins=2, ndig_secs=2):
     """Generate a pretty string, indicating time
 
     Generates a string, show elapsed time by:
@@ -18,7 +19,10 @@ def pretty_time_string(days=None, seconds=None, microseconds=None):
         if days > 0:
             result.append(str(days) + " day(s)")
 
-    total_seconds = seconds + (microseconds * 1e-6)
+    total_seconds = seconds
+
+    if microseconds is not None:
+        total_seconds += (microseconds * 1e-6)
 
     if total_seconds >= 3600:
         total_hours = 0
@@ -36,9 +40,11 @@ def pretty_time_string(days=None, seconds=None, microseconds=None):
             total_seconds -= 60
             total_minutes += 1
 
+        total_minutes = round(total_minutes, ndig_mins)
         result.append(str(total_minutes) + " minute(s)")
 
-    result.append(str(round(total_seconds, 2)) + " second(s)")
+    total_seconds = round(total_seconds, ndig_secs)
+    result.append(str(total_seconds) + " second(s)")
 
     return ", ".join(result)
 
