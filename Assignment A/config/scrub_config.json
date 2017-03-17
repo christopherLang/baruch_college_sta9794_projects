@@ -7,5 +7,6 @@
   "result_logloc": "result/scrub_results.log",
   "col_delimiter": ",",
   "enable_debug": true,
-  "noisefileloc": "result/noise.txt"
+  "noisefileloc": "result/noise.txt",
+  "signalfileloc": "result/signal.txt"
 }

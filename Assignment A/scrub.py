@@ -137,6 +137,7 @@ if __name__ == "__main__":
     row_delim = cfg['col_delimiter']
     enable_debug = cfg['enable_debug']
     noiseloc = cfg['noisefileloc']
+    signalloc = cfg['signalfileloc']
     exec_logloc = cfg['exec_logloc']
     result_logloc = cfg['result_logloc']
 
@@ -282,8 +283,21 @@ if __name__ == "__main__":
 
             os.remove("cache/" + a_file)
 
-        tt.pause_time()
         tt.pause_time(tag='noise_agg')
+
+        tt.new_time(tag='signal_write')
+        with open(noiseloc, 'r') as noisefile:
+            noise_indices = noisefile.readlines()
+            noise_indices = set(noise_indices)
+
+        with open(signalloc, "w") as signalfile:
+            for i in xrange(nrows):
+                if i not in noise_indices:
+                    signalfile.write(str(i) + "\n")
+
+        tt.pause_time(tag='signal_write')
+
+        tt.pause_time()
 
         result_log.init_section("Scrub Analysis Output", level=0)
 
@@ -303,9 +317,11 @@ if __name__ == "__main__":
 
         noiseio_time = tt.elapsed_seconds(tag='noise_agg')
         noiseio_time += r['noiseio_elapsed']
-        kvs.append(('Noise.txt IO elapsed time',
+        kvs.append(('noise.txt IO elapsed time',
                     utils.pretty_time_string(seconds=noiseio_time,
                                              ndig_secs=4)))
+        kvs.append(('signal.txt IO elapsed time',
+                    tt.elapsed_pretty(tag='signal_write', ndig_secs=4)))
         kvs.append(("Row count", r['nrows']))
         kvs.append(("Total # noise rows", r['n_noise']))
 
