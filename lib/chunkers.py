@@ -4,8 +4,11 @@ import itertools as it
 def simple_idchunker(iterable, chunk_size=1000):
     """Evenly chunked indices with generator
 
-    Creates a generator that returns index values. Each call returns a list of
-    unique index values of chunk size or less
+    Creates a generator that returns index values mapped to iterable. Each call
+    returns a list of unique index values of chunk size or less
+
+    The generator is effectively an enumerator, just returns index values in
+    chunk size (or less) instead of one at a time
 
     Args:
         iterable (iterable):
@@ -44,7 +47,44 @@ def get_nrows(file, read_mode="rb"):
 
 
 class Rowread(object):
+    """Text file reader that seeks line number
+
+    A Rowread class is effectively a text file reader. The key difference is
+    that the class can seek for specific lines (row) to start reading from, as
+    well as read n number of lines from that point
+
+    Objects of this class keeps the file open. It is strongly recommended that
+    objects of this class is used with the with statement to ensure the file
+    is closed appropriately. The with statement is not yet implemented however
+
+    TODO implement with statement context manager
+    """
+
     def __init__(self, file, start_row, read_mode="rb"):
+        """ Rowread constructor
+
+        Create an object of class Rowread, opening a file with initial start
+        row for reading
+
+        Args
+        ------
+        file : str
+            Path to directory and filename to read from
+
+        start_row : int
+            Line number to start reading from. Line numbers are indexed
+            starting from 1
+
+        read_mode : str
+            The file mode to open the file in. This is the same as open() in
+            Python. This value is pass directly to it
+
+        Returns
+        ---------
+          A Rowread object that is connected to the provided file. Reading does
+          not start immediately, developers must use the read method of Rowread
+          to read the file into memory
+        """
         self.filename = file
         self.file = open(file, read_mode)
         self.start_row = start_row
@@ -52,6 +92,17 @@ class Rowread(object):
         self.read_mode = read_mode
 
     def reset(self, start_row):
+        """ Reset reading to a new start row/line number
+
+        This method effectively close and re-opens the file, setting the start
+        row to the user provided parameter
+
+        Args
+        ------
+        start_row : int
+            Line number to start reading from. Line numbers are indexed
+            starting from 1
+        """
         self.file.close()
         self.file = open(self.filename, self.read_mode)
         self.current_row = 1
@@ -59,6 +110,24 @@ class Rowread(object):
         self.set_startrow(start_row)
 
     def set_startrow(self, start_row):
+        """ Sets the file reading start row
+
+        User can set the start row before reading. However, if the current row
+        is greater than the provided start row, this method will raise an
+        Exception
+
+        Essentially, you cannot start at a row the reader has already past
+        e.g. The file is current at row 1000, the user cannot go to rows < 1000
+
+        If you do want to go backwards, you must use the reset(...) method to
+        set a new start row
+
+        Args
+        ------
+        start_row : int
+            Line number to start reading from. Line numbers are indexed
+            starting from 1
+        """
         if start_row < self.current_row:
             raise Exception("Start row is lower than current row")
 
@@ -66,6 +135,19 @@ class Rowread(object):
             self.start_row = start_row
 
     def read(self, nrows):
+        """ Retrieve data from text file
+
+        Start from the start row, read nrows from the text file
+
+        Args
+        ------
+        nrows : int
+            Number of rows to read from text file starting from start row
+
+        Return : list(str)
+        --------
+        Each string corresponds to one row in the text file
+        """
         while self.current_row < self.start_row:
             next(self.file)
             self.current_row += 1
