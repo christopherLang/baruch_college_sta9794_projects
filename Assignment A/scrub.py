@@ -12,8 +12,6 @@ def worker(rows, noisefile, row_index, rank, execlogger, noiserow_check,
            delimiter=","):
     start_row = row_index[0]
     nrows_read = row_index[1] - row_index[0] + 1
-    # reader = chk.row_reader(dataloc, start_row, nrows_read)
-    # rows = [a_row for a_row in reader]
     nrows_parsed = len(rows)
 
     msg = "rank-{0} start index: {1}, nrows: {2}"
@@ -75,16 +73,28 @@ def worker(rows, noisefile, row_index, rank, execlogger, noiserow_check,
     msg = msg.format(rank, nrows_parsed, len(noise_i))
     execlogger.info(msg)
 
+    msg = "rank-{0} finished scrubbing in {1} seconds"
+    msg = msg.format(rank, tt.elapsed_seconds(tag="scrub_time"))
+    execlogger.info(msg)
+
     if len(noise_i) > 0:
+        tt.new_time(tag="noise_piece_io")
+
         noisefile.writelines([str(i) + "\n" for i in noise_i])
 
         msg = "rank-{0} wrote {1} noise row indices to disk"
         msg = msg.format(rank, len(noise_i))
         execlogger.info(msg)
 
+        time_io = tt.elapsed_seconds(tag='noise_piece_io')
+
+    else:
+        time_io = 0
+
     result = dict()
     result['nrows'] = nrows_parsed
     result['n_noise'] = len(noise_i)
+    result['noiseio_elapsed'] = time_io
 
     return result
 
@@ -105,6 +115,10 @@ if __name__ == "__main__":
     import utils
     import logging
     import Timetrack
+
+    # Create time tracker -----------------------------------------------------
+    # -------------------------------------------------------------------------
+    tt = Timetrack.Timetrack()
 
     # Create noise row checker regex searcher
     row_regex = [
@@ -164,12 +178,7 @@ if __name__ == "__main__":
         raise Exception("No data location was provided")
 
     if rank == 0:
-        # Master process section ----------------------------------------------
-        # ---------------------------------------------------------------------
-
-        # Create time tracker -------------------------------------------------
-        # ---------------------------------------------------------------------
-        tt = Timetrack.Timetrack()
+        # Master process section
 
         # Create result logger
         # ---------------------------------------------------------------------
@@ -227,53 +236,46 @@ if __name__ == "__main__":
 
     row_indices = comm.scatter(worker_row_indices, root=0)
 
-    if rank == 0:
-        extt = Timetrack.Timetrack()
-
     # Create row reader object
     rowreader = chk.Rowread(dataloc, row_indices[0][0])
-    # Open a file for workers to write noise row indicies
-    filename = "noise-rank" + str(rank) + "-"
-    filename += dt.datetime.strftime(dt.datetime.utcnow(),
-                                     format="%Y%m%dT%H%M%S")
-    filename = "cache/" + filename + ".txt"
-    with open(filename, "w") as file:
+    # Create base filename for file pieces
+    nfilename = "noise-rank" + str(rank) + "-"
+    nfilename += dt.datetime.strftime(dt.datetime.utcnow(),
+                                      format="%Y%m%dT%H%M%S")
+    nfilename = "cache/" + nfilename + ".txt"
+
+    with open(nfilename, "w") as nfile:
         work_result = list()
-        wtt = Timetrack.Timetrack()
+        tt.new_time(tag="scrub_time")
         for index_interval in row_indices:
             rowreader.set_startrow(index_interval[0] + 1)
-            rows = rowreader.read(index_interval[1] - index_interval[0] + 1)
-            r = worker(rows, file, index_interval, rank, lg, noiserow_check,
-                       row_delim)
+            rows = rowreader.read(index_interval[1] -
+                                  index_interval[0] + 1)
+            r = worker(rows, nfile, index_interval, rank, lg,
+                       noiserow_check, row_delim)
             work_result.append(r)
 
             msg = "rank-{0} finished execution in {1} seconds"
-            msg = msg.format(rank, round(wtt.elapsed_seconds(), 4))
+            msg = msg.format(rank, round(tt.elapsed_seconds(tag="scrub_time"),
+                                         4))
             lg.info(msg)
 
-            wtt.reset_time()
+        tt.pause_time(tag='scrub_time')
 
     scrub_results = comm.gather(work_result, root=0)
 
     if rank == 0:
-        extt.pause_time()
-
         scrub_results = [item for sublist in scrub_results for item in sublist]
-        # Total aggregate count
-        r = dict()
-        r['nrows'] = 0
-        r['n_noise'] = 0
-
-        for a_result in scrub_results:
-            r['nrows'] += a_result['nrows']
-            r['n_noise'] += a_result['n_noise']
+        r = utils.gather_dict(scrub_results)
 
         # Combine noise files
-        noise = list()
+        tt.new_time(tag='noise_agg')
         if os.path.exists(noiseloc) is True:
             os.remove(noiseloc)
 
-        for a_file in os.listdir("cache"):
+        cachefiles = os.listdir("cache")
+        noisefiles = [i for i in cachefiles if i.startswith("noise")]
+        for a_file in noisefiles:
             with open("cache/" + a_file, "r") as cachenoisefile:
                 with open(noiseloc, "a") as noisefile:
                     noisefile.writelines(cachenoisefile.readlines())
@@ -281,20 +283,34 @@ if __name__ == "__main__":
             os.remove("cache/" + a_file)
 
         tt.pause_time()
+        tt.pause_time(tag='noise_agg')
 
         result_log.init_section("Scrub Analysis Output", level=0)
 
         kvs = list()
-        kvs.append(("Execution start time", tt.start_time_pretty()))
-        kvs.append(("Execution end time", tt.end_time_pretty()))
-        kvs.append(("Execution elapsed time", tt.elapsed_pretty()))
-        kvs.append(("Row parse elapsed time", extt.elapsed_pretty()))
-        kvs.append(("Initial file read (nrow)", tt.elapsed_pretty('get_nrow')))
+        kvs.append(("Scrub program start time", tt.start_time_pretty()))
+        kvs.append(("Scrub program end time", tt.end_time_pretty()))
+        kvs.append(("Scrub program elapsed time",
+                    tt.elapsed_pretty(ndig_secs=4)))
+
+        scrubbing_time = tt.elapsed_seconds(tag='scrub_time')
+        scrubbing_time -= r['noiseio_elapsed']
+        kvs.append(("Row scrubbing elapsed time",
+                    utils.pretty_time_string(seconds=scrubbing_time,
+                                             ndig_secs=4)))
+        kvs.append(("Row counting elapsed time",
+                    tt.elapsed_pretty('get_nrow')))
+
+        noiseio_time = tt.elapsed_seconds(tag='noise_agg')
+        noiseio_time += r['noiseio_elapsed']
+        kvs.append(('Noise.txt IO elapsed time',
+                    utils.pretty_time_string(seconds=noiseio_time,
+                                             ndig_secs=4)))
         kvs.append(("Row count", r['nrows']))
         kvs.append(("Total # noise rows", r['n_noise']))
 
-        velocity = r['nrows'] / extt.elapsed_seconds()
-        velocity = round(velocity, 2)
+        velocity = r['nrows'] / tt.elapsed_seconds(tag='scrub_time')
+        velocity = round(velocity, 4)
         kvs.append(("Velocity (rows parsed / sec)", velocity))
 
         result_log.add_section_kvs(kvs)
