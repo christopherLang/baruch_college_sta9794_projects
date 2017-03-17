@@ -81,15 +81,31 @@ class Rowread(object):
 
         Returns
         ---------
-          A Rowread object that is connected to the provided file. Reading does
-          not start immediately, developers must use the read method of Rowread
-          to read the file into memory
+          A Rowread object that is connected to the provided file. The file is
+          not initially open. To read, you must use the with statement
         """
         self.filename = file
-        self.file = open(file, read_mode)
+        self.file = None
         self.start_row = start_row
         self.current_row = 1
         self.read_mode = read_mode
+
+    def __enter__(self):
+        self.file = open(self.filename, self.read_mode)
+
+        return self
+
+    def __exit__(self, *args):
+        self.__close__()
+
+    def __close__(self):
+        if self.file is not None:
+            self.file.close()
+            self.file = None
+
+    def __open__(self):
+        if self.file is None:
+            self.file = open(self.filename, self.read_mode)
 
     def reset(self, start_row):
         """ Reset reading to a new start row/line number
@@ -103,8 +119,11 @@ class Rowread(object):
             Line number to start reading from. Line numbers are indexed
             starting from 1
         """
-        self.file.close()
-        self.file = open(self.filename, self.read_mode)
+        if self.file is None:
+            raise Exception("File not open. Use with statement")
+
+        self.__close__()
+        self.__open__()
         self.current_row = 1
 
         self.set_startrow(start_row)
@@ -148,6 +167,9 @@ class Rowread(object):
         --------
         Each string corresponds to one row in the text file
         """
+        if self.file is None:
+            raise Exception("Text file is not open. Please use with statement")
+
         while self.current_row < self.start_row:
             next(self.file)
             self.current_row += 1
@@ -166,6 +188,7 @@ class Rowread(object):
             result = None
 
         return result
+
 
 
 def row_reader(file, start_n, nrows, read_mode="rb"):
