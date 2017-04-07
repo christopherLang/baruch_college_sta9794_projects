@@ -228,7 +228,7 @@ if __name__ == "__main__":
         jarque_bera_stats = {
             "stdev_num": 0, "skew_num": 0, "kurt_num": 0, "n": 0
         }
-
+        jarque_bera_stats = utils.gather_dict(partial_stats)
         final_stdev = jarque_bera_stats['stdev_num']
         final_stdev /= (jarque_bera_stats['n'] - 1)
         final_stdev = np.sqrt(final_stdev)
