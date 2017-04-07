@@ -1,0 +1,62 @@
+| =========================================================================== |
+| STA9794 Assignment A - Scrub Program                                        |
+| =========================================================================== |
+
+
+
+ General Information                                                           
+ ----------------------------------------------------------------------------- 
+    Datetime     : Friday April 07 2017 | 02:59:09AM UTC                         
+    Datetime ISO : 2017-04-07T02:59:09.288654Z                                   
+
+
+ Python Information                                                            
+ ----------------------------------------------------------------------------- 
+    Version  : Python 2.7.13                                                     
+    Build    : default Dec 20 2016 23:09:15                                      
+    Compiler : GCC 4.4.7 20120313 (Red Hat 4.4.7-1)                              
+
+
+ System Information                                                            
+ ----------------------------------------------------------------------------- 
+    Host                 : Linux-2.6.32-642.13.1.el6.x86_64-x86_64-with-         
+                           centos-6.8-Final [x86_64]                             
+    Processor            : Intel(R) Xeon(R) CPU E5-2660 0 @ 2.20GHz              
+    CPU Architecture     : X86_64                                                
+    # of CPU cores       : 32                                                    
+    CPU core frequency   : 2.2000 GHz                                            
+    CPU capabilities     : acpi, aes, aperfmperf, apic, arat, arch_perfmon, avx, 
+                           bts, clflush, cmov, constant_tsc, cx16, cx8, dca, de, 
+                           ds_cpl, dtes64, dtherm, dts, ept, est, flexpriority,  
+                           fpu, fxsr, ht, ida, lahf_lm, lm, mca, mce, mmx, msr,  
+                           mtrr, nonstop_tsc, nx, pae, pat, pbe, pcid, pclmulqdq,
+                           pdcm, pdpe1gb, pebs, pge, pln, pni, popcnt, pse,      
+                           pse36, pts, rdtscp, rep_good, sep, smx, ss, sse, sse2,
+                           sse4_1, sse4_2, ssse3, syscall, tm, tm2, tpr_shadow,  
+                           tsc, tsc_deadline_timer, vme, vmx, vnmi, vpid, x2apic,
+                           xsave, xsaveopt, xtopology, xtpr                      
+    Total memory (GB)    : 63.27                                                 
+    Total available (GB) : 47.58                                                 
+
+
+ Program Information                                                           
+ ----------------------------------------------------------------------------- 
+    MPI size   : 1                                                               
+    Chunk size : 10000                                                           
+    File name  : data-small.txt                                                  
+    Row count  : 100000                                                          
+
+
+ Scrub Analysis Output                                                         
+ ----------------------------------------------------------------------------- 
+    Scrub program start time     : Friday April 07 2017 | 02:59:09AM UTC         
+    Scrub program end time       : Friday April 07 2017 | 02:59:10AM UTC         
+    Scrub program elapsed time   : 0.792 second(s)                               
+    Row scrubbing elapsed time   : 0.6431 second(s)                              
+    Row counting elapsed time    : 0.01 second(s)                                
+    noise.txt IO elapsed time    : 0.0435 second(s)                              
+    signal.txt IO elapsed time   : 0.0658 second(s)                              
+    Row count                    : 100000                                        
+    Total # noise rows           : 378                                           
+    Velocity (rows parsed / sec) : 154972.9262                                   
+

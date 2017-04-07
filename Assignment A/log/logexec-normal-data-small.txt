@@ -1,0 +1,49 @@
+2017-04-07 00:28:32,793 : INFO : MPI size 1, working in serial
+2017-04-07 00:28:33,053 : DEBUG : rank-0 Start row: 1, End row: 10000
+2017-04-07 00:28:33,053 : DEBUG : rank-0 nprices: 9983
+2017-04-07 00:28:33,053 : DEBUG : rank-0 First price: 782.83, dev: -525.345591387
+2017-04-07 00:28:33,053 : DEBUG : rank-0 Last price: 1479.07, dev: 170.894408613
+2017-04-07 00:28:33,078 : DEBUG : rank-0 Start row: 10001, End row: 20000
+2017-04-07 00:28:33,078 : DEBUG : rank-0 nprices: 9926
+2017-04-07 00:28:33,078 : DEBUG : rank-0 First price: 1610.34, dev: 302.164408613
+2017-04-07 00:28:33,078 : DEBUG : rank-0 Last price: 1410.66, dev: 102.484408613
+2017-04-07 00:28:33,103 : DEBUG : rank-0 Start row: 20001, End row: 30000
+2017-04-07 00:28:33,103 : DEBUG : rank-0 nprices: 9921
+2017-04-07 00:28:33,103 : DEBUG : rank-0 First price: 1279.51, dev: -28.6655913871
+2017-04-07 00:28:33,103 : DEBUG : rank-0 Last price: 1155.65, dev: -152.525591387
+2017-04-07 00:28:33,128 : DEBUG : rank-0 Start row: 30001, End row: 40000
+2017-04-07 00:28:33,128 : DEBUG : rank-0 nprices: 9978
+2017-04-07 00:28:33,128 : DEBUG : rank-0 First price: 1390.97, dev: 82.7944086129
+2017-04-07 00:28:33,128 : DEBUG : rank-0 Last price: 1376.05, dev: 67.8744086129
+2017-04-07 00:28:33,153 : DEBUG : rank-0 Start row: 40001, End row: 50000
+2017-04-07 00:28:33,153 : DEBUG : rank-0 nprices: 9981
+2017-04-07 00:28:33,153 : DEBUG : rank-0 First price: 1542.97, dev: 234.794408613
+2017-04-07 00:28:33,153 : DEBUG : rank-0 Last price: 1054.84, dev: -253.335591387
+2017-04-07 00:28:33,178 : DEBUG : rank-0 Start row: 50001, End row: 60000
+2017-04-07 00:28:33,178 : DEBUG : rank-0 nprices: 9903
+2017-04-07 00:28:33,178 : DEBUG : rank-0 First price: 1176.36, dev: -131.815591387
+2017-04-07 00:28:33,178 : DEBUG : rank-0 Last price: 1301.37, dev: -6.80559138708
+2017-04-07 00:28:33,203 : DEBUG : rank-0 Start row: 60001, End row: 70000
+2017-04-07 00:28:33,203 : DEBUG : rank-0 nprices: 9976
+2017-04-07 00:28:33,203 : DEBUG : rank-0 First price: 1040.75, dev: -267.425591387
+2017-04-07 00:28:33,203 : DEBUG : rank-0 Last price: 1274.75, dev: -33.4255913871
+2017-04-07 00:28:33,228 : DEBUG : rank-0 Start row: 70001, End row: 80000
+2017-04-07 00:28:33,228 : DEBUG : rank-0 nprices: 9985
+2017-04-07 00:28:33,228 : DEBUG : rank-0 First price: 1319.66, dev: 11.4844086129
+2017-04-07 00:28:33,228 : DEBUG : rank-0 Last price: 1355.4, dev: 47.2244086129
+2017-04-07 00:28:33,253 : DEBUG : rank-0 Start row: 80001, End row: 90000
+2017-04-07 00:28:33,253 : DEBUG : rank-0 nprices: 9984
+2017-04-07 00:28:33,253 : DEBUG : rank-0 First price: 1350.53, dev: 42.3544086129
+2017-04-07 00:28:33,253 : DEBUG : rank-0 Last price: 926.81, dev: -381.365591387
+2017-04-07 00:28:33,278 : DEBUG : rank-0 Start row: 90001, End row: 100000
+2017-04-07 00:28:33,278 : DEBUG : rank-0 nprices: 9985
+2017-04-07 00:28:33,278 : DEBUG : rank-0 First price: 839.62, dev: -468.555591387
+2017-04-07 00:28:33,278 : DEBUG : rank-0 Last price: 975.89, dev: -332.285591387
+2017-04-07 00:28:33,279 : INFO : rank-0 stdev numerator: 5266023201.31
+2017-04-07 00:28:33,279 : INFO : rank-0 skew numerator: 5.5698946989e+11
+2017-04-07 00:28:33,279 : INFO : rank-0 kurt numerator: 8.59626085055e+14
+2017-04-07 00:28:33,279 : INFO : stdev: 229.914274431, skew: 0.460038227449, kurt: 3.0880945332
+2017-04-07 00:28:33,279 : INFO : Jarque-Bera test statistic: 910.693755435
+2017-04-07 00:28:33,279 : INFO : Null hypothesis: Series is likely normally distributed
+2017-04-07 00:28:33,279 : INFO : significance 95% (JB Stat <= 5.99): False
+2017-04-07 00:28:33,280 : INFO : significance 99% (JB Stat <= 9.21): False

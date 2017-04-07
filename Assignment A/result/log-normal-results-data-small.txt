@@ -1,0 +1,67 @@
+| =========================================================================== |
+| STA9794 Assignment A - Normal Program                                       |
+| =========================================================================== |
+
+
+
+ General Information                                                           
+ ----------------------------------------------------------------------------- 
+    Datetime     : Friday April 07 2017 | 04:28:32AM UTC                         
+    Datetime ISO : 2017-04-07T04:28:32.766694Z                                   
+
+
+ Python Information                                                            
+ ----------------------------------------------------------------------------- 
+    Version  : Python 2.7.13                                                     
+    Build    : default Dec 20 2016 23:09:15                                      
+    Compiler : GCC 4.4.7 20120313 (Red Hat 4.4.7-1)                              
+
+
+ System Information                                                            
+ ----------------------------------------------------------------------------- 
+    Host                 : Linux-2.6.32-642.13.1.el6.x86_64-x86_64-with-         
+                           centos-6.8-Final [x86_64]                             
+    Processor            : Intel(R) Xeon(R) CPU E5-2660 0 @ 2.20GHz              
+    CPU Architecture     : X86_64                                                
+    # of CPU cores       : 32                                                    
+    CPU core frequency   : 2.2000 GHz                                            
+    CPU capabilities     : acpi, aes, aperfmperf, apic, arat, arch_perfmon, avx, 
+                           bts, clflush, cmov, constant_tsc, cx16, cx8, dca, de, 
+                           ds_cpl, dtes64, dtherm, dts, ept, est, flexpriority,  
+                           fpu, fxsr, ht, ida, lahf_lm, lm, mca, mce, mmx, msr,  
+                           mtrr, nonstop_tsc, nx, pae, pat, pbe, pcid, pclmulqdq,
+                           pdcm, pdpe1gb, pebs, pge, pln, pni, popcnt, pse,      
+                           pse36, pts, rdtscp, rep_good, sep, smx, ss, sse, sse2,
+                           sse4_1, sse4_2, ssse3, syscall, tm, tm2, tpr_shadow,  
+                           tsc, tsc_deadline_timer, vme, vmx, vnmi, vpid, x2apic,
+                           xsave, xsaveopt, xtopology, xtpr                      
+    Total memory (GB)    : 63.27                                                 
+    Total available (GB) : 46.87                                                 
+
+
+ Program Information                                                           
+ ----------------------------------------------------------------------------- 
+    MPI size   : 1                                                               
+    Chunk size : 10000                                                           
+    File name  : data-small.txt                                                  
+    Row count  : 100000                                                          
+
+
+ Analysis Output                                                               
+ ----------------------------------------------------------------------------- 
+    Normal program start time          : Friday April 07 2017 | 04:28:32AM UTC   
+    Normal program end time            : Friday April 07 2017 | 04:28:33AM UTC   
+    Normal program elapsed time        : 0.52 second(s)                          
+    Test statistic compute time        : 0.49 second(s)                          
+    Velocity (stat compute / sec)      : 410219.456                              
+    # of prices                        : 99622                                   
+    Mean (price)                       : 1308.1756                               
+    STDEV (price)                      : 229.9143                                
+    Skewness (price)                   : 0.46                                    
+    Kurtosis (price)                   : 3.0881                                  
+    Jarque-Bera test statistic         : 910.6938                                
+    Null hypothesis                    : Price is normal                         
+    Compared to                        : Chi-square, 2 dof                       
+    significance 95% (JB Stat <= 5.99) : False                                   
+    significance 99% (JB Stat <= 9.21) : False                                   
+
