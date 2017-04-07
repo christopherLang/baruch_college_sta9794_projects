@@ -1,0 +1,62 @@
+2017-04-06 23:15:24,647 : INFO : MPI size 1, working in serial
+2017-04-06 23:15:28,190 : INFO : rank-0 read 10000000 rows, memory used: 12.0 GB
+2017-04-06 23:15:28,190 : DEBUG : rank-0 start index: 0, nrows: 10000000
+2017-04-06 23:15:45,672 : DEBUG : rank-0 found 10612 noise rows with regex
+2017-04-06 23:15:56,424 : DEBUG : rank-0 found 4591 noise rows as duplicates
+2017-04-06 23:16:38,572 : DEBUG : rank-0 found 12182 noise rows as price sigma noise
+2017-04-06 23:16:38,597 : DEBUG : rank-0 found 4745 noise rows as units traded noise
+2017-04-06 23:16:38,598 : INFO : rank-0 detect noise finished, nrows 10000000 parsed, 16927 detected
+2017-04-06 23:16:38,598 : INFO : rank-0 finished scrubbing in 73.946683 seconds
+2017-04-06 23:16:38,609 : INFO : rank-0 wrote 16927 noise row indices to disk
+2017-04-06 23:16:40,605 : INFO : rank-0 finished execution in 75.9541 seconds
+2017-04-06 23:16:44,162 : INFO : rank-0 read 10000000 rows, memory used: 13.0 GB
+2017-04-06 23:16:44,162 : DEBUG : rank-0 start index: 10000000, nrows: 10000000
+2017-04-06 23:17:01,320 : DEBUG : rank-0 found 10411 noise rows with regex
+2017-04-06 23:17:12,001 : DEBUG : rank-0 found 4565 noise rows as duplicates
+2017-04-06 23:17:52,414 : DEBUG : rank-0 found 11941 noise rows as price sigma noise
+2017-04-06 23:17:52,447 : DEBUG : rank-0 found 4713 noise rows as units traded noise
+2017-04-06 23:17:52,448 : INFO : rank-0 detect noise finished, nrows 10000000 parsed, 16654 detected
+2017-04-06 23:17:52,448 : INFO : rank-0 finished scrubbing in 147.796733 seconds
+2017-04-06 23:17:52,460 : INFO : rank-0 wrote 16654 noise row indices to disk
+2017-04-06 23:17:55,700 : INFO : rank-0 finished execution in 151.0492 seconds
+2017-04-06 23:38:28,902 : INFO : MPI size 1, working in serial
+2017-04-06 23:38:32,767 : INFO : rank-0 read 10000000 rows, memory used: 18.0 GB
+2017-04-06 23:38:32,767 : DEBUG : rank-0 start index: 0, nrows: 10000000
+2017-04-06 23:38:56,908 : DEBUG : rank-0 found 10612 noise rows with regex
+2017-04-06 23:39:16,953 : DEBUG : rank-0 found 4591 noise rows as duplicates
+2017-04-06 23:40:56,520 : DEBUG : rank-0 found 12182 noise rows as price sigma noise
+2017-04-06 23:40:56,547 : DEBUG : rank-0 found 4745 noise rows as units traded noise
+2017-04-06 23:40:56,548 : INFO : rank-0 detect noise finished, nrows 10000000 parsed, 16927 detected
+2017-04-06 23:40:56,548 : INFO : rank-0 finished scrubbing in 147.643248 seconds
+2017-04-06 23:40:56,560 : INFO : rank-0 wrote 16927 noise row indices to disk
+2017-04-06 23:40:58,722 : INFO : rank-0 finished execution in 149.817 seconds
+2017-04-06 23:41:02,713 : INFO : rank-0 read 10000000 rows, memory used: 19.0 GB
+2017-04-06 23:41:02,714 : DEBUG : rank-0 start index: 10000000, nrows: 10000000
+2017-04-06 23:41:22,374 : DEBUG : rank-0 found 10411 noise rows with regex
+2017-04-06 23:41:34,032 : DEBUG : rank-0 found 4565 noise rows as duplicates
+2017-04-06 23:43:06,579 : DEBUG : rank-0 found 11941 noise rows as price sigma noise
+2017-04-06 23:43:06,607 : DEBUG : rank-0 found 4713 noise rows as units traded noise
+2017-04-06 23:43:06,607 : INFO : rank-0 detect noise finished, nrows 10000000 parsed, 16654 detected
+2017-04-06 23:43:06,607 : INFO : rank-0 finished scrubbing in 277.702514 seconds
+2017-04-06 23:43:06,618 : INFO : rank-0 wrote 16654 noise row indices to disk
+2017-04-06 23:43:08,996 : INFO : rank-0 finished execution in 280.0909 seconds
+2017-04-06 23:43:12,854 : INFO : rank-0 read 10000000 rows, memory used: 19.0 GB
+2017-04-06 23:43:12,854 : DEBUG : rank-0 start index: 20000000, nrows: 10000000
+2017-04-06 23:43:32,082 : DEBUG : rank-0 found 10507 noise rows with regex
+2017-04-06 23:43:43,660 : DEBUG : rank-0 found 4417 noise rows as duplicates
+2017-04-06 23:45:51,648 : DEBUG : rank-0 found 11981 noise rows as price sigma noise
+2017-04-06 23:45:51,675 : DEBUG : rank-0 found 4563 noise rows as units traded noise
+2017-04-06 23:45:51,675 : INFO : rank-0 detect noise finished, nrows 10000000 parsed, 16544 detected
+2017-04-06 23:45:51,675 : INFO : rank-0 finished scrubbing in 442.770789 seconds
+2017-04-06 23:45:51,687 : INFO : rank-0 wrote 16544 noise row indices to disk
+2017-04-06 23:45:54,046 : INFO : rank-0 finished execution in 445.1407 seconds
+2017-04-06 23:45:56,099 : INFO : rank-0 read 5358866 rows, memory used: 17.0 GB
+2017-04-06 23:45:56,100 : DEBUG : rank-0 start index: 30000000, nrows: 5358866
+2017-04-06 23:46:06,881 : DEBUG : rank-0 found 5618 noise rows with regex
+2017-04-06 23:46:13,289 : DEBUG : rank-0 found 2355 noise rows as duplicates
+2017-04-06 23:46:51,475 : DEBUG : rank-0 found 6395 noise rows as price sigma noise
+2017-04-06 23:46:51,493 : DEBUG : rank-0 found 2427 noise rows as units traded noise
+2017-04-06 23:46:51,495 : INFO : rank-0 detect noise finished, nrows 5358866 parsed, 8822 detected
+2017-04-06 23:46:51,497 : INFO : rank-0 finished scrubbing in 502.591778 seconds
+2017-04-06 23:46:51,508 : INFO : rank-0 wrote 8822 noise row indices to disk
+2017-04-06 23:46:52,839 : INFO : rank-0 finished execution in 503.9338 seconds
