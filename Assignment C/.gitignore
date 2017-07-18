@@ -1,0 +1,10 @@
+*sublime*
+*.pyc
+**/*.pyc
+*.tar
+*.bz2
+*.dat
+*.sqlite
+*.xml
+*.DS_Store
+sftp-config.json
